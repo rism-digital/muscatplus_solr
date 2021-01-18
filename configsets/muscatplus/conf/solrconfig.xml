@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+    <luceneMatchVersion>8.6.2</luceneMatchVersion>
+    <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-analysis-extras-\d.*\.jar" />
+    <lib dir="${solr.install.dir:../../../..}/contrib/analysis-extras/lib" regex="icu4j-\d.*\.jar" />
+    <lib dir="${solr.install.dir:../../../..}/contrib/analysis-extras/lucene-libs" regex="lucene-analyzers-icu-\d.*\.jar" />
+
+    <dataDir>${solr.data.dir:}</dataDir>
+
+    <directoryFactory name="DirectoryFactory"
+                      class="${solr.directoryFactory:solr.NRTCachingDirectoryFactory}" />
+
+    <codecFactory class="solr.SchemaCodecFactory" />
+    <schemaFactory class="ClassicIndexSchemaFactory" />
+
+    <indexConfig>
+        <lockType>${solr.lock.type:native}</lockType>
+    </indexConfig>
+
+    <jmx />
+
+    <updateHandler class="solr.DirectUpdateHandler2">
+        <updateLog>
+            <str name="dir">${solr.ulog.dir:}</str>
+        </updateLog>
+        <autoCommit>
+            <maxTime>${solr.autoCommit.maxTime:60000}</maxTime>
+            <openSearcher>true</openSearcher>
+        </autoCommit>
+        <autoSoftCommit>
+            <maxTime>${solr.autoSoftCommit.maxTime:-1}</maxTime>
+        </autoSoftCommit>
+    </updateHandler>
+
+    <!-- auto-generate UUIDs when a document is indexed -->
+    <updateProcessor class="solr.UUIDUpdateProcessorFactory" name="uuid">
+        <str name="fieldName">id</str>
+    </updateProcessor>
+
+    <!-- auto-generate a timestamp when a document is indexed -->
+    <updateProcessor class="solr.TimestampUpdateProcessorFactory" name="auto-timestamp">
+        <str name="fieldName">indexed</str>
+    </updateProcessor>
+
+    <updateRequestProcessorChain name="process" default="true" processor="uuid,auto-timestamp">
+        <processor class="solr.LogUpdateProcessorFactory" />
+        <processor class="solr.RunUpdateProcessorFactory" />
+    </updateRequestProcessorChain>
+
+    <query>
+        <maxBooleanClauses>1024</maxBooleanClauses>
+        <filterCache class="solr.FastLRUCache"
+                     size="512"
+                     initialSize="512"
+                     autowarmCount="256" />
+        <queryResultCache class="solr.LRUCache"
+                          size="4096"
+                          initialSize="1024"
+                          autowarmCount="512" />
+        <documentCache class="solr.LRUCache"
+                       size="4096"
+                       initialSize="1024"
+                       autowarmCount="512" />
+        <cache name="perSegFilter"
+               class="solr.search.LRUCache"
+               size="10"
+               initialSize="0"
+               autowarmCount="10"
+               regenerator="solr.NoOpRegenerator" />
+        <enableLazyFieldLoading>true</enableLazyFieldLoading>
+        <queryResultWindowSize>20</queryResultWindowSize>
+        <queryResultMaxDocsCached>200</queryResultMaxDocsCached>
+        <listener event="newSearcher" class="solr.QuerySenderListener">
+            <arr name="queries" />
+        </listener>
+        <listener event="firstSearcher" class="solr.QuerySenderListener">
+            <arr name="queries">
+            </arr>
+        </listener>
+        <useColdSearcher>false</useColdSearcher>
+    </query>
+
+    <requestDispatcher handleSelect="false">
+        <requestParsers enableRemoteStreaming="true"
+                        multipartUploadLimitInKB="2048000"
+                        formdataUploadLimitInKB="2048"
+                        addHttpRequestToContext="false" />
+        <httpCaching never304="true" />
+
+    </requestDispatcher>
+
+    <requestHandler name="/select" class="solr.SearchHandler">
+        <lst name="defaults">
+            <str name="echoParams">explicit</str>
+            <int name="rows">20</int>
+            <str name="q.op">AND</str>
+            <str name="df">text</str>
+            <str name="wt">json</str>
+            <str name="defType">edismax</str>
+            <arr name="qf">
+                <str>main_title_ft^5</str>
+                <str>source_title_ft^3</str>
+                <str>general_notes_ft</str>
+                <str>creator_name_ft</str>
+                <str>related_people_ft</str>
+                <str>name_ft</str>
+                <str>term_ft</str>
+                <str>alternate_terms_ft</str>
+            </arr>
+            <int name="ps">10</int>
+            <int name="qs">10</int>
+            <!-- Boost a field based on a number stored in the 'boost' field. -->
+            <str name="bf">
+                boost
+            </str>
+            <arr name="pf">
+                <str>main_title_ft</str>
+                <str>source_title_ft</str>
+                <str>general_notes_ft</str>
+                <str>creator_name_ft</str>
+                <str>people_ft</str>
+                <str>institutions_ft</str>
+                <str>term_ft</str>
+                <str>alternate_terms_ft</str>
+            </arr>
+            <arr name="pf2">
+                <str>main_title_ft</str>
+                <str>source_title_ft</str>
+                <str>general_notes_ft</str>
+                <str>creator_name_ft</str>
+                <str>people_ft</str>
+                <str>institutions_ft</str>
+                <str>term_ft</str>
+                <str>alternate_terms_ft</str>
+            </arr>
+            <arr name="pf3">
+                <str>main_title_ft</str>
+                <str>source_title_ft</str>
+                <str>general_notes_ft</str>
+                <str>creator_name_ft</str>
+                <str>people_ft</str>
+                <str>institutions_ft</str>
+                <str>term_ft</str>
+                <str>alternate_terms_ft</str>
+            </arr>
+            <arr name="hl.fl">
+            </arr>
+        </lst>
+    </requestHandler>
+
+    <!-- <requestHandler name="/iiif" class="solr.SearchHandler">
+        <lst name="defaults">
+            <str name="echoParams">explicit</str>
+            <str name="df">text</str>
+            <str name="wt">json</str>
+        </lst>
+    </requestHandler> -->
+
+    <requestHandler name="/query" class="solr.SearchHandler">
+        <lst name="defaults">
+            <str name="echoParams">explicit</str>
+            <str name="wt">json</str>
+            <str name="indent">true</str>
+            <str name="df">text</str>
+        </lst>
+    </requestHandler>
+
+<!--    <searchComponent name="spellcheck" class="solr.SpellCheckComponent">-->
+<!--        <str name="queryAnalyzerFieldType">text_spell</str>-->
+<!--        <lst name="spellchecker">-->
+<!--            <str name="name">direct</str>-->
+<!--            <str name="classname">solr.DirectSolrSpellChecker</str>-->
+<!--            <str name="distanceMeasure">org.apache.lucene.search.spell.LuceneLevenshteinDistance</str>-->
+<!--            <str name="comparatorClass">score</str>-->
+<!--            <int name="maxEdits">2</int>-->
+<!--            <int name="minPrefix">1</int>-->
+<!--            <int name="minQueryLength">3</int>-->
+<!--            <str name="field">spell_sp</str>-->
+<!--            <str name="buildOnCommit">true</str>-->
+<!--        </lst>-->
+<!--        <lst name="spellchecker">-->
+<!--            <str name="name">wordbreak</str>-->
+<!--            <str name="classname">solr.WordBreakSolrSpellChecker</str>-->
+<!--            <str name="field">spell_sp</str>-->
+<!--            <str name="combineWords">true</str>-->
+<!--            <str name="breakWords">true</str>-->
+<!--            <int name="maxChanges">10</int>-->
+<!--        </lst>-->
+<!--    </searchComponent>-->
+
+    <!-- uncomment if needed; used for testing -->
+    <!--
+    <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-dataimporthandler-.*\.jar" />
+    <requestHandler name="/dataimport" class="org.apache.solr.handler.dataimport.DataImportHandler">
+        <lst name="defaults">
+            <str name="config">data-config-ingest.xml</str>
+        </lst>
+    </requestHandler>
+    -->
+</config>
