@@ -42,6 +42,7 @@
     <!-- Alphanumeric sort fields -->
     <copyField source="main_title_s" dest="main_title_ans" />
     <copyField source="name_s" dest="name_ans" />
+    <copyField source="work_num_s" dest="work_num_ans" />
 
     <!-- fulltext fields -->
     <copyField source="main_title_s" dest="main_title_ft" />
@@ -57,7 +58,9 @@
     <copyField source="term_s" dest="term_ft" />
     <copyField source="alternate_terms_sm" dest="alternate_terms_ft" />
     <copyField source="country_s" dest="country_ft" />
+    <copyField source="city_s" dest="country_ft" />
     <copyField source="district_s" dest="district_ft" />
+    <copyField source="siglum_s" dest="siglum_ft" />
 
     <fieldType name="nest_path" class="solr.NestPathField" />
     <fieldType name="uuid" class="solr.UUIDField" indexed="true" stored="true" docValues="true" />
@@ -178,4 +181,3 @@
         </analyzer>
     </fieldType>
 </schema>
-
