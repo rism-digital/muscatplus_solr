@@ -37,7 +37,7 @@
     <dynamicField name="*_al" type="text_analyzed" stored="false" />
     <dynamicField name="*_unp" type="text_unprocessed" stored="false" />
     <dynamicField name="*_sp" type="text_spell" stored="false" />
-    <dynamicField name="*_json" type="json" multiValued="true" />
+    <dynamicField name="*_json" type="json" multiValued="false" />
 
     <!-- Alphanumeric sort fields -->
     <copyField source="main_title_s" dest="main_title_ans" />
@@ -181,3 +181,4 @@
         </analyzer>
     </fieldType>
 </schema>
+

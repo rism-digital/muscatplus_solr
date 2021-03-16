@@ -96,6 +96,17 @@
             <str name="q.op">AND</str>
             <str name="df">text</str>
             <str name="wt">json</str>
+            <str name="fl">
+                <!-- return all fields, but specific json fields are run through the json transformer -->
+                *,
+                subjects_json:[json],
+                holding_institutions_json:[json],
+                material_groups_json:[json],
+                rism_series_json:[json],
+                creator_json:[json],
+                relationships_json:[json],
+                source_membership_json:[json]
+            </str>
             <str name="defType">edismax</str>
             <arr name="qf">
                 <str>main_title_ft^5</str>
