@@ -105,7 +105,12 @@
                 rism_series_json:[json],
                 creator_json:[json],
                 relationships_json:[json],
-                source_membership_json:[json]
+                source_membership_json:[json],
+                related_people_json:[json],
+                related_places_json:[json],
+                external_links_json:[json],
+                name_variants_json:[json],
+                related_institutions_json:[json]
             </str>
             <str name="defType">edismax</str>
             <arr name="qf">
