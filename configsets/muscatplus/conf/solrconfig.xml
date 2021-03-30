@@ -108,7 +108,7 @@
                 source_membership_json:[json],
                 related_people_json:[json],
                 related_places_json:[json],
-                external_links_json:[json],
+                external_resources_json:[json],
                 name_variants_json:[json],
                 related_institutions_json:[json]
             </str>
