@@ -125,7 +125,6 @@
                 <str>institutions_ft^3</str>
                 <str>country_ft</str>
                 <str>district_ft</str>
-                <str>district_ft</str>
             </arr>
             <int name="ps">10</int>
             <int name="qs">10</int>
