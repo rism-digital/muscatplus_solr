@@ -115,6 +115,9 @@
             <str name="defType">edismax</str>
             <arr name="qf">
                 <str>main_title_ft^5</str>
+                <str>siglum_ft^5</str>
+                <str>holding_institutions_ft^5</str>
+                <str>institutions_ft^3</str>
                 <str>source_title_ft^3</str>
                 <str>general_notes_ft</str>
                 <str>creator_name_ft</str>
@@ -122,7 +125,6 @@
                 <str>name_ft</str>
                 <str>term_ft</str>
                 <str>alternate_terms_ft</str>
-                <str>institutions_ft^3</str>
                 <str>country_ft</str>
                 <str>district_ft</str>
             </arr>
@@ -141,7 +143,8 @@
                 <str>institutions_ft</str>
                 <str>term_ft</str>
                 <str>alternate_terms_ft</str>
-                <str>institutions_ft</str>
+                <str>siglum_ft</str>
+                <str>holding_institutions_sm</str>
             </arr>
             <arr name="pf2">
                 <str>main_title_ft</str>
@@ -152,7 +155,8 @@
                 <str>institutions_ft</str>
                 <str>term_ft</str>
                 <str>alternate_terms_ft</str>
-                <str>institutions_ft</str>
+                <str>siglum_ft</str>
+                <str>holding_institutions_ft</str>
             </arr>
             <arr name="pf3">
                 <str>main_title_ft</str>
@@ -163,7 +167,8 @@
                 <str>institutions_ft</str>
                 <str>term_ft</str>
                 <str>alternate_terms_ft</str>
-                <str>institutions_ft</str>
+                <str>siglum_ft</str>
+                <str>holding_institutions_ft</str>
             </arr>
             <arr name="hl.fl">
             </arr>

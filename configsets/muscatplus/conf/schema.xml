@@ -61,6 +61,7 @@
     <copyField source="city_s" dest="country_ft" />
     <copyField source="district_s" dest="district_ft" />
     <copyField source="siglum_s" dest="siglum_ft" />
+    <copyField source="holding_institutions_sm" dest="holding_institutions_ft" />
 
     <fieldType name="nest_path" class="solr.NestPathField" />
     <fieldType name="uuid" class="solr.UUIDField" indexed="true" stored="true" docValues="true" />
@@ -181,4 +182,3 @@
         </analyzer>
     </fieldType>
 </schema>
-
