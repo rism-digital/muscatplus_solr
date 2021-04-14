@@ -35,6 +35,7 @@
     <dynamicField name="*_ft" type="text_fulltext" stored="false"/>
     <!-- Fulltext query processing, but not stored so can't be used for highlighting -->
     <dynamicField name="*_ftns" type="text_fulltext" stored="false" />
+    <dynamicField name="*_kw" type="text_keyword" stored="false" />
     <dynamicField name="*_al" type="text_analyzed" stored="false" />
     <dynamicField name="*_unp" type="text_unprocessed" stored="false" />
     <dynamicField name="*_sp" type="text_spell" stored="false" />
@@ -61,8 +62,11 @@
     <copyField source="country_s" dest="country_ft" />
     <copyField source="city_s" dest="country_ft" />
     <copyField source="district_s" dest="district_ft" />
-    <copyField source="siglum_s" dest="siglum_ft" />
-    <copyField source="holding_institutions_sm" dest="holding_institutions_ft" />
+
+    <!-- fields that primarily hold sigla are indexed with the keyword field -->
+    <copyField source="siglum_s" dest="siglum_kw" />
+    <copyField source="holding_institutions_sm" dest="holding_institutions_kw" />
+
 
     <fieldType name="nest_path" class="solr.NestPathField" />
     <fieldType name="uuid" class="solr.UUIDField" indexed="true" stored="true" docValues="true" />
@@ -102,6 +106,13 @@
             <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true" />
             <filter class="solr.CommonGramsQueryFilterFactory" ignoreCase="true" words="stopwords.txt" />
         </analyzer>
+    </fieldType>
+
+    <!-- a field that keeps hyphens but allows wildcard searches to support siglum search. Performs
+     n-gram analysis to allow wildcard searching of any combination of tokens. -->
+    <fieldType name="text_keyword" class="solr.TextField" termVectors="true" multiValued="true">
+        <tokenizer class="solr.KeywordTokenizerFactory" />
+        <filter class="solr.EdgeNGramFilterFactory" minGramSize="1" maxGramSize="10" />
     </fieldType>
 
     <!-- A differently-analyzed field to use for weighting full-text searches-->
