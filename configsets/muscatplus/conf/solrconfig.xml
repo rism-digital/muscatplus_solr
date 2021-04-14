@@ -111,6 +111,8 @@
                 external_resources_json:[json],
                 name_variants_json:[json],
                 related_institutions_json:[json]
+                liturgical_festivals_json:[json]
+                instrumentation_json:[json]
             </str>
             <str name="defType">edismax</str>
             <arr name="qf">
