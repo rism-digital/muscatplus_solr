@@ -36,6 +36,7 @@
     <!-- Fulltext query processing, but not stored so can't be used for highlighting -->
     <dynamicField name="*_ftns" type="text_fulltext" stored="false" />
     <dynamicField name="*_kw" type="text_keyword" stored="false" />
+    <dynamicField name="*_ti" type="text_instruments" stored="false" />
     <dynamicField name="*_al" type="text_analyzed" stored="false" />
     <dynamicField name="*_unp" type="text_unprocessed" stored="false" />
     <dynamicField name="*_sp" type="text_spell" stored="false" />
@@ -67,6 +68,8 @@
     <copyField source="siglum_s" dest="siglum_kw" />
     <copyField source="holding_institutions_sm" dest="holding_institutions_kw" />
 
+    <!-- instrumentation fields -->
+    <copyField source="scoring_summary_sm" dest="scoring_summary_ti" />
 
     <fieldType name="nest_path" class="solr.NestPathField" />
     <fieldType name="uuid" class="solr.UUIDField" indexed="true" stored="true" docValues="true" />
@@ -113,6 +116,14 @@
     <fieldType name="text_keyword" class="solr.TextField" termVectors="true" multiValued="true">
         <tokenizer class="solr.KeywordTokenizerFactory" />
         <filter class="solr.EdgeNGramFilterFactory" minGramSize="1" maxGramSize="10" />
+    </fieldType>
+
+    <!-- a field that passes query values through a synonym parser for instrument names. -->
+    <fieldType name="text_instruments" class="solr.TextField" termVectors="true" multiValued="true">
+        <analyzer type="query">
+            <tokenizer class="solr.StandardTokenizerFactory"/>
+            <filter class="solr.SynonymGraphFilterFactory" synonyms="instrument-synonyms.txt"/>
+        </analyzer>
     </fieldType>
 
     <!-- A differently-analyzed field to use for weighting full-text searches-->
@@ -194,3 +205,4 @@
         </analyzer>
     </fieldType>
 </schema>
+

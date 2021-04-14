@@ -127,6 +127,7 @@
                 <str>alternate_terms_ft</str>
                 <str>country_ft</str>
                 <str>district_ft</str>
+                <str>scoring_summary_ti</str>
             </arr>
             <int name="ps">10</int>
             <int name="qs">10</int>

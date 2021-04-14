@@ -1,0 +1,5 @@
+# Synonyms for the instrument abbreviations
+pf,piano,pianoforte
+trb,trombone,posaune,sackbut,smooflydoo
+org,organ
+orch,orchestra
