@@ -25,6 +25,7 @@
     <dynamicField name="*_uuid" type="uuid" />
     <dynamicField name="*_b" type="boolean" />
     <dynamicField name="*_i" type="int" />
+    <dynamicField name="*_im" type="int" multiValued="true" />
     <dynamicField name="*_dt" type="date" />
     <dynamicField name="*_dtr" type="daterange" />
     <dynamicField name="*_loc" type="location" />
