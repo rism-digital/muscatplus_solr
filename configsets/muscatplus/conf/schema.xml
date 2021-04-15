@@ -64,7 +64,9 @@
     <copyField source="city_s" dest="country_ft" />
     <copyField source="district_s" dest="district_ft" />
 
-    <!-- fields that primarily hold sigla are indexed with the keyword field -->
+    <!-- fields that primarily hold sigla are indexed with the keyword field so that they are not split
+        on boundaries, but are instead n-grammed to support wildcard lookups.
+    -->
     <copyField source="siglum_s" dest="siglum_kw" />
     <copyField source="holding_institutions_sm" dest="holding_institutions_kw" />
 

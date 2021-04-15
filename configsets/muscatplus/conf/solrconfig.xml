@@ -116,6 +116,7 @@
             </str>
             <str name="defType">edismax</str>
             <arr name="qf">
+                <str>rism_id^10</str>
                 <str>main_title_ft^5</str>
                 <str>siglum_kw^5</str>
                 <str>holding_institutions_ft^5</str>
