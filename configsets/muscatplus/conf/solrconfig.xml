@@ -91,40 +91,46 @@
 
     <requestHandler name="/select" class="solr.SearchHandler">
         <lst name="defaults">
-            <str name="echoParams">explicit</str>
+            <str name="echoParams">all</str>
             <int name="rows">20</int>
-            <str name="q.op">AND</str>
-            <str name="df">text</str>
-            <str name="wt">json</str>
-            <str name="fl">
-                <!-- return all fields, but specific json fields are run through the json transformer -->
-                *,
-                subjects_json:[json],
-                holding_institutions_json:[json],
-                material_groups_json:[json],
-                rism_series_json:[json],
-                creator_json:[json],
-                relationships_json:[json],
-                source_membership_json:[json],
-                related_people_json:[json],
-                related_places_json:[json],
-                external_resources_json:[json],
-                name_variants_json:[json],
-                related_institutions_json:[json]
-                liturgical_festivals_json:[json]
-                instrumentation_json:[json]
-            </str>
+            <!-- <str name="q.op">AND</str>-->
+            <!-- https://stackoverflow.com/a/29827605 "mm=100%" is the equivalent of q.op=AND -->
             <str name="defType">edismax</str>
+            <arr name="mm">
+                <str>4&lt;50%</str>
+            </arr>
+            <str name="mm.autoRelax">true</str>
+            <str name="wt">json</str>
+            <arr name="fl">
+                <!-- return all fields, but specific json fields are run through the json transformer -->
+                <str>*</str>
+                <str>subjects_json:[json]</str>
+                <str>holding_institutions_json:[json]</str>
+                <str>material_groups_json:[json]</str>
+                <str>rism_series_json:[json]</str>
+                <str>creator_json:[json]</str>
+                <str>relationships_json:[json]</str>
+                <str>source_membership_json:[json]</str>
+                <str>related_people_json:[json]</str>
+                <str>related_places_json:[json]</str>
+                <str>external_resources_json:[json]</str>
+                <str>name_variants_json:[json]</str>
+                <str>related_institutions_json:[json]</str>
+                <str>liturgical_festivals_json:[json]</str>
+                <str>instrumentation_json:[json]</str>
+            </arr>
             <arr name="qf">
-                <str>rism_id^10</str>
+                <str>title_composer_ft</str>
+                <str>rism_id_wstok</str>
                 <str>main_title_ft^5</str>
-                <str>siglum_kw^5</str>
-                <str>holding_institutions_ft^5</str>
-                <str>institutions_ft^3</str>
-                <str>source_title_ft^3</str>
+                <str>creator_name_ft^10</str>
+                <str>related_people_ft^5</str>
+                <str>siglum_kw</str>
+                <str>holding_institutions_kw</str>
+                <str>institutions_ft</str>
+                <str>source_title_ft</str>
+                <str>subjects_ft^5</str>
                 <str>general_notes_ft</str>
-                <str>creator_name_ft</str>
-                <str>related_people_ft</str>
                 <str>name_ft</str>
                 <str>term_ft</str>
                 <str>alternate_terms_ft</str>
@@ -135,44 +141,44 @@
             <int name="ps">10</int>
             <int name="qs">10</int>
             <!-- Boost a field based on a number stored in the 'boost' field. -->
-            <str name="bf">
-                boost
-            </str>
-            <arr name="pf">
-                <str>main_title_ft</str>
-                <str>source_title_ft</str>
-                <str>general_notes_ft</str>
-                <str>creator_name_ft</str>
-                <str>people_ft</str>
-                <str>institutions_ft</str>
-                <str>term_ft</str>
-                <str>alternate_terms_ft</str>
-                <str>holding_institutions_sm</str>
-            </arr>
-            <arr name="pf2">
-                <str>main_title_ft</str>
-                <str>source_title_ft</str>
-                <str>general_notes_ft</str>
-                <str>creator_name_ft</str>
-                <str>people_ft</str>
-                <str>institutions_ft</str>
-                <str>term_ft</str>
-                <str>alternate_terms_ft</str>
-                <str>holding_institutions_ft</str>
-            </arr>
-            <arr name="pf3">
-                <str>main_title_ft</str>
-                <str>source_title_ft</str>
-                <str>general_notes_ft</str>
-                <str>creator_name_ft</str>
-                <str>people_ft</str>
-                <str>institutions_ft</str>
-                <str>term_ft</str>
-                <str>alternate_terms_ft</str>
-                <str>holding_institutions_ft</str>
-            </arr>
-            <arr name="hl.fl">
-            </arr>
+            <!--            <str name="bf">-->
+            <!--                boost-->
+            <!--            </str>-->
+            <!--            <arr name="pf">-->
+            <!--                <str>main_title_ft</str>-->
+            <!--                <str>source_title_ft</str>-->
+            <!--                <str>general_notes_ft</str>-->
+            <!--                <str>creator_name_ft</str>-->
+            <!--                <str>people_ft</str>-->
+            <!--                <str>institutions_ft</str>-->
+            <!--                <str>term_ft</str>-->
+            <!--                <str>alternate_terms_ft</str>-->
+            <!--                <str>holding_institutions_sm</str>-->
+            <!--            </arr>-->
+            <!--            <arr name="pf2">-->
+            <!--                <str>main_title_ft</str>-->
+            <!--                <str>source_title_ft</str>-->
+            <!--                <str>general_notes_ft</str>-->
+            <!--                <str>creator_name_ft</str>-->
+            <!--                <str>people_ft</str>-->
+            <!--                <str>institutions_ft</str>-->
+            <!--                <str>term_ft</str>-->
+            <!--                <str>alternate_terms_ft</str>-->
+            <!--                <str>holding_institutions_ft</str>-->
+            <!--            </arr>-->
+            <!--            <arr name="pf3">-->
+            <!--                <str>main_title_ft</str>-->
+            <!--                <str>source_title_ft</str>-->
+            <!--                <str>general_notes_ft</str>-->
+            <!--                <str>creator_name_ft</str>-->
+            <!--                <str>people_ft</str>-->
+            <!--                <str>institutions_ft</str>-->
+            <!--                <str>term_ft</str>-->
+            <!--                <str>alternate_terms_ft</str>-->
+            <!--                <str>holding_institutions_ft</str>-->
+            <!--            </arr>-->
+            <!--            <arr name="hl.fl">-->
+            <!--            </arr>-->
         </lst>
     </requestHandler>
 

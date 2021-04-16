@@ -37,6 +37,7 @@
     <dynamicField name="*_ftns" type="text_fulltext" stored="false" />
     <dynamicField name="*_kw" type="text_keyword" stored="false" />
     <dynamicField name="*_ti" type="text_instruments" stored="false" />
+    <dynamicField name="*_wstok" type="text_whitespace_tokenized" stored="false" />
     <dynamicField name="*_al" type="text_analyzed" stored="false" />
     <dynamicField name="*_unp" type="text_unprocessed" stored="false" />
     <dynamicField name="*_sp" type="text_spell" stored="false" />
@@ -46,6 +47,16 @@
     <copyField source="main_title_s" dest="main_title_ans" />
     <copyField source="name_s" dest="name_ans" />
     <copyField source="work_num_s" dest="work_num_ans" />
+
+    <!-- copy to merged text fields. Copy here fields that are typically queried using words across fields,
+    e.g., "beethoven symphony", which would come from the creator and the title fields. This is because Solr will
+    use the qf field configuration below to essentially figure out which field to weight more heavily while
+    performing a query, and NOT which fields to combine. So "beethoven symphony" with no text field will
+    probably retrieve records where 'beethoven' and 'symphony' appeared in a single field (e.g., "A symphony dedicated
+    to Beethoven" in the title field). -->
+    <copyField source="main_title_s" dest="title_composer_ft" />
+    <copyField source="source_title_s" dest="title_composer_ft" />
+    <copyField source="creator_name_s" dest="title_composer_ft" />
 
     <!-- fulltext fields -->
     <copyField source="main_title_s" dest="main_title_ft" />
@@ -63,6 +74,7 @@
     <copyField source="country_s" dest="country_ft" />
     <copyField source="city_s" dest="country_ft" />
     <copyField source="district_s" dest="district_ft" />
+    <copyField source="subjects_sm" dest="subjects_ft" />
 
     <!-- fields that primarily hold sigla are indexed with the keyword field so that they are not split
         on boundaries, but are instead n-grammed to support wildcard lookups.
@@ -72,6 +84,9 @@
 
     <!-- instrumentation fields -->
     <copyField source="scoring_summary_sm" dest="scoring_summary_ti" />
+
+    <!-- rism id fields -->
+    <copyField source="rism_id" dest="rism_id_wstok" />
 
     <fieldType name="nest_path" class="solr.NestPathField" />
     <fieldType name="uuid" class="solr.UUIDField" indexed="true" stored="true" docValues="true" />
@@ -97,34 +112,48 @@
         <analyzer type="index">
             <tokenizer class="solr.ICUTokenizerFactory" />
             <filter class="solr.ICUFoldingFilterFactory"/>
-            <filter class="solr.WordDelimiterGraphFilterFactory" splitOnNumerics="0" preserveOriginal="1" types="wdtypes.txt" />
-            <filter class="solr.KStemFilterFactory" />
-            <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true" />
-            <filter class="solr.CommonGramsFilterFactory" ignoreCase="true" words="stopwords.txt" />
+            <filter class="solr.WordDelimiterGraphFilterFactory" splitOnNumerics="0" preserveOriginal="1" />
+            <!--            <filter class="solr.KStemFilterFactory" />-->
+            <!-- <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true" /> -->
+            <!-- <filter class="solr.CommonGramsFilterFactory" ignoreCase="true" words="stopwords.txt" /> -->
             <filter class="solr.FlattenGraphFilterFactory"/>
         </analyzer>
         <analyzer type="query">
             <tokenizer class="solr.ICUTokenizerFactory" />
             <filter class="solr.ICUFoldingFilterFactory"/>
-            <filter class="solr.WordDelimiterGraphFilterFactory" splitOnNumerics="0" preserveOriginal="1" types="wdtypes.txt" />
-            <filter class="solr.KStemFilterFactory" />
-            <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true" />
-            <filter class="solr.CommonGramsQueryFilterFactory" ignoreCase="true" words="stopwords.txt" />
+            <filter class="solr.WordDelimiterGraphFilterFactory" splitOnNumerics="0" preserveOriginal="1" />
+            <!--            <filter class="solr.KStemFilterFactory" />-->
+            <!-- <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true" /> -->
+            <!--<filter class="solr.CommonGramsQueryFilterFactory" ignoreCase="true" words="stopwords.txt" /> -->
         </analyzer>
     </fieldType>
 
-    <!-- a field that keeps hyphens but allows wildcard searches to support siglum search. Performs
+    <!-- a field that keeps hyphens and allows wildcard searches to support siglum search. Performs
      n-gram analysis to allow wildcard searching of any combination of tokens. -->
-    <fieldType name="text_keyword" class="solr.TextField" termVectors="true" multiValued="true">
-        <tokenizer class="solr.KeywordTokenizerFactory" />
-        <filter class="solr.EdgeNGramFilterFactory" minGramSize="1" maxGramSize="10" />
+    <fieldType name="text_keyword" class="solr.TextField" multiValued="true">
+        <analyzer type="index">
+            <tokenizer class="solr.EdgeNGramTokenizerFactory" minGramSize="1" maxGramSize="6" />
+        </analyzer>
     </fieldType>
 
     <!-- a field that passes query values through a synonym parser for instrument names. -->
     <fieldType name="text_instruments" class="solr.TextField" termVectors="true" multiValued="true">
         <analyzer type="query">
             <tokenizer class="solr.StandardTokenizerFactory"/>
-            <filter class="solr.SynonymGraphFilterFactory" synonyms="instrument-synonyms.txt"/>
+            <filter class="solr.SynonymGraphFilterFactory" synonyms="instrument-synonyms.txt"
+                    ignoreCase="true" expand="true"/>
+        </analyzer>
+    </fieldType>
+
+    <fieldType name="text_whitespace_tokenized" class="solr.TextField" termVectors="true" multiValued="true">
+        <analyzer type="index">
+            <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+            <filter class="solr.WordDelimiterGraphFilterFactory"/>
+            <filter class="solr.FlattenGraphFilterFactory"/> <!-- required on index analyzers after graph filters -->
+        </analyzer>
+        <analyzer type="query">
+            <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+            <filter class="solr.WordDelimiterGraphFilterFactory"/>
         </analyzer>
     </fieldType>
 
@@ -207,4 +236,3 @@
         </analyzer>
     </fieldType>
 </schema>
-
