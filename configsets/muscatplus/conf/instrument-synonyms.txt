@@ -1,4 +1,13 @@
 # Synonyms for the instrument abbreviations
+vl,violin,violine,violon,violino
+conc,concertino
+princ,principale
+rip,ripieno
+vla,viola,viole
+vlc,violoncello,cello,violoncelle
+cb,contrabass,kontrabass,contrebasse,contrabasso
+
+
 pf,piano,pianoforte
 trb,trombone,posaune,sackbut,smooflydoo
 org,organ
