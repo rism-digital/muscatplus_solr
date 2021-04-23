@@ -29,6 +29,7 @@
     <dynamicField name="*_dt" type="date" />
     <dynamicField name="*_dtr" type="daterange" />
     <dynamicField name="*_loc" type="location" />
+    <dynamicField name="*_lp" type="long" />
     <dynamicField name="*_ans" type="sort" stored="false" />
 
     <!-- Add a dynamic field that has fulltext query processing. useful for query-time boosting -->
@@ -57,24 +58,49 @@
     <copyField source="main_title_s" dest="title_composer_ft" />
     <copyField source="source_title_s" dest="title_composer_ft" />
     <copyField source="creator_name_s" dest="title_composer_ft" />
+    <copyField source="variant_title_s" dest="title_composer_ft" />
+    <copyField source="name_s" dest="title_composer_ft" />
+
+    <!-- publication info -->
+    <copyField source="publication_place_sm" dest="publication_info_ft" />
+    <copyField source="publisher_copyist_sm" dest="publication_info_ft" />
+    <copyField source="printer_name_sm" dest="publication_info_ft" />
+
+    <!-- unified notes fields -->
+    <copyField source="general_notes_sm" dest="notes_ft" />
+    <copyField source="contents_notes_sm" dest="notes_ft" />
+    <copyField source="performance_notes_sm" dest="notes_ft" />
+    <copyField source="language_notes_sm" dest="notes_ft" />
+    <copyField source="description_summary_sm" dest="notes_ft" />
+    <copyField source="supplementary_material_sm" dest="notes_ft" />
+    <copyField source="binding_notes_sm" dest="notes_ft" />
+    <copyField source="source_of_description_notes_sm" dest="notes_ft" />
+    <copyField source="watermark_notes_sm" dest="notes_ft" />
+
+    <!-- identifiers fields -->
+    <copyField source="shelfmark_s" dest="identifiers_ft" />
+    <copyField source="other_shelfmarks_sm" dest="identifiers_ft" />
+    <copyField source="former_shelfmarks_sm" dest="identifiers_ft" />
+
+    <!-- people fields -->
+    <copyField source="creator_name_s" dest="people_ft" />
+    <copyField source="related_people_sm" dest="people_ft" />
+
+    <!-- institution fields -->
+    <copyField source="institutions_sm" dest="institutions_ft" />
+
+    <!-- subject fields -->
+    <copyField source="subjects_sm" dest="subjects_ft" />
+    <copyField source="term_s" dest="subjects_ft" />
+    <copyField source="alternate_terms_sm" dest="subjects_ft" />
+
+    <!-- location fields -->
+    <copyField source="country_s" dest="location_ft" />
+    <copyField source="city_s" dest="location_ft" />
+    <copyField source="district_s" dest="location_ft" />
 
     <!-- fulltext fields -->
-    <copyField source="main_title_s" dest="main_title_ft" />
-    <copyField source="source_title_s" dest="source_title_ft" />
-    <copyField source="general_notes_sm" dest="general_notes_ft" />
-    <copyField source="binding_notes_sm" dest="binding_notes_ft" />
-    <copyField source="description_summary_sm" dest="description_summary_ft" />
-    <copyField source="creator_name_s" dest="creator_name_ft" />
-    <copyField source="related_people_sm" dest="related_people_ft" />
-    <copyField source="institutions_sm" dest="institutions_ft" />
-    <copyField source="name_s" dest="name_ft" />
     <copyField source="roles_sm" dest="roles_ft" />
-    <copyField source="term_s" dest="term_ft" />
-    <copyField source="alternate_terms_sm" dest="alternate_terms_ft" />
-    <copyField source="country_s" dest="country_ft" />
-    <copyField source="city_s" dest="country_ft" />
-    <copyField source="district_s" dest="district_ft" />
-    <copyField source="subjects_sm" dest="subjects_ft" />
 
     <!-- fields that primarily hold sigla are indexed with the keyword field so that they are not split
         on boundaries, but are instead n-grammed to support wildcard lookups.
@@ -82,12 +108,14 @@
     <copyField source="siglum_s" dest="siglum_kw" />
     <copyField source="holding_institutions_sm" dest="holding_institutions_kw" />
 
-    <!-- instrumentation fields -->
+    <!-- instrumentation fields are passed through a thesaurus to automatically expand and translate
+         alternate terms (i.e., synonyms) of an instrument. -->
     <copyField source="scoring_summary_sm" dest="scoring_summary_ti" />
 
-    <!-- rism id fields -->
+    <!-- rism id fields. These have minimal processing so that we can support direct RISM id lookup -->
     <copyField source="rism_id" dest="rism_id_wstok" />
 
+    <!-- field type definitions -->
     <fieldType name="nest_path" class="solr.NestPathField" />
     <fieldType name="uuid" class="solr.UUIDField" indexed="true" stored="true" docValues="true" />
     <fieldType name="string" class="solr.StrField" indexed="true" stored="true" sortMissingLast="true" docValues="true" termVectors="true" />

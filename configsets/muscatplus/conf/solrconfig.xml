@@ -118,67 +118,39 @@
                 <str>related_institutions_json:[json]</str>
                 <str>liturgical_festivals_json:[json]</str>
                 <str>instrumentation_json:[json]</str>
+                <str>minimal_mss_holding_json:[json]</str>
+                <str>dramatic_roles_json:[json]</str>
+                <str>location_of_performance_json:[json]</str>
             </arr>
             <arr name="qf">
-                <str>title_composer_ft</str>
                 <str>rism_id_wstok</str>
-                <str>main_title_ft^5</str>
-                <str>creator_name_ft^10</str>
-                <str>related_people_ft^5</str>
                 <str>siglum_kw</str>
                 <str>holding_institutions_kw</str>
+                <str>identifiers_ft^10</str>
+                <str>title_composer_ft^3</str>
+                <str>publication_info_ft^2</str>
+                <str>notes_ft^2</str>
+                <str>people_ft^2</str>
                 <str>institutions_ft</str>
-                <str>source_title_ft</str>
                 <str>subjects_ft^5</str>
-                <str>general_notes_ft</str>
-                <str>name_ft</str>
-                <str>term_ft</str>
-                <str>alternate_terms_ft</str>
-                <str>country_ft</str>
-                <str>district_ft</str>
+                <str>location_ft</str>
+                <str>roles_ft</str>
                 <str>scoring_summary_ti</str>
             </arr>
             <int name="ps">10</int>
             <int name="qs">10</int>
-            <!-- Boost a field based on a number stored in the 'boost' field. -->
-            <!--            <str name="bf">-->
-            <!--                boost-->
-            <!--            </str>-->
-            <!--            <arr name="pf">-->
-            <!--                <str>main_title_ft</str>-->
-            <!--                <str>source_title_ft</str>-->
-            <!--                <str>general_notes_ft</str>-->
-            <!--                <str>creator_name_ft</str>-->
-            <!--                <str>people_ft</str>-->
-            <!--                <str>institutions_ft</str>-->
-            <!--                <str>term_ft</str>-->
-            <!--                <str>alternate_terms_ft</str>-->
-            <!--                <str>holding_institutions_sm</str>-->
-            <!--            </arr>-->
-            <!--            <arr name="pf2">-->
-            <!--                <str>main_title_ft</str>-->
-            <!--                <str>source_title_ft</str>-->
-            <!--                <str>general_notes_ft</str>-->
-            <!--                <str>creator_name_ft</str>-->
-            <!--                <str>people_ft</str>-->
-            <!--                <str>institutions_ft</str>-->
-            <!--                <str>term_ft</str>-->
-            <!--                <str>alternate_terms_ft</str>-->
-            <!--                <str>holding_institutions_ft</str>-->
-            <!--            </arr>-->
-            <!--            <arr name="pf3">-->
-            <!--                <str>main_title_ft</str>-->
-            <!--                <str>source_title_ft</str>-->
-            <!--                <str>general_notes_ft</str>-->
-            <!--                <str>creator_name_ft</str>-->
-            <!--                <str>people_ft</str>-->
-            <!--                <str>institutions_ft</str>-->
-            <!--                <str>term_ft</str>-->
-            <!--                <str>alternate_terms_ft</str>-->
-            <!--                <str>holding_institutions_ft</str>-->
-            <!--            </arr>-->
-            <!--            <arr name="hl.fl">-->
-            <!--            </arr>-->
+            <arr name="pf">
+                <str>notes_ft</str>
+                <str>title_composer_ft</str>
+            </arr>
+            <arr name="pf2">
+                <str>notes_ft</str>
+                <str>title_composer_ft</str>
+            </arr>
+            <arr name="pf3">
+                <str>notes_ft</str>
+                <str>title_composer_ft</str>
+            </arr>
         </lst>
     </requestHandler>
 
