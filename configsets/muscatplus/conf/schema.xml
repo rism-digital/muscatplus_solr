@@ -59,6 +59,7 @@
     <copyField source="source_title_s" dest="title_composer_ft" />
     <copyField source="creator_name_s" dest="title_composer_ft" />
     <copyField source="variant_title_s" dest="title_composer_ft" />
+    <copyField source="standard_title_s" dest="title_composer_ft" />
     <copyField source="name_s" dest="title_composer_ft" />
 
     <!-- publication info -->
@@ -77,10 +78,21 @@
     <copyField source="source_of_description_notes_sm" dest="notes_ft" />
     <copyField source="watermark_notes_sm" dest="notes_ft" />
 
-    <!-- identifiers fields -->
-    <copyField source="shelfmark_s" dest="identifiers_ft" />
-    <copyField source="other_shelfmarks_sm" dest="identifiers_ft" />
-    <copyField source="former_shelfmarks_sm" dest="identifiers_ft" />
+    <!-- identifiers fields. We put them in both types of fields
+     since the 'analyzed' field can provide better results for literal
+     searches. -->
+    <!--    <copyField source="rism_id" dest="identifiers_ft" />-->
+    <copyField source="rism_id" dest="identifiers_al" />
+    <!--    <copyField source="shelfmark_s" dest="identifiers_ft" />-->
+    <copyField source="shelfmark_s" dest="identifiers_al" />
+    <!--    <copyField source="other_shelfmarks_sm" dest="identifiers_ft" />-->
+    <copyField source="other_shelfmarks_sm" dest="identifiers_al" />
+    <!--    <copyField source="former_shelfmarks_sm" dest="identifiers_ft" />-->
+    <copyField source="former_shelfmarks_sm" dest="identifiers_al" />
+    <!--    <copyField source="catalogue_numbers_sm" dest="identifiers_ft" />-->
+    <copyField source="catalogue_numbers_sm" dest="identifiers_al" />
+    <!--    <copyField source="plate_publisher_numbers_sm" dest="identifiers_ft" />-->
+    <copyField source="plate_publisher_numbers_sm" dest="identifiers_al" />
 
     <!-- people fields -->
     <copyField source="creator_name_s" dest="people_ft" />
@@ -114,6 +126,10 @@
 
     <!-- rism id fields. These have minimal processing so that we can support direct RISM id lookup -->
     <copyField source="rism_id" dest="rism_id_wstok" />
+
+    <!-- copy fingerprint data to other types of field for different sorts of analysis -->
+    <copyField source="fingerprint_lp" dest="fingerprint_kw" />
+    <copyField source="fingerprint_lp" dest="fingerprint_s" />
 
     <!-- field type definitions -->
     <fieldType name="nest_path" class="solr.NestPathField" />

@@ -91,7 +91,7 @@
 
     <requestHandler name="/select" class="solr.SearchHandler">
         <lst name="defaults">
-            <str name="echoParams">all</str>
+            <!-- <str name="echoParams">all</str>-->
             <int name="rows">20</int>
             <!-- <str name="q.op">AND</str>-->
             <!-- https://stackoverflow.com/a/29827605 "mm=100%" is the equivalent of q.op=AND -->
@@ -117,17 +117,23 @@
                 <str>name_variants_json:[json]</str>
                 <str>related_institutions_json:[json]</str>
                 <str>liturgical_festivals_json:[json]</str>
-                <str>instrumentation_json:[json]</str>
+                <str>scoring_json:[json]</str>
                 <str>minimal_mss_holding_json:[json]</str>
                 <str>dramatic_roles_json:[json]</str>
                 <str>location_of_performance_json:[json]</str>
+                <str>standard_titles_json:[json]</str>
+                <str>additional_titles_json:[json]</str>
+                <str>works_catalogue_json:[json]</str>
+                <str>bibliographic_references_json:[json]</str>
+                <str>secondary_literature_json:[json]</str>
             </arr>
             <arr name="qf">
                 <str>rism_id_wstok</str>
                 <str>siglum_kw</str>
                 <str>holding_institutions_kw</str>
-                <str>identifiers_ft^10</str>
-                <str>title_composer_ft^3</str>
+                <str>identifiers_ft^5</str>
+                <str>identifiers_al^10</str>
+                <str>title_composer_ft^5</str>
                 <str>publication_info_ft^2</str>
                 <str>notes_ft^2</str>
                 <str>people_ft^2</str>
@@ -142,14 +148,23 @@
             <arr name="pf">
                 <str>notes_ft</str>
                 <str>title_composer_ft</str>
+                <str>identifiers_ft</str>
             </arr>
             <arr name="pf2">
                 <str>notes_ft</str>
                 <str>title_composer_ft</str>
+                <str>identifiers_ft</str>
             </arr>
             <arr name="pf3">
                 <str>notes_ft</str>
                 <str>title_composer_ft</str>
+                <str>identifiers_ft</str>
+            </arr>
+            <arr name="boost">
+                <!-- source count is a very crude but effective method of determining
+                     more or less important people and institutions.
+                -->
+                <str>scale(field(source_count_i), 1, 100)</str>
             </arr>
         </lst>
     </requestHandler>
