@@ -129,8 +129,7 @@
             </arr>
             <arr name="qf">
                 <str>rism_id_wstok</str>
-                <str>siglum_kw</str>
-                <str>holding_institutions_kw</str>
+                <str>siglum_kw^5</str>
                 <str>identifiers_al^10</str>
                 <str>title_composer_ft^5</str>
                 <str>publication_info_ft^2</str>
@@ -140,6 +139,7 @@
                 <str>institutions_ft</str>
                 <str>location_ft</str>
                 <str>roles_ft</str>
+                <str>source_people_names_ft</str>
                 <str>scoring_summary_ti</str>
             </arr>
             <int name="ps">10</int>
@@ -147,17 +147,14 @@
             <arr name="pf">
                 <str>notes_ft</str>
                 <str>title_composer_ft</str>
-                <str>identifiers_ft</str>
             </arr>
             <arr name="pf2">
                 <str>notes_ft</str>
                 <str>title_composer_ft</str>
-                <str>identifiers_ft</str>
             </arr>
             <arr name="pf3">
                 <str>notes_ft</str>
                 <str>title_composer_ft</str>
-                <str>identifiers_ft</str>
             </arr>
             <arr name="boost">
                 <!-- source count is a very crude but effective method of determining

@@ -49,18 +49,20 @@
     <copyField source="name_s" dest="name_ans" />
     <copyField source="work_num_s" dest="work_num_ans" />
 
-    <!-- copy to merged text fields. Copy here fields that are typically queried using words across fields,
-    e.g., "beethoven symphony", which would come from the creator and the title fields. This is because Solr will
-    use the qf field configuration below to essentially figure out which field to weight more heavily while
-    performing a query, and NOT which fields to combine. So "beethoven symphony" with no text field will
-    probably retrieve records where 'beethoven' and 'symphony' appeared in a single field (e.g., "A symphony dedicated
-    to Beethoven" in the title field). -->
+    <!-- Source records. Fields are merged to support queries with text that
+     frequently appears together, e.g., 'beethoven symphony' takes
+     values from the composer and title fields. -->
     <copyField source="main_title_s" dest="title_composer_ft" />
     <copyField source="source_title_s" dest="title_composer_ft" />
     <copyField source="creator_name_s" dest="title_composer_ft" />
     <copyField source="variant_title_s" dest="title_composer_ft" />
     <copyField source="standard_title_s" dest="title_composer_ft" />
     <copyField source="name_s" dest="title_composer_ft" />
+
+    <!-- this is a secondary source of people names; copy to a separate
+     field so it can be weighted lower than the 'accepted' form. -->
+    <copyField source="variant_people_names_sm" dest="source_people_names_ft" />
+    <copyField source="people_names_sm" dest="source_people_names_ft" />
 
     <!-- publication info -->
     <copyField source="publication_place_sm" dest="publication_info_ft" />
@@ -94,15 +96,15 @@
     <!--    <copyField source="plate_publisher_numbers_sm" dest="identifiers_ft" />-->
     <copyField source="plate_publisher_numbers_sm" dest="identifiers_al" />
 
-    <!-- people fields -->
+    <!-- People records -->
     <copyField source="name_s" dest="people_names_ft" />
     <copyField source="related_people_sm" dest="people_names_ft" />
     <copyField source="name_variants_sm" dest="people_names_ft" />
 
-    <!-- institution fields -->
+    <!-- Institution records -->
     <copyField source="institutions_sm" dest="institutions_ft" />
 
-    <!-- subject fields -->
+    <!-- Subject records -->
     <copyField source="subjects_sm" dest="subjects_ft" />
     <copyField source="term_s" dest="subjects_ft" />
     <copyField source="alternate_terms_sm" dest="subjects_ft" />
@@ -119,7 +121,7 @@
         on boundaries, but are instead n-grammed to support wildcard lookups.
     -->
     <copyField source="siglum_s" dest="siglum_kw" />
-    <copyField source="holding_institutions_sm" dest="holding_institutions_kw" />
+    <copyField source="holding_institutions_sm" dest="siglum_kw" />
 
     <!-- instrumentation fields are passed through a thesaurus to automatically expand and translate
          alternate terms (i.e., synonyms) of an instrument. -->
