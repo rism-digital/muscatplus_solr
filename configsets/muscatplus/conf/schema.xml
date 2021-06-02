@@ -58,12 +58,8 @@
     <copyField source="variant_title_s" dest="title_composer_ft" />
     <copyField source="standard_title_s" dest="title_composer_ft" />
     <copyField source="name_s" dest="title_composer_ft" />
+    <copyField source="people_names_sm" dest="title_composer_ft" />
     <copyField source="variant_people_names_sm" dest="title_composer_ft" />
-
-    <!-- this is a secondary source of people names; copy to a separate
-     field so it can be weighted lower than the 'accepted' form. -->
-    <copyField source="variant_people_names_sm" dest="source_people_names_ft" />
-    <copyField source="people_names_sm" dest="source_people_names_ft" />
 
     <!-- publication info -->
     <copyField source="publication_place_sm" dest="publication_info_ft" />
@@ -100,7 +96,8 @@
     <!-- People records -->
     <copyField source="name_s" dest="people_names_ft" />
     <copyField source="related_people_sm" dest="people_names_ft" />
-    <copyField source="name_variants_sm" dest="people_names_ft" />
+    <copyField source="people_names_sm" dest="people_names_ft" />
+    <copyField source="variant_people_names_sm" dest="people_names_ft" />
 
     <!-- Institution records -->
     <copyField source="institutions_sm" dest="institutions_ft" />
