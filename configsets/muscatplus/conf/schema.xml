@@ -58,6 +58,7 @@
     <copyField source="variant_title_s" dest="title_composer_ft" />
     <copyField source="standard_title_s" dest="title_composer_ft" />
     <copyField source="name_s" dest="title_composer_ft" />
+    <copyField source="variant_people_names_sm" dest="title_composer_ft" />
 
     <!-- this is a secondary source of people names; copy to a separate
      field so it can be weighted lower than the 'accepted' form. -->
