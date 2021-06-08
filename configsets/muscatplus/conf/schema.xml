@@ -92,6 +92,7 @@
     <copyField source="catalogue_numbers_sm" dest="identifiers_al" />
     <!--    <copyField source="plate_publisher_numbers_sm" dest="identifiers_ft" />-->
     <copyField source="plate_publisher_numbers_sm" dest="identifiers_al" />
+    <copyField source="siglum_s" dest="identifiers_al" />
 
     <!-- People records -->
     <copyField source="name_s" dest="people_names_ft" />
