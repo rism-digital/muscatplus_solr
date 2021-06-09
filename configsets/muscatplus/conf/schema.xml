@@ -80,19 +80,21 @@
     <!-- identifiers fields. We put them in both types of fields
      since the 'analyzed' field can provide better results for literal
      searches. -->
-    <!--    <copyField source="rism_id" dest="identifiers_ft" />-->
-    <copyField source="rism_id" dest="identifiers_al" />
-    <!--    <copyField source="shelfmark_s" dest="identifiers_ft" />-->
-    <copyField source="shelfmark_s" dest="identifiers_al" />
-    <!--    <copyField source="other_shelfmarks_sm" dest="identifiers_ft" />-->
-    <copyField source="other_shelfmarks_sm" dest="identifiers_al" />
-    <!--    <copyField source="former_shelfmarks_sm" dest="identifiers_ft" />-->
-    <copyField source="former_shelfmarks_sm" dest="identifiers_al" />
-    <!--    <copyField source="catalogue_numbers_sm" dest="identifiers_ft" />-->
-    <copyField source="catalogue_numbers_sm" dest="identifiers_al" />
-    <!--    <copyField source="plate_publisher_numbers_sm" dest="identifiers_ft" />-->
-    <copyField source="plate_publisher_numbers_sm" dest="identifiers_al" />
-    <copyField source="siglum_s" dest="identifiers_al" />
+    <copyField source="rism_id" dest="identifiers_ft" />
+    <copyField source="rism_id" dest="identifiers_wstok" />
+    <copyField source="shelfmark_s" dest="identifiers_ft" />
+    <copyField source="shelfmark_s" dest="identifiers_wstok" />
+    <copyField source="other_shelfmarks_sm" dest="identifiers_ft" />
+    <copyField source="other_shelfmarks_sm" dest="identifiers_wstok" />
+    <copyField source="former_shelfmarks_sm" dest="identifiers_ft" />
+    <copyField source="former_shelfmarks_sm" dest="identifiers_wstok" />
+    <copyField source="catalogue_numbers_sm" dest="identifiers_ft" />
+    <copyField source="catalogue_numbers_sm" dest="identifiers_wstok" />
+    <copyField source="plate_publisher_numbers_sm" dest="identifiers_ft" />
+    <copyField source="plate_publisher_numbers_sm" dest="identifiers_wstok" />
+    <copyField source="siglum_s" dest="identifiers_ft" />
+    <copyField source="siglum_s" dest="identifiers_wstok" />
+
 
     <!-- People records -->
     <copyField source="name_s" dest="people_names_ft" />

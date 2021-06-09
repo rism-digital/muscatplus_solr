@@ -130,7 +130,8 @@
             <arr name="qf">
                 <str>rism_id_wstok</str>
                 <str>siglum_kw^5</str>
-                <str>identifiers_al^10</str>
+                <str>identifiers_wstok^10</str>
+                <str>identifiers_ft</str>
                 <str>title_composer_ft^5</str>
                 <str>publication_info_ft^2</str>
                 <str>people_names_ft^2</str>
