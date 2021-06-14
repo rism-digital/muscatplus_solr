@@ -34,8 +34,6 @@
 
     <!-- Add a dynamic field that has fulltext query processing. useful for query-time boosting -->
     <dynamicField name="*_ft" type="text_fulltext" stored="false"/>
-    <!-- Fulltext query processing, but not stored so can't be used for highlighting -->
-    <dynamicField name="*_ftns" type="text_fulltext" stored="false" />
     <dynamicField name="*_kw" type="text_keyword" stored="false" />
     <dynamicField name="*_ti" type="text_instruments" stored="false" />
     <dynamicField name="*_wstok" type="text_whitespace_tokenized" stored="false" />
@@ -94,13 +92,15 @@
     <copyField source="plate_publisher_numbers_sm" dest="identifiers_wstok" />
     <copyField source="siglum_s" dest="identifiers_ft" />
     <copyField source="siglum_s" dest="identifiers_wstok" />
-
+    <copyField source="holding_institutions_identifiers_sm" dest="identifiers_ft" />
+    <copyField source="holding_institutions_identifiers_sm" dest="identifiers_wstok" />
 
     <!-- People records -->
     <copyField source="name_s" dest="people_names_ft" />
-    <copyField source="related_people_sm" dest="people_names_ft" />
     <copyField source="people_names_sm" dest="people_names_ft" />
+    <copyField source="related_people_sm" dest="people_names_ft" />
     <copyField source="variant_people_names_sm" dest="people_names_ft" />
+    <copyField source="variant_names_sm" dest="people_names_ft" />
 
     <!-- Institution records -->
     <copyField source="institutions_sm" dest="institutions_ft" />
@@ -195,8 +195,8 @@
 
     <fieldType name="text_whitespace_tokenized" class="solr.TextField" termVectors="true" multiValued="true">
         <analyzer type="index">
-            <tokenizer class="solr.WhitespaceTokenizerFactory"/>
-            <filter class="solr.WordDelimiterGraphFilterFactory"/>
+            <tokenizer class="solr.WhitespaceTokenizerFactory" />
+            <filter class="solr.WordDelimiterGraphFilterFactory" preserveOriginal="1"/>
             <filter class="solr.FlattenGraphFilterFactory"/> <!-- required on index analyzers after graph filters -->
         </analyzer>
         <analyzer type="query">

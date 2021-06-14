@@ -114,7 +114,7 @@
                 <str>related_people_json:[json]</str>
                 <str>related_places_json:[json]</str>
                 <str>external_resources_json:[json]</str>
-                <str>name_variants_json:[json]</str>
+                <str>variant_names_json:[json]</str>
                 <str>related_institutions_json:[json]</str>
                 <str>liturgical_festivals_json:[json]</str>
                 <str>scoring_json:[json]</str>
