@@ -89,6 +89,38 @@
 
     </requestDispatcher>
 
+    <requestHandler name="/get" class="solr.RealTimeGetHandler">
+        <lst name="defaults">
+            <str name="omitHeader">true</str>
+            <arr name="fl">
+                <!-- return all fields, but specific json fields are run through the json transformer -->
+                <str>*</str>
+                <str>subjects_json:[json]</str>
+                <str>holding_institutions_json:[json]</str>
+                <str>material_groups_json:[json]</str>
+                <str>rism_series_json:[json]</str>
+                <str>creator_json:[json]</str>
+                <str>relationships_json:[json]</str>
+                <str>source_membership_json:[json]</str>
+                <str>related_people_json:[json]</str>
+                <str>related_places_json:[json]</str>
+                <str>external_resources_json:[json]</str>
+                <str>variant_names_json:[json]</str>
+                <str>related_institutions_json:[json]</str>
+                <str>liturgical_festivals_json:[json]</str>
+                <str>scoring_json:[json]</str>
+                <str>minimal_mss_holding_json:[json]</str>
+                <str>dramatic_roles_json:[json]</str>
+                <str>location_of_performance_json:[json]</str>
+                <str>standard_titles_json:[json]</str>
+                <str>additional_titles_json:[json]</str>
+                <str>works_catalogue_json:[json]</str>
+                <str>bibliographic_references_json:[json]</str>
+                <str>secondary_literature_json:[json]</str>
+            </arr>
+        </lst>
+    </requestHandler>
+
     <requestHandler name="/select" class="solr.SearchHandler">
         <lst name="defaults">
             <!-- <str name="echoParams">all</str>-->
