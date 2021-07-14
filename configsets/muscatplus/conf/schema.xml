@@ -96,6 +96,8 @@
     <copyField source="holding_institutions_identifiers_sm" dest="identifiers_wstok" />
     <copyField source="rism_series_identifiers_sm" dest="identifiers_ft" />
     <copyField source="rism_series_identifiers_sm" dest="identifiers_wstok" />
+    <copyField source="secondary_literature_identifiers_sm" dest="identifiers_ft" />
+    <copyField source="secondary_literature_identifiers_sm" dest="identifiers_wstok" />
 
     <!-- People records -->
     <copyField source="name_s" dest="people_names_ft" />
