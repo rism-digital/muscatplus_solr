@@ -113,6 +113,7 @@
     <copyField source="subjects_sm" dest="subjects_ft" />
     <copyField source="term_s" dest="subjects_ft" />
     <copyField source="alternate_terms_sm" dest="subjects_ft" />
+    <copyField source="variant_standard_terms_sm" dest="subjects_ft" />
 
     <!-- location fields -->
     <copyField source="country_s" dest="location_ft" />
