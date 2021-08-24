@@ -119,6 +119,7 @@
     <copyField source="country_s" dest="location_ft" />
     <copyField source="city_s" dest="location_ft" />
     <copyField source="district_s" dest="location_ft" />
+    <copyField source="country_names_sm" dest="location_ft" />
 
     <!-- fulltext fields -->
     <copyField source="roles_sm" dest="roles_ft" />
@@ -159,6 +160,8 @@
     <fieldType name="text_unprocessed" class="solr.TextField" indexed="false" stored="true" />
     <fieldType name="json" class="solr.TextField" indexed="false" stored="true" />
 
+    <!-- minhash fields -->
+    <dynamicField name="*_mh" type="text_min_hash" multiValued="false" indexed="true" stored="true" />
 
     <!-- text fields -->
     <fieldType name="text_fulltext" class="solr.TextField" autoGeneratePhraseQueries="true" multiValued="true" termVectors="true">
@@ -286,6 +289,15 @@
             <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_it.txt" format="snowball" />
             <filter class="solr.ItalianLightStemFilterFactory"/>
             <!-- more aggressive: <filter class="solr.SnowballPorterFilterFactory" language="Italian"/> -->
+        </analyzer>
+    </fieldType>
+
+    <fieldType name="text_min_hash" class="solr.TextField" positionIncrementGap="100">
+        <analyzer>
+            <tokenizer class="solr.StandardTokenizerFactory"/>
+            <!-- <filter class="solr.ICUFoldingFilterFactory"/> -->
+            <filter class="solr.ShingleFilterFactory" minShingleSize="3" outputUnigrams="false" outputUnigramsIfNoShingles="false" maxShingleSize="3" tokenSeparator=" "/>
+            <filter class="org.apache.lucene.analysis.minhash.MinHashFilterFactory" bucketCount="64" hashSetSize="1" hashCount="1"/>
         </analyzer>
     </fieldType>
 </schema>
