@@ -155,7 +155,7 @@
     <fieldType name="daterange" class="solr.DateRangeField" sortMissingLast="true" />
     <!-- sorting for alpha-numeric values. The 'strength=secondary' argument, as I'm sure your aware, is what controls case
          insensitive matching. -->
-    <fieldType name="sort" class="solr.ICUCollationField" locale="" numeric="true" strength="secondary" sortMissingLast="true" />
+    <fieldType name="sort" class="solr.ICUCollationField" locale="" numeric="true" strength="secondary" alternate="shifted" sortMissingLast="true" />
     <!-- used for fields of long content (greater than the 'string' field capacity) but which do not need to be indexed -->
     <fieldType name="text_unprocessed" class="solr.TextField" indexed="false" stored="true" />
     <fieldType name="json" class="solr.TextField" indexed="false" stored="true" />
@@ -169,7 +169,7 @@
             <tokenizer class="solr.ICUTokenizerFactory" />
             <filter class="solr.ICUFoldingFilterFactory"/>
             <filter class="solr.WordDelimiterGraphFilterFactory" splitOnNumerics="0" preserveOriginal="1" />
-            <!--            <filter class="solr.KStemFilterFactory" />-->
+            <!-- <filter class="solr.KStemFilterFactory" />-->
             <!-- <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true" /> -->
             <!-- <filter class="solr.CommonGramsFilterFactory" ignoreCase="true" words="stopwords.txt" /> -->
             <filter class="solr.FlattenGraphFilterFactory"/>
