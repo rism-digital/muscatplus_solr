@@ -32,7 +32,7 @@
         </autoSoftCommit>
     </updateHandler>
 
-    <!-- auto-generate UUIDs when a document is indexed -->
+    <!-- auto-generate UUIDs as document IDs when a document is indexed, if it does not already have an ID field -->
     <updateProcessor class="solr.UUIDUpdateProcessorFactory" name="uuid">
         <str name="fieldName">id</str>
     </updateProcessor>
@@ -43,6 +43,8 @@
     </updateProcessor>
 
     <updateRequestProcessorChain name="process" default="true" processor="uuid,auto-timestamp">
+        <!-- Trim leading and trailing whitespace -->
+        <processor class="solr.TrimFieldUpdateProcessorFactory" />
         <processor class="solr.LogUpdateProcessorFactory" />
         <processor class="solr.RunUpdateProcessorFactory" />
     </updateRequestProcessorChain>
@@ -129,7 +131,7 @@
 
     <requestHandler name="/select" class="solr.SearchHandler">
         <lst name="defaults">
-            <str name="echoParams">all</str>
+            <str name="echoParams">explicit</str>
             <int name="rows">20</int>
             <!-- <str name="q.op">AND</str>-->
             <!-- https://stackoverflow.com/a/29827605 "mm=100%" is the equivalent of q.op=AND -->
@@ -157,6 +159,7 @@
                 <str>roles_ft</str>
                 <str>source_people_names_ft</str>
                 <str>scoring_summary_ti</str>
+                <str>intervals_mh</str>
             </arr>
             <int name="ps">10</int>
             <int name="qs">10</int>
