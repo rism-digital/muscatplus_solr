@@ -169,7 +169,8 @@
             <tokenizer class="solr.ICUTokenizerFactory" />
             <filter class="solr.ICUFoldingFilterFactory"/>
             <filter class="solr.WordDelimiterGraphFilterFactory" splitOnNumerics="0" preserveOriginal="1" />
-            <!-- <filter class="solr.KStemFilterFactory" />-->
+            <!-- <filter class="solr.StemmerOverrideFilterFactory" dictionary="stemdict.txt" /> -->
+            <filter class="solr.KStemFilterFactory" />
             <!-- <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true" /> -->
             <!-- <filter class="solr.CommonGramsFilterFactory" ignoreCase="true" words="stopwords.txt" /> -->
             <filter class="solr.FlattenGraphFilterFactory"/>
@@ -178,7 +179,8 @@
             <tokenizer class="solr.ICUTokenizerFactory" />
             <filter class="solr.ICUFoldingFilterFactory"/>
             <filter class="solr.WordDelimiterGraphFilterFactory" splitOnNumerics="0" preserveOriginal="1" />
-            <!--            <filter class="solr.KStemFilterFactory" />-->
+            <!-- <filter class="solr.StemmerOverrideFilterFactory" dictionary="stemdict.txt" /> -->
+            <filter class="solr.KStemFilterFactory" />
             <!-- <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true" /> -->
             <!--<filter class="solr.CommonGramsQueryFilterFactory" ignoreCase="true" words="stopwords.txt" /> -->
         </analyzer>
