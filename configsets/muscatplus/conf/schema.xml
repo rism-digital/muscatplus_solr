@@ -92,6 +92,7 @@
     <copyField source="plate_publisher_numbers_sm" dest="identifiers_wstok" />
     <copyField source="siglum_s" dest="identifiers_ft" />
     <copyField source="siglum_s" dest="identifiers_wstok" />
+    <copyField source="holding_institutions_sm" dest="identifiers_ft" />
     <copyField source="holding_institutions_identifiers_sm" dest="identifiers_ft" />
     <copyField source="holding_institutions_identifiers_sm" dest="identifiers_wstok" />
     <copyField source="rism_series_identifiers_sm" dest="identifiers_ft" />
@@ -120,6 +121,7 @@
     <copyField source="city_s" dest="location_ft" />
     <copyField source="district_s" dest="location_ft" />
     <copyField source="country_names_sm" dest="location_ft" />
+    <copyField source="holding_institutions_places_sm" dest="location_ft" />
 
     <!-- fulltext fields -->
     <copyField source="roles_sm" dest="roles_ft" />
@@ -136,6 +138,7 @@
 
     <!-- rism id fields. These have minimal processing so that we can support direct RISM id lookup -->
     <copyField source="rism_id" dest="rism_id_wstok" />
+    <copyField source="rism_series_identifiers_sm" dest="rism_id_wstok" />
 
     <!-- copy fingerprint data to other types of field for different sorts of analysis -->
     <copyField source="fingerprint_lp" dest="fingerprint_kw" />
@@ -168,7 +171,8 @@
         <analyzer type="index">
             <tokenizer class="solr.ICUTokenizerFactory" />
             <filter class="solr.ICUFoldingFilterFactory"/>
-            <filter class="solr.WordDelimiterGraphFilterFactory" splitOnNumerics="0" preserveOriginal="1" />
+            <!-- <filter class="solr.WordDelimiterGraphFilterFactory" splitOnNumerics="0" preserveOriginal="1" catenateWords="1" /> -->
+            <filter class="solr.WordDelimiterGraphFilterFactory" generateWordParts="1" generateNumberParts="1" catenateAll="1" splitOnCaseChange="1" preserveOriginal="1" />
             <!-- <filter class="solr.StemmerOverrideFilterFactory" dictionary="stemdict.txt" /> -->
             <filter class="solr.KStemFilterFactory" />
             <!-- <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true" /> -->
@@ -178,7 +182,8 @@
         <analyzer type="query">
             <tokenizer class="solr.ICUTokenizerFactory" />
             <filter class="solr.ICUFoldingFilterFactory"/>
-            <filter class="solr.WordDelimiterGraphFilterFactory" splitOnNumerics="0" preserveOriginal="1" />
+            <!-- <filter class="solr.WordDelimiterGraphFilterFactory" splitOnNumerics="0" preserveOriginal="1" catenateWords="1" />-->
+            <filter class="solr.WordDelimiterGraphFilterFactory" generateWordParts="1" generateNumberParts="1" catenateAll="1" splitOnCaseChange="1" preserveOriginal="1" />
             <!-- <filter class="solr.StemmerOverrideFilterFactory" dictionary="stemdict.txt" /> -->
             <filter class="solr.KStemFilterFactory" />
             <!-- <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true" /> -->
@@ -211,7 +216,7 @@
         </analyzer>
         <analyzer type="query">
             <tokenizer class="solr.WhitespaceTokenizerFactory"/>
-            <filter class="solr.WordDelimiterGraphFilterFactory"/>
+            <filter class="solr.WordDelimiterGraphFilterFactory" preserveOriginal="1"/>
         </analyzer>
     </fieldType>
 
