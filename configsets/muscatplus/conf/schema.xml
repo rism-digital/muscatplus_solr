@@ -102,6 +102,7 @@
 
     <!-- People records -->
     <copyField source="name_s" dest="people_names_ft" />
+    <copyField source="creator_name_s" dest="people_names_ft" />
     <copyField source="people_names_sm" dest="people_names_ft" />
     <copyField source="related_people_sm" dest="people_names_ft" />
     <copyField source="variant_people_names_sm" dest="people_names_ft" />
@@ -126,6 +127,7 @@
 
     <!-- fulltext fields -->
     <copyField source="roles_sm" dest="roles_ft" />
+    <copyField source="creator_name_s" dest="creator_name_ft" />
 
     <!-- fields that primarily hold sigla are indexed with the keyword field so that they are not split
         on boundaries, but are instead n-grammed to support wildcard lookups.
