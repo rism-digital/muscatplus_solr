@@ -50,7 +50,7 @@
     </updateRequestProcessorChain>
 
     <query>
-        <maxBooleanClauses>1024</maxBooleanClauses>
+        <maxBooleanClauses>${solr.max.booleanClauses:1024}</maxBooleanClauses>
         <filterCache class="solr.FastLRUCache"
                      size="512"
                      initialSize="512"
@@ -237,6 +237,17 @@
             <str name="indent">true</str>
             <str name="df">text</str>
         </lst>
+    </requestHandler>
+
+    <requestHandler name="/terms" class="solr.SearchHandler" startup="lazy">
+        <lst name="defaults">
+            <bool name="omitHeader">true</bool>
+            <bool name="terms">true</bool>
+            <bool name="distrib">false</bool>
+        </lst>
+        <arr name="components">
+            <str>terms</str>
+        </arr>
     </requestHandler>
 
     <!--    <searchComponent name="spellcheck" class="solr.SpellCheckComponent">-->

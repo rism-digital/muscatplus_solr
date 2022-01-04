@@ -111,6 +111,8 @@
     <!-- Institution records -->
     <copyField source="institutions_sm" dest="institutions_ft" />
     <copyField source="related_institutions_sm" dest="institutions_ft" />
+    <copyField source="parallel_names_sm" dest="institutions_ft" />
+    <copyField source="alternate_names_sm" dest="institutions_ft" />
 
     <!-- Subject records -->
     <copyField source="subjects_sm" dest="subjects_ft" />
