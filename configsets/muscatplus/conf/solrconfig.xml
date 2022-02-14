@@ -17,6 +17,8 @@
         <lockType>${solr.lock.type:native}</lockType>
     </indexConfig>
 
+    <jmx />
+
     <updateHandler class="solr.DirectUpdateHandler2">
         <updateLog>
             <str name="dir">${solr.ulog.dir:}</str>
