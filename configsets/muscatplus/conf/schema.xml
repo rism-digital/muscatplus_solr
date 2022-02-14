@@ -137,9 +137,13 @@
     <copyField source="siglum_s" dest="siglum_kw" />
     <copyField source="holding_institutions_sm" dest="siglum_kw" />
 
+    <!-- allows for querying on holding institution sigla directly -->
+    <copyField source="holding_institutions_sm" dest="holding_institutions_ft" />
+
     <!-- instrumentation fields are passed through a thesaurus to automatically expand and translate
          alternate terms (i.e., synonyms) of an instrument. -->
-    <copyField source="scoring_summary_sm" dest="scoring_summary_ti" />
+    <copyField source="scoring_summary_sm" dest="scoring_ti" />
+    <copyField source="scoring_sm" dest="scoring_ti" />
 
     <!-- rism id fields. These have minimal processing so that we can support direct RISM id lookup -->
     <copyField source="rism_id" dest="rism_id_wstok" />
