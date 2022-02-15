@@ -138,7 +138,7 @@
     <copyField source="holding_institutions_sm" dest="siglum_kw" />
 
     <!-- allows for querying on holding institution sigla directly -->
-    <copyField source="holding_institutions_sm" dest="holding_institutions_ft" />
+    <copyField source="holding_institutions_sm" dest="holding_institutions_kw" />
 
     <!-- instrumentation fields are passed through a thesaurus to automatically expand and translate
          alternate terms (i.e., synonyms) of an instrument. -->
