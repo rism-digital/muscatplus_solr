@@ -100,6 +100,10 @@
     <copyField source="secondary_literature_identifiers_sm" dest="identifiers_ft" />
     <copyField source="secondary_literature_identifiers_sm" dest="identifiers_wstok" />
 
+    <!-- for ensuring incipit text and titles are available in fulltext search -->
+    <copyField source="incipit_text_sm" dest="incipit_text_ft" />
+    <copyField source="incipit_title_sm" dest="incipit_text_ft" />
+
     <!-- People records -->
     <copyField source="name_s" dest="people_names_ft" />
     <copyField source="creator_name_s" dest="people_names_ft" />
