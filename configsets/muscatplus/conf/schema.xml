@@ -134,6 +134,7 @@
     <!-- fulltext fields -->
     <copyField source="roles_sm" dest="roles_ft" />
     <copyField source="creator_name_s" dest="creator_name_ft" />
+    <copyField source="creator_name_s" dest="creator_name_kw" />
 
     <!-- fields that primarily hold sigla are indexed with the keyword field so that they are not split
         on boundaries, but are instead n-grammed to support wildcard lookups.
@@ -142,7 +143,7 @@
     <copyField source="holding_institutions_sm" dest="siglum_kw" />
 
     <!-- allows for querying on holding institution sigla directly -->
-    <copyField source="holding_institutions_sm" dest="holding_institutions_kw" />
+    <copyField source="holding_institutions_sm" dest="holding_institutions_ft" />
 
     <!-- instrumentation fields are passed through a thesaurus to automatically expand and translate
          alternate terms (i.e., synonyms) of an instrument. -->
@@ -208,6 +209,9 @@
      n-gram analysis to allow wildcard searching of any combination of tokens. -->
     <fieldType name="text_keyword" class="solr.TextField" multiValued="true">
         <analyzer type="index">
+            <tokenizer class="solr.EdgeNGramTokenizerFactory" minGramSize="1" maxGramSize="6" />
+        </analyzer>
+        <analyzer type="query">
             <tokenizer class="solr.EdgeNGramTokenizerFactory" minGramSize="1" maxGramSize="6" />
         </analyzer>
     </fieldType>
