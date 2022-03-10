@@ -180,8 +180,8 @@
     <!-- minhash fields -->
     <dynamicField name="*_mh" type="text_min_hash" multiValued="false" indexed="true" stored="true" />
     <dynamicField name="*_bi" type="text_ws_boolean" uninvertible="true" indexed="true" stored="false"/>
-    <copyField source="intervals_mh" dest="intervals_bi" />
-    <copyField source="pitches_mh" dest="pitches_bi" />
+    <!--    <copyField source="intervals_mh" dest="intervals_bi" />-->
+    <!--    <copyField source="pitches_mh" dest="pitches_bi" />-->
 
     <!-- text fields -->
     <fieldType name="text_fulltext" class="solr.TextField" autoGeneratePhraseQueries="true" multiValued="true" termVectors="true">
@@ -331,6 +331,7 @@
     <fieldType name="text_ws_boolean" class="solr.TextField" positionIncrementGap="100">
         <analyzer>
             <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+            <filter class="solr.ShingleFilterFactory" minShingleSize="3" outputUnigrams="false" outputUnigramsIfNoShingles="false" maxShingleSize="3" tokenSeparator=" "/>
         </analyzer>
         <similarity class="solr.BooleanSimilarityFactory"/>
     </fieldType>
