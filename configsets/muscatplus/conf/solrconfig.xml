@@ -123,6 +123,7 @@
                 <str>secondary_literature_json:[json]</str>
                 <str>interval_ids_json:[json]</str>
                 <str>pitches_ids_json:[json]</str>
+                <str>now_in_json:[json]</str>
             </arr>
         </lst>
     </requestHandler>
@@ -217,6 +218,7 @@
                 <str>secondary_literature_json:[json]</str>
                 <str>interval_ids_json:[json]</str>
                 <str>pitches_ids_json:[json]</str>
+                <str>now_in_json:[json]</str>
             </arr>
         </lst>
     </requestHandler>
