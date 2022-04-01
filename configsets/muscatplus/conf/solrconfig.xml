@@ -185,7 +185,8 @@
                 <!-- source count is a very crude but effective method of determining
                      more or less important people and institutions.
                 -->
-                <str>scale(field(source_count_i), 1, 100)</str>
+                <str>scale(field(total_holdings_i), 1, 100)</str>
+                <str>scale(field(total_sources_i), 1, 100)</str>
             </arr>
             <arr name="bq">
                 <str>is_collection_record_b:true^10</str>
