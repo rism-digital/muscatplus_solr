@@ -245,7 +245,8 @@
         <analyzer type="index">
             <!-- the standard tokenizer removes any punctuation that is followed by whitespace,
                  e.g., "ms. bodl" to "ms bodl" -->
-            <tokenizer class="solr.StandardTokenizerFactory" />
+            <tokenizer class="solr.ICUTokenizerFactory"/>
+            <!-- <tokenizer class="solr.StandardTokenizerFactory" />-->
             <!-- the ICUFoldingFilter standardizes unicode characters,
                  e.g., "Dāstān" to "Dastan" -->
             <filter class="solr.ICUFoldingFilterFactory"/>
@@ -254,7 +255,8 @@
             <filter class="solr.ShingleFilterFactory" minShingleSize="2" maxShingleSize="5" />
         </analyzer>
         <analyzer type="query">
-            <tokenizer class="solr.StandardTokenizerFactory" />
+            <tokenizer class="solr.ICUTokenizerFactory"/>
+            <!-- <tokenizer class="solr.StandardTokenizerFactory" />-->
             <filter class="solr.ICUFoldingFilterFactory"/>
             <filter class="solr.LowerCaseFilterFactory" />
             <filter class="solr.ShingleFilterFactory" minShingleSize="2" maxShingleSize="5" />
