@@ -30,6 +30,7 @@
     <dynamicField name="*_dtr" type="daterange" />
     <dynamicField name="*_loc" type="location" />
     <dynamicField name="*_lp" type="long" />
+    <dynamicField name="*_fp" type="float" />
     <dynamicField name="*_ans" type="sort" stored="false" />
 
     <!-- Add a dynamic field that has fulltext query processing. useful for query-time boosting -->
@@ -168,6 +169,7 @@
     <fieldType name="int" class="solr.IntPointField" docValues="true" sortMissingLast="true" />
     <fieldType name="location" class="solr.LatLonPointSpatialField" docValues="true" stored="true"/>
     <fieldType name="long" class="solr.LongPointField" docValues="true" sortMissingLast="true" />
+    <fieldType name="float" class="solr.FloatPointField" docValues="true" sortMissingLast="true" />
     <fieldType name="date" class="solr.DatePointField" sortMissingLast="true" />
     <fieldType name="daterange" class="solr.DateRangeField" sortMissingLast="true" />
     <!-- sorting for alpha-numeric values. The 'strength=secondary' argument, as I'm sure your aware, is what controls case
