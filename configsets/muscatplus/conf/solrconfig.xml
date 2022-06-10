@@ -23,7 +23,7 @@
         </updateLog>
         <autoCommit>
             <maxTime>${solr.autoCommit.maxTime:60000}</maxTime>
-            <openSearcher>true</openSearcher>
+            <openSearcher>false</openSearcher>
         </autoCommit>
         <autoSoftCommit>
             <maxTime>${solr.autoSoftCommit.maxTime:-1}</maxTime>
@@ -89,12 +89,19 @@
 
     </requestDispatcher>
 
+    <!--
+        A request handler that retrieves a record by ID with no default fields defined.
+    -->
     <requestHandler name="/fetch" class="solr.RealTimeGetHandler">
         <lst name="defaults">
             <str name="omitHeader">true</str>
         </lst>
     </requestHandler>
 
+    <!--
+        A request handler that retrieves a record by ID that automatically transforms all
+        JSON fields with the json field transformer.
+    -->
     <requestHandler name="/get" class="solr.RealTimeGetHandler">
         <lst name="defaults">
             <str name="omitHeader">true</str>
