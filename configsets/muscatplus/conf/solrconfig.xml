@@ -137,6 +137,7 @@
                 <str>interval_ids_json:[json]</str>
                 <str>pitches_ids_json:[json]</str>
                 <str>now_in_json:[json]</str>
+                <str>related_sources_json:[json]</str>
             </arr>
         </lst>
     </requestHandler>
@@ -233,6 +234,7 @@
                 <str>interval_ids_json:[json]</str>
                 <str>pitches_ids_json:[json]</str>
                 <str>now_in_json:[json]</str>
+                <str>related_sources_json:[json]</str>
             </arr>
         </lst>
     </requestHandler>
