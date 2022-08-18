@@ -131,6 +131,9 @@
     <copyField source="district_s" dest="location_ft" />
     <copyField source="country_names_sm" dest="location_ft" />
     <copyField source="holding_institutions_places_sm" dest="location_ft" />
+    <copyField source="street_address_sm" dest="location_ft" />
+    <copyField source="postcode_address_sm" dest="location_ft" />
+    <copyField source="city_address_sm" dest="location_ft" />
 
     <!-- fulltext fields -->
     <copyField source="roles_sm" dest="roles_ft" />
