@@ -64,6 +64,7 @@
     <copyField source="publication_place_sm" dest="publication_info_ft" />
     <copyField source="publisher_copyist_sm" dest="publication_info_ft" />
     <copyField source="printer_name_sm" dest="publication_info_ft" />
+    <copyField source="parts_held_sm" dest="publication_info_ft" />
 
     <!-- unified notes fields -->
     <copyField source="general_notes_sm" dest="notes_ft" />
@@ -75,6 +76,7 @@
     <copyField source="binding_notes_sm" dest="notes_ft" />
     <copyField source="source_of_description_notes_sm" dest="notes_ft" />
     <copyField source="watermark_notes_sm" dest="notes_ft" />
+    <copyField source="additional_titles_sm" dest="notes_ft" />
 
     <!-- identifiers fields. We put them in both types of fields
      since the 'analyzed' field can provide better results for literal
