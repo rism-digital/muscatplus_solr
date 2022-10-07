@@ -77,6 +77,8 @@
     <copyField source="source_of_description_notes_sm" dest="notes_ft" />
     <copyField source="watermark_notes_sm" dest="notes_ft" />
     <copyField source="additional_titles_sm" dest="notes_ft" />
+    <copyField source="bibliographic_references_sm" dest="notes_ft" />
+    <copyField source="works_catalogue_sm" dest="notes_ft" />
 
     <!-- identifiers fields. We put them in both types of fields
      since the 'analyzed' field can provide better results for literal
