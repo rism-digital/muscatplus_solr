@@ -249,14 +249,6 @@
         </lst>
     </requestHandler>
 
-    <!-- <requestHandler name="/iiif" class="solr.SearchHandler">
-        <lst name="defaults">
-            <str name="echoParams">explicit</str>
-            <str name="df">text</str>
-            <str name="wt">json</str>
-        </lst>
-    </requestHandler> -->
-
     <requestHandler name="/query" class="solr.SearchHandler">
         <lst name="defaults">
             <str name="echoParams">explicit</str>
@@ -277,36 +269,4 @@
         </arr>
     </requestHandler>
 
-    <!--    <searchComponent name="spellcheck" class="solr.SpellCheckComponent">-->
-    <!--        <str name="queryAnalyzerFieldType">text_spell</str>-->
-    <!--        <lst name="spellchecker">-->
-    <!--            <str name="name">direct</str>-->
-    <!--            <str name="classname">solr.DirectSolrSpellChecker</str>-->
-    <!--            <str name="distanceMeasure">org.apache.lucene.search.spell.LuceneLevenshteinDistance</str>-->
-    <!--            <str name="comparatorClass">score</str>-->
-    <!--            <int name="maxEdits">2</int>-->
-    <!--            <int name="minPrefix">1</int>-->
-    <!--            <int name="minQueryLength">3</int>-->
-    <!--            <str name="field">spell_sp</str>-->
-    <!--            <str name="buildOnCommit">true</str>-->
-    <!--        </lst>-->
-    <!--        <lst name="spellchecker">-->
-    <!--            <str name="name">wordbreak</str>-->
-    <!--            <str name="classname">solr.WordBreakSolrSpellChecker</str>-->
-    <!--            <str name="field">spell_sp</str>-->
-    <!--            <str name="combineWords">true</str>-->
-    <!--            <str name="breakWords">true</str>-->
-    <!--            <int name="maxChanges">10</int>-->
-    <!--        </lst>-->
-    <!--    </searchComponent>-->
-
-    <!-- uncomment if needed; used for testing -->
-    <!--
-    <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-dataimporthandler-.*\.jar" />
-    <requestHandler name="/dataimport" class="org.apache.solr.handler.dataimport.DataImportHandler">
-        <lst name="defaults">
-            <str name="config">data-config-ingest.xml</str>
-        </lst>
-    </requestHandler>
-    -->
 </config>
