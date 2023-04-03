@@ -103,6 +103,10 @@
         JSON fields with the json field transformer.
     -->
     <requestHandler name="/get" class="solr.RealTimeGetHandler">
+        <shardHandler class="HttpShardHandlerFactory">
+            <int name="maxConnectionsPerHost">200</int>
+            <int name="maxConnections">20000</int>
+        </shardHandler>
         <lst name="defaults">
             <str name="omitHeader">true</str>
             <arr name="fl">
@@ -143,6 +147,10 @@
     </requestHandler>
 
     <requestHandler name="/select" class="solr.SearchHandler">
+        <shardHandler class="HttpShardHandlerFactory">
+            <int name="maxConnectionsPerHost">200</int>
+            <int name="maxConnections">20000</int>
+        </shardHandler>
         <lst name="defaults">
             <str name="echoParams">all</str>
             <int name="rows">20</int>
