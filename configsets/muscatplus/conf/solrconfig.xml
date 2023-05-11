@@ -253,12 +253,69 @@
         </lst>
     </requestHandler>
 
+    <!-- A search handler that does not automatically apply the JSON field transforms,
+        but otherwise matches the behaviour of the "/select" handler.
+     -->
     <requestHandler name="/query" class="solr.SearchHandler">
         <lst name="defaults">
             <str name="echoParams">explicit</str>
+            <int name="rows">20</int>
+            <str name="q.op">AND</str>
+            <str name="sow">true</str>
+            <str name="defType">edismax</str>
+            <arr name="mm">
+                <!-- <str>4&lt;50%</str> -->
+                <str>25%</str>
+            </arr>
+            <str name="mm.autoRelax">true</str>
             <str name="wt">json</str>
-            <str name="indent">true</str>
-            <str name="df">text</str>
+            <arr name="qf">
+                <str>rism_id_wstok</str>
+                <str>siglum_kw^5</str>
+                <str>rism_id_wstok^10</str>
+                <str>identifiers_wstok^10</str>
+                <str>identifiers_ft^5</str>
+                <str>title_composer_ft^5</str>
+                <str>publication_info_ft^2</str>
+                <str>people_names_ft^2</str>
+                <str>subjects_ft^5</str>
+                <str>notes_ft^2</str>
+                <str>institutions_ft</str>
+                <str>location_ft^5</str>
+                <str>roles_ft</str>
+                <str>source_people_names_ft</str>
+                <str>incipit_text_ft</str>
+                <str>scoring_ti</str>
+                <str>intervals_mh</str>
+            </arr>
+
+            <int name="ps">10</int>
+            <int name="qs">10</int>
+            <arr name="pf">
+                <str>notes_ft</str>
+                <str>title_composer_ft</str>
+                <str>location_ft</str>
+            </arr>
+            <arr name="pf2">
+                <str>notes_ft</str>
+                <str>title_composer_ft</str>
+                <str>location_ft</str>
+            </arr>
+            <arr name="pf3">
+                <str>notes_ft</str>
+                <str>title_composer_ft</str>
+                <str>location_ft</str>
+            </arr>
+            <arr name="boost">
+                <!-- source count is a very crude but effective method of determining
+                     more or less important people and institutions.
+                -->
+                <str>scale(field(total_holdings_i), 1, 100)</str>
+                <str>scale(field(total_sources_i), 1, 100)</str>
+            </arr>
+            <arr name="bq">
+                <str>is_collection_record_b:true^10</str>
+            </arr>
         </lst>
     </requestHandler>
 
