@@ -47,6 +47,7 @@
     <copyField source="main_title_s" dest="main_title_ans" />
     <copyField source="name_s" dest="name_ans" />
     <copyField source="work_num_s" dest="work_num_ans" />
+    <copyField source="creator_name_s" dest="creator_name_ans" />
 
     <!-- Source records. Fields are merged to support queries with text that
      frequently appears together, e.g., 'beethoven symphony' takes
