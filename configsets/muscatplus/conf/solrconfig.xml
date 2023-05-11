@@ -157,7 +157,7 @@
             <int name="maxConnections">20000</int>
         </shardHandler>
         <lst name="defaults">
-            <str name="echoParams">all</str>
+            <str name="echoParams">explicit</str>
             <int name="rows">20</int>
             <str name="q.op">AND</str>
             <str name="sow">true</str>
