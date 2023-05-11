@@ -65,6 +65,7 @@
     <copyField source="publisher_copyist_sm" dest="publication_info_ft" />
     <copyField source="printer_name_sm" dest="publication_info_ft" />
     <copyField source="parts_held_sm" dest="publication_info_ft" />
+    <copyField source="date_statements_sm" dest="publication_info_ft" />
 
     <!-- unified notes fields -->
     <copyField source="general_notes_sm" dest="notes_ft" />
