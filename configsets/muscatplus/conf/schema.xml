@@ -114,6 +114,7 @@
     <copyField source="secondary_literature_identifiers_sm" dest="identifiers_ft" />
     <copyField source="secondary_literature_identifiers_sm" dest="identifiers_wstok" />
     <copyField source="provenance_sm" dest="identifiers_ft" />
+    <copyField source="department_s" dest="identifiers_ft" />
 
     <!-- for ensuring incipit text and titles are available in fulltext search -->
     <copyField source="incipit_text_sm" dest="incipit_text_ft" />
