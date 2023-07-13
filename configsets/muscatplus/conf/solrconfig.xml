@@ -315,7 +315,7 @@
                 <str>scale(field(total_sources_i), 1, 100)</str>
             </arr>
             <arr name="bq">
-                <str>is_collection_record_b:true^10</str>
+                <str>record_type_s:collection^10</str>
             </arr>
         </lst>
     </requestHandler>
