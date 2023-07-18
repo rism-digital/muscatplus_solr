@@ -42,6 +42,7 @@
     <dynamicField name="*_unp" type="text_unprocessed" stored="false" />
     <dynamicField name="*_sp" type="text_spell" stored="false" />
     <dynamicField name="*_json" type="json" multiValued="false" />
+    <dynamicField name="*_jsonm" type="json" multiValued="true" />
 
     <!-- Alphanumeric sort fields -->
     <copyField source="main_title_s" dest="main_title_ans" />
