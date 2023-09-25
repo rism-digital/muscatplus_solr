@@ -62,6 +62,7 @@
     <copyField source="people_names_sm" dest="title_composer_ft" />
     <copyField source="variant_people_names_sm" dest="title_composer_ft" />
     <copyField source="common_name_s" dest="title_composer_ft" />
+    <copyField source="text_incipit_sm" dest="title_composer_ft" />
 
     <!-- publication info -->
     <copyField source="publication_place_sm" dest="publication_info_ft" />
