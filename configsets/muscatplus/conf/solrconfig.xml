@@ -61,10 +61,10 @@
                           size="4096"
                           initialSize="2048"
                           autowarmCount="2048" />
-        <documentCache class="solr.search.CaffeineCache"
+        <!--<documentCache class="solr.search.CaffeineCache"
                        size="4096"
                        initialSize="2048"
-                       autowarmCount="2048" />
+                       autowarmCount="2048" />-->
         <cache name="perSegFilter"
                class="solr.search.CaffeineCache"
                size="10"
