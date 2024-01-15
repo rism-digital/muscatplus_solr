@@ -180,6 +180,7 @@
                 <str>title_composer_ft^5</str>
                 <str>publication_info_ft^2</str>
                 <str>people_names_ft^2</str>
+                <str>people_names_al^2</str>
                 <str>subjects_ft^5</str>
                 <str>notes_ft^2</str>
                 <str>institutions_ft</str>

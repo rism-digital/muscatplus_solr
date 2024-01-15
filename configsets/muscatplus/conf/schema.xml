@@ -126,11 +126,15 @@
 
     <!-- People records -->
     <copyField source="name_s" dest="people_names_ft" />
+    <copyField source="name_s" dest="people_names_al" />
     <copyField source="creator_name_s" dest="people_names_ft" />
     <copyField source="people_names_sm" dest="people_names_ft" />
+    <copyField source="people_names_sm" dest="people_names_al" />
     <copyField source="related_people_sm" dest="people_names_ft" />
     <copyField source="variant_people_names_sm" dest="people_names_ft" />
+    <copyField source="variant_people_names_sm" dest="people_names_al" />
     <copyField source="variant_names_sm" dest="people_names_ft" />
+    <copyField source="variant_names_sm" dest="people_names_al" />
 
     <!-- Institution records -->
     <copyField source="institutions_sm" dest="institutions_ft" />
@@ -216,8 +220,9 @@
             <tokenizer class="solr.ICUTokenizerFactory" />
             <filter class="solr.ICUFoldingFilterFactory"/>
             <!-- <filter class="solr.WordDelimiterGraphFilterFactory" splitOnNumerics="0" preserveOriginal="1" catenateWords="1" /> -->
-            <filter class="solr.WordDelimiterGraphFilterFactory" generateWordParts="1" generateNumberParts="1" catenateAll="1" splitOnCaseChange="1" preserveOriginal="1" />
+            <filter class="solr.WordDelimiterGraphFilterFactory" generateWordParts="1" generateNumberParts="1" catenateAll="1" splitOnCaseChange="1" preserveOriginal="0" />
             <!-- <filter class="solr.StemmerOverrideFilterFactory" dictionary="stemdict.txt" /> -->
+            <filter class="solr.FlattenGraphFilterFactory"/>
             <filter class="solr.KStemFilterFactory" />
             <!-- <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true" /> -->
             <!-- <filter class="solr.CommonGramsFilterFactory" ignoreCase="true" words="stopwords.txt" /> -->
@@ -227,7 +232,8 @@
             <tokenizer class="solr.ICUTokenizerFactory" />
             <filter class="solr.ICUFoldingFilterFactory"/>
             <!-- <filter class="solr.WordDelimiterGraphFilterFactory" splitOnNumerics="0" preserveOriginal="1" catenateWords="1" />-->
-            <filter class="solr.WordDelimiterGraphFilterFactory" generateWordParts="1" generateNumberParts="1" catenateAll="1" splitOnCaseChange="1" preserveOriginal="1" />
+            <filter class="solr.WordDelimiterGraphFilterFactory" generateWordParts="1" generateNumberParts="1" catenateAll="1" splitOnCaseChange="1" preserveOriginal="0" />
+            <filter class="solr.FlattenGraphFilterFactory"/>
             <!-- <filter class="solr.StemmerOverrideFilterFactory" dictionary="stemdict.txt" /> -->
             <filter class="solr.KStemFilterFactory" />
             <!-- <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true" /> -->
