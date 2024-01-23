@@ -157,6 +157,7 @@
             <int name="maxConnections">20000</int>
         </shardHandler>
         <lst name="defaults">
+            <queryResponseWriter name="json" class="solr.JSONResponseWriter" />
             <str name="echoParams">explicit</str>
             <int name="rows">20</int>
             <str name="q.op">AND</str>
@@ -260,6 +261,7 @@
      -->
     <requestHandler name="/query" class="solr.SearchHandler">
         <lst name="defaults">
+            <queryResponseWriter name="json" class="solr.JSONResponseWriter" />
             <str name="echoParams">explicit</str>
             <int name="rows">20</int>
             <str name="q.op">AND</str>
