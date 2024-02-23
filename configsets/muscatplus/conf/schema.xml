@@ -36,6 +36,7 @@
     <!-- Add a dynamic field that has fulltext query processing. useful for query-time boosting -->
     <dynamicField name="*_ft" type="text_fulltext" stored="false"/>
     <dynamicField name="*_kw" type="text_keyword" stored="false" />
+    <dynamicField name="*_kwa" type="text_keyword_alt" stored="false" />
     <dynamicField name="*_ti" type="text_instruments" stored="false" />
     <dynamicField name="*_wstok" type="text_whitespace_tokenized" stored="false" />
     <dynamicField name="*_al" type="text_analyzed" stored="false" />
@@ -162,6 +163,9 @@
     <copyField source="roles_sm" dest="roles_ft" />
     <copyField source="creator_name_s" dest="creator_name_ft" />
     <copyField source="creator_name_s" dest="creator_name_kw" />
+    <copyField source="city_s" dest="city_ft" />
+    <copyField source="country_names_sm" dest="country_names_ft" />
+    <copyField source="name_s" dest="name_ft" />
 
     <!-- fields that primarily hold sigla are indexed with the keyword field so that they are not split
         on boundaries, but are instead n-grammed to support wildcard lookups.
@@ -171,7 +175,10 @@
     <copyField source="related_institution_sigla_sm" dest="siglum_kw" />
     <copyField source="contains_sigla_sm" dest="siglum_kw" />
     <copyField source="now_in_sigla_sm" dest="siglum_kw" />
-    
+
+    <!-- A field for dedicated siglum lookups that don't also contain other record sigla, as above. -->
+    <copyField source="siglum_s" dest="siglum_lookup_kwa" />
+
     <!-- allows for querying on holding institution sigla directly -->
     <copyField source="holding_institutions_sm" dest="holding_institutions_ft" />
 
@@ -224,7 +231,8 @@
             <!-- <filter class="solr.StemmerOverrideFilterFactory" dictionary="stemdict.txt" /> -->
             <filter class="solr.FlattenGraphFilterFactory"/>
             <filter class="solr.KStemFilterFactory" />
-            <!-- <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true" /> -->
+            <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true" />
+            <filter class="solr.FlattenGraphFilterFactory"/>
             <!-- <filter class="solr.CommonGramsFilterFactory" ignoreCase="true" words="stopwords.txt" /> -->
             <filter class="solr.FlattenGraphFilterFactory"/>
         </analyzer>
@@ -236,7 +244,8 @@
             <filter class="solr.FlattenGraphFilterFactory"/>
             <!-- <filter class="solr.StemmerOverrideFilterFactory" dictionary="stemdict.txt" /> -->
             <filter class="solr.KStemFilterFactory" />
-            <!-- <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true" /> -->
+            <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true" />
+            <filter class="solr.FlattenGraphFilterFactory"/>
             <!--<filter class="solr.CommonGramsQueryFilterFactory" ignoreCase="true" words="stopwords.txt" /> -->
         </analyzer>
     </fieldType>
@@ -244,11 +253,17 @@
     <!-- a field that keeps hyphens and allows wildcard searches to support siglum search. Performs
      n-gram analysis to allow wildcard searching of any combination of tokens. -->
     <fieldType name="text_keyword" class="solr.TextField" multiValued="true">
-        <analyzer type="index">
-            <tokenizer class="solr.EdgeNGramTokenizerFactory" minGramSize="1" maxGramSize="6" />
+        <analyzer>
+            <tokenizer class="solr.EdgeNGramTokenizerFactory" minGramSize="2" maxGramSize="6" />
         </analyzer>
-        <analyzer type="query">
-            <tokenizer class="solr.EdgeNGramTokenizerFactory" minGramSize="1" maxGramSize="6" />
+    </fieldType>
+
+    <!-- a field that keeps hyphens and allows wildcard searches to support siglum search. Performs
+ n-gram analysis to allow wildcard searching of any combination of tokens. -->
+    <fieldType name="text_keyword_alt" class="solr.TextField" multiValued="true">
+        <analyzer>
+            <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+            <filter class="solr.EdgeNGramFilterFactory" minGramSize="3" maxGramSize="6" />
         </analyzer>
     </fieldType>
 
