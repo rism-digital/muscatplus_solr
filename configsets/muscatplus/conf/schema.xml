@@ -165,7 +165,10 @@
     <copyField source="creator_name_s" dest="creator_name_kw" />
     <copyField source="city_s" dest="city_ft" />
     <copyField source="country_names_sm" dest="country_names_ft" />
+
     <copyField source="name_s" dest="name_ft" />
+    <copyField source="alternate_names_sm" dest="name_ft" />
+    <copyField source="parallel_names_sm" dest="name_ft" />
 
     <!-- fields that primarily hold sigla are indexed with the keyword field so that they are not split
         on boundaries, but are instead n-grammed to support wildcard lookups.
