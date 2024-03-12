@@ -155,7 +155,6 @@
             <int name="maxConnections">20000</int>
         </shardHandler>
         <lst name="defaults">
-            <queryResponseWriter name="json" class="solr.JSONResponseWriter" />
             <str name="echoParams">explicit</str>
             <int name="rows">20</int>
             <str name="q.op">AND</str>
@@ -259,7 +258,6 @@
      -->
     <requestHandler name="/query" class="solr.SearchHandler">
         <lst name="defaults">
-            <queryResponseWriter name="json" class="solr.JSONResponseWriter" />
             <str name="echoParams">explicit</str>
             <int name="rows">20</int>
             <str name="q.op">AND</str>
@@ -323,32 +321,24 @@
 
     <!-- A very basic query handler
      -->
-    <requestHandler name="/queryBasic" class="solr.SearchHandler">
+    <requestHandler name="/siglaQuery" class="solr.SearchHandler">
         <lst name="defaults">
-            <queryResponseWriter name="json" class="solr.JSONResponseWriter" />
-            <str name="echoParams">explicit</str>
+            <str name="echoParams">all</str>
             <int name="rows">20</int>
             <str name="q.op">AND</str>
             <str name="defType">edismax</str>
             <str name="wt">json</str>
+            <str name="sow">true</str>
+            <arr name="mm">
+                <!-- <str>4&lt;50%</str> -->
+                <str>25%</str>
+            </arr>
             <arr name="qf">
                 <str>rism_id_wstok</str>
                 <str>siglum_kw^5</str>
                 <str>rism_id_wstok^10</str>
-                <str>identifiers_wstok^10</str>
-                <str>identifiers_ft^5</str>
-                <str>title_composer_ft^5</str>
-                <str>publication_info_ft^2</str>
-                <str>people_names_ft^2</str>
-                <str>subjects_ft^5</str>
-                <str>notes_ft^2</str>
-                <str>institutions_ft</str>
-                <str>location_ft^5</str>
-                <str>roles_ft</str>
-                <str>source_people_names_ft</str>
-                <str>incipit_text_ft</str>
-                <str>scoring_ti</str>
-                <str>intervals_mh</str>
+                <str>names_ft^10</str>
+                <str>location_min_ft^5</str>
             </arr>
         </lst>
     </requestHandler>
