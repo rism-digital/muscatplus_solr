@@ -170,6 +170,10 @@
     <copyField source="alternate_names_sm" dest="names_ft" />
     <copyField source="parallel_names_sm" dest="names_ft" />
 
+    <copyField source="country_s" dest="location_min_ft" />
+    <copyField source="city_s" dest="location_min_ft" />
+    <copyField source="country_names_sm" dest="location_min_ft" />
+
     <!-- fields that primarily hold sigla are indexed with the keyword field so that they are not split
         on boundaries, but are instead n-grammed to support wildcard lookups.
     -->
