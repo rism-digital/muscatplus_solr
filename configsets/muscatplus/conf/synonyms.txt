@@ -102,7 +102,7 @@ norvege,norwegen,norvegia,norwegia,noruega,norway
 pays-bas,niederlande,paises baixos,netherlands,olanda,holandia,paises bajos
 polonia,polen,pologne,polska,polonia,poland
 portugalia,portogallo,portugal
-reino unido,wielka brytania,royaume-uni,regno unito,united kingdom,vereinigtes konigreich
+reino unido,wielka brytania,royaume-uni,regno unito,united kingdom,vereinigtes konigreich, UK, GB
 republika czeska,repubblica ceca,republica checa,tschechische republik,republique tchèque,republica tcheca,czech republic
 romania,romenia,roumanie,rumanien,rumunia,rumanía
 russland,russia,rosja,rusia,russie
@@ -113,3 +113,7 @@ slovaquie,slovacchia,slowacja,eslovaquia,slowakei,slovakia,eslovaquia
 svizzera,suiza,suisse,switzerland,schweiz,suica,szwajcaria
 ukraina,ucrania,ukraine,ucraina,ucrania
 austria,autriche,osterreich
+
+united states,vereinigte staaten,etats-unis,stati uniti,estados unidos,stany zjednoczone, USA
+canada,kanada
+turkey,turkei,turquie,turchia,turquia,turcja
