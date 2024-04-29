@@ -119,6 +119,7 @@
                 <!-- specific json fields are run through the json transformer -->
                 <str>subjects_json:[json]</str>
                 <str>holding_institutions_json:[json]</str>
+                <str>holding_titles_json:[json]</str>
                 <str>material_groups_json:[json]</str>
                 <str>rism_series_json:[json]</str>
                 <str>creator_json:[json]</str>
@@ -223,6 +224,7 @@
                 <!-- specific json fields are run through the json transformer -->
                 <str>subjects_json:[json]</str>
                 <str>holding_institutions_json:[json]</str>
+                <str>holding_titles_json:[json]</str>
                 <str>material_groups_json:[json]</str>
                 <str>rism_series_json:[json]</str>
                 <str>creator_json:[json]</str>
