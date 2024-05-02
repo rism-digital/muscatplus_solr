@@ -146,6 +146,7 @@
                 <str>contains_json:[json]</str>
                 <str>related_sources_json:[json]</str>
                 <str>external_records_jsonm:[json]</str>
+                <str>addresses_json:[json]</str>
             </arr>
         </lst>
     </requestHandler>
@@ -251,6 +252,7 @@
                 <str>contains_json:[json]</str>
                 <str>related_sources_json:[json]</str>
                 <str>external_records_jsonm:[json]</str>
+                <str>addresses_json:[json]</str>
             </arr>
         </lst>
     </requestHandler>
