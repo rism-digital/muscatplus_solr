@@ -13,6 +13,8 @@
 #-----------------------------------------------------------------------
 
 symphony,symphonie
+saint => saint,st,ste
+
 atene,athens,ateny,athen,athenes,atenas
 barcelone,barcelona,barcellona
 belgrado,belgrade,belgrad
