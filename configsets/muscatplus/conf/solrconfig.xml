@@ -161,6 +161,7 @@
             <int name="rows">20</int>
             <str name="q.op">AND</str>
             <str name="sow">true</str>
+            <bool name="multiThreaded">true</bool>
             <str name="defType">edismax</str>
             <arr name="mm">
                 <!-- <str>4&lt;50%</str> -->
@@ -266,6 +267,7 @@
             <int name="rows">20</int>
             <str name="q.op">AND</str>
             <str name="sow">true</str>
+            <bool name="multiThreaded">true</bool>
             <str name="defType">edismax</str>
             <arr name="mm">
                 <!-- <str>4&lt;50%</str> -->
@@ -330,6 +332,7 @@
             <str name="echoParams">all</str>
             <int name="rows">20</int>
             <str name="q.op">AND</str>
+            <bool name="multiThreaded">true</bool>
             <str name="defType">edismax</str>
             <str name="wt">json</str>
             <str name="sow">true</str>
@@ -349,6 +352,7 @@
 
     <requestHandler name="/terms" class="solr.SearchHandler" startup="lazy">
         <lst name="defaults">
+            <bool name="multiThreaded">true</bool>
             <bool name="omitHeader">true</bool>
             <bool name="terms">true</bool>
             <bool name="distrib">false</bool>
