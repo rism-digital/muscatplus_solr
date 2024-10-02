@@ -105,6 +105,8 @@
     <copyField source="plate_publisher_numbers_sm" dest="identifiers_wstok" />
     <copyField source="siglum_s" dest="identifiers_ft" />
     <copyField source="siglum_s" dest="identifiers_wstok" />
+    <copyField source="former_sigla_sm" dest="identifiers_ft" />
+    <copyField source="former_sigla_sm" dest="identifiers_wstok" />
     <copyField source="now_in_sigla_sm" dest="identifiers_ft" />
     <copyField source="now_in_sigla_sm" dest="identifiers_wstok" />
     <copyField source="contains_sigla_sm" dest="identifiers_ft" />
