@@ -181,23 +181,23 @@
                 <str>intervals_mh</str>
             </arr>
 
-            <int name="ps">10</int>
-            <int name="qs">10</int>
-            <arr name="pf">
-                <str>notes_ft</str>
-                <str>title_composer_ft</str>
-                <str>location_ft</str>
-            </arr>
-            <arr name="pf2">
-                <str>notes_ft</str>
-                <str>title_composer_ft</str>
-                <str>location_ft</str>
-            </arr>
-            <arr name="pf3">
-                <str>notes_ft</str>
-                <str>title_composer_ft</str>
-                <str>location_ft</str>
-            </arr>
+<!--            <int name="ps">10</int>-->
+<!--            <int name="qs">10</int>-->
+<!--            <arr name="pf">-->
+<!--                <str>notes_ft</str>-->
+<!--                <str>title_composer_ft</str>-->
+<!--                <str>location_ft</str>-->
+<!--            </arr>-->
+<!--            <arr name="pf2">-->
+<!--                <str>notes_ft</str>-->
+<!--                <str>title_composer_ft</str>-->
+<!--                <str>location_ft</str>-->
+<!--            </arr>-->
+<!--            <arr name="pf3">-->
+<!--                <str>notes_ft</str>-->
+<!--                <str>title_composer_ft</str>-->
+<!--                <str>location_ft</str>-->
+<!--            </arr>-->
             <arr name="boost">
                 <!-- source count is a very crude but effective method of determining
                      more or less important people and institutions.
@@ -264,6 +264,7 @@
             <str name="mm.autoRelax">true</str>
             <str name="wt">json</str>
             <arr name="qf">
+                <str>shelfmark_ft^20</str>
                 <str>rism_id_wstok</str>
                 <str>siglum_kw^5</str>
                 <str>rism_id_wstok^10</str>

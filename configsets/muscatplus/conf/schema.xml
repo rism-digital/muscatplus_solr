@@ -123,6 +123,9 @@
     <copyField source="provenance_sm" dest="identifiers_ft" />
     <copyField source="department_s" dest="identifiers_ft" />
 
+    <!-- dedicated query fields. -->
+    <copyField source="shelfmark_s" dest="shelfmark_al" />
+
     <!-- for ensuring incipit text and titles are available in fulltext search -->
     <copyField source="incipit_text_sm" dest="incipit_text_ft" />
     <copyField source="incipit_title_sm" dest="incipit_text_ft" />
