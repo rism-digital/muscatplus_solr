@@ -125,6 +125,11 @@
 
     <!-- dedicated query fields. -->
     <copyField source="shelfmark_s" dest="shelfmark_al" />
+    <copyField source="creator_name_s" dest="creator_name_al" />
+    <copyField source="main_title_s" dest="main_title_al" />
+    <copyField source="rism_series_identifiers_sm" dest="rism_series_identifiers_al" />
+    <copyField source="plate_publisher_numbers_sm" dest="plate_publisher_numbers_al" />
+    <copyField source="watermark_notes_sm" dest="watermark_notes_al" />
 
     <!-- for ensuring incipit text and titles are available in fulltext search -->
     <copyField source="incipit_text_sm" dest="incipit_text_ft" />
