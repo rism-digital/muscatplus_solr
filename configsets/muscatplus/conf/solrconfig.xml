@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <config>
-    <luceneMatchVersion>9.2.0</luceneMatchVersion>
+    <luceneMatchVersion>9.11.1</luceneMatchVersion>
     <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-analysis-extras-\d.*\.jar" />
     <lib dir="${solr.install.dir:../../../..}/contrib/analysis-extras/lib" regex="icu4j-\d.*\.jar" />
     <lib dir="${solr.install.dir:../../../..}/contrib/analysis-extras/lucene-libs" regex="lucene-analyzers-icu-\d.*\.jar" />
@@ -61,10 +61,6 @@
                           size="4096"
                           initialSize="2048"
                           autowarmCount="2048" />
-        <!--<documentCache class="solr.search.CaffeineCache"
-                       size="4096"
-                       initialSize="2048"
-                       autowarmCount="2048" />-->
         <cache name="perSegFilter"
                class="solr.search.CaffeineCache"
                size="10"
@@ -104,10 +100,6 @@
         JSON fields with the json field transformer.
     -->
     <requestHandler name="/get" class="solr.RealTimeGetHandler">
-        <shardHandler class="HttpShardHandlerFactory">
-            <int name="maxConnectionsPerHost">200</int>
-            <int name="maxConnections">20000</int>
-        </shardHandler>
         <lst name="defaults">
             <str name="omitHeader">true</str>
             <arr name="fl">
@@ -152,15 +144,12 @@
     </requestHandler>
 
     <requestHandler name="/select" class="solr.SearchHandler">
-        <shardHandler class="HttpShardHandlerFactory">
-            <int name="maxConnectionsPerHost">200</int>
-            <int name="maxConnections">20000</int>
-        </shardHandler>
         <lst name="defaults">
             <str name="echoParams">explicit</str>
             <int name="rows">20</int>
             <str name="q.op">AND</str>
             <str name="sow">true</str>
+            <bool name="multiThreaded">true</bool>
             <str name="defType">edismax</str>
             <arr name="mm">
                 <!-- <str>4&lt;50%</str> -->
@@ -192,23 +181,23 @@
                 <str>intervals_mh</str>
             </arr>
 
-            <int name="ps">10</int>
-            <int name="qs">10</int>
-            <arr name="pf">
-                <str>notes_ft</str>
-                <str>title_composer_ft</str>
-                <str>location_ft</str>
-            </arr>
-            <arr name="pf2">
-                <str>notes_ft</str>
-                <str>title_composer_ft</str>
-                <str>location_ft</str>
-            </arr>
-            <arr name="pf3">
-                <str>notes_ft</str>
-                <str>title_composer_ft</str>
-                <str>location_ft</str>
-            </arr>
+<!--            <int name="ps">10</int>-->
+<!--            <int name="qs">10</int>-->
+<!--            <arr name="pf">-->
+<!--                <str>notes_ft</str>-->
+<!--                <str>title_composer_ft</str>-->
+<!--                <str>location_ft</str>-->
+<!--            </arr>-->
+<!--            <arr name="pf2">-->
+<!--                <str>notes_ft</str>-->
+<!--                <str>title_composer_ft</str>-->
+<!--                <str>location_ft</str>-->
+<!--            </arr>-->
+<!--            <arr name="pf3">-->
+<!--                <str>notes_ft</str>-->
+<!--                <str>title_composer_ft</str>-->
+<!--                <str>location_ft</str>-->
+<!--            </arr>-->
             <arr name="boost">
                 <!-- source count is a very crude but effective method of determining
                      more or less important people and institutions.
@@ -266,6 +255,7 @@
             <int name="rows">20</int>
             <str name="q.op">AND</str>
             <str name="sow">true</str>
+            <bool name="multiThreaded">true</bool>
             <str name="defType">edismax</str>
             <arr name="mm">
                 <!-- <str>4&lt;50%</str> -->
@@ -274,6 +264,7 @@
             <str name="mm.autoRelax">true</str>
             <str name="wt">json</str>
             <arr name="qf">
+                <str>shelfmark_ft^20</str>
                 <str>rism_id_wstok</str>
                 <str>siglum_kw^5</str>
                 <str>rism_id_wstok^10</str>
@@ -330,6 +321,7 @@
             <str name="echoParams">all</str>
             <int name="rows">20</int>
             <str name="q.op">AND</str>
+            <bool name="multiThreaded">true</bool>
             <str name="defType">edismax</str>
             <str name="wt">json</str>
             <str name="sow">true</str>
@@ -349,6 +341,7 @@
 
     <requestHandler name="/terms" class="solr.SearchHandler" startup="lazy">
         <lst name="defaults">
+            <bool name="multiThreaded">true</bool>
             <bool name="omitHeader">true</bool>
             <bool name="terms">true</bool>
             <bool name="distrib">false</bool>
@@ -356,6 +349,22 @@
         <arr name="components">
             <str>terms</str>
         </arr>
+    </requestHandler>
+
+    <requestHandler name="/probe" class="solr.SearchHandler">
+        <lst name="defaults">
+            <str name="echoParams">explicit</str>
+            <int name="rows">0</int>
+            <str name="q.op">AND</str>
+            <str name="sow">true</str>
+            <bool name="multiThreaded">true</bool>
+            <str name="defType">edismax</str>
+            <str name="wt">json</str>
+            <str name="df">text</str>
+            <arr name="fl">
+                <str>id</str>
+            </arr>
+        </lst>
     </requestHandler>
 
 </config>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<schema name="muscatplus" version="1.6">
-    <field name="_version_" type="long" indexed="true" docValues="false" stored="true" />
-    <field name="_root_" type="string" indexed="true" stored="false" docValues="true" />
+<schema name="muscatplus" version="1.7">
+    <field name="_version_" type="long" indexed="true" stored="true" />
+    <field name="_root_" type="string" indexed="true" stored="false" />
     <field name="_nest_path_" type="nest_path" />
     <field name="id" type="string" required="true" multiValued="false" />
     <field name="type" type="string" required="true" multiValued="false" />
@@ -105,6 +105,8 @@
     <copyField source="plate_publisher_numbers_sm" dest="identifiers_wstok" />
     <copyField source="siglum_s" dest="identifiers_ft" />
     <copyField source="siglum_s" dest="identifiers_wstok" />
+    <copyField source="former_sigla_sm" dest="identifiers_ft" />
+    <copyField source="former_sigla_sm" dest="identifiers_wstok" />
     <copyField source="now_in_sigla_sm" dest="identifiers_ft" />
     <copyField source="now_in_sigla_sm" dest="identifiers_wstok" />
     <copyField source="contains_sigla_sm" dest="identifiers_ft" />
@@ -120,6 +122,19 @@
     <copyField source="secondary_literature_identifiers_sm" dest="identifiers_wstok" />
     <copyField source="provenance_sm" dest="identifiers_ft" />
     <copyField source="department_s" dest="identifiers_ft" />
+
+    <!-- dedicated query fields. -->
+    <copyField source="shelfmark_s" dest="shelfmark_al" />
+    <copyField source="creator_name_s" dest="creator_name_al" />
+    <copyField source="main_title_s" dest="main_title_al" />
+    <copyField source="rism_series_identifiers_sm" dest="rism_series_identifiers_al" />
+    <copyField source="plate_publisher_numbers_sm" dest="plate_publisher_numbers_al" />
+    <copyField source="watermark_notes_sm" dest="watermark_notes_al" />
+    <copyField source="siglum_s" dest="siglum_al" />
+    <copyField source="scoring_summary_sm" dest="scoring_summary_al" />
+    <copyField source="scoring_sm" dest="scoring_al" />
+    <copyField source="name_s" dest="name_al" />
+    <copyField source="city_s" dest="city_al" />
 
     <!-- for ensuring incipit text and titles are available in fulltext search -->
     <copyField source="incipit_text_sm" dest="incipit_text_ft" />
@@ -201,15 +216,15 @@
 
     <!-- field type definitions -->
     <fieldType name="nest_path" class="solr.NestPathField" />
-    <fieldType name="uuid" class="solr.UUIDField" indexed="true" stored="true" docValues="true" />
-    <fieldType name="string" class="solr.StrField" indexed="true" stored="true" sortMissingLast="true" docValues="true" termVectors="true" />
+    <fieldType name="uuid" class="solr.UUIDField" indexed="true" stored="true" />
+    <fieldType name="string" class="solr.StrField" indexed="true" stored="true" sortMissingLast="true" termVectors="true" />
     <!-- use an Non-indexed string if you don't want the value of the string field to be indexed, e.g., a boilerplate rights statement that is on every record. -->
     <fieldType name="ni_string" class="solr.StrField" indexed="false" stored="true" sortMissingLast="true" />
-    <fieldType name="boolean" class="solr.BoolField" indexed="true" stored="true" sortMissingLast="true" docValues="true" />
-    <fieldType name="int" class="solr.IntPointField" docValues="true" sortMissingLast="true" />
-    <fieldType name="location" class="solr.LatLonPointSpatialField" docValues="true" stored="true"/>
-    <fieldType name="long" class="solr.LongPointField" docValues="true" sortMissingLast="true" />
-    <fieldType name="float" class="solr.FloatPointField" docValues="true" sortMissingLast="true" />
+    <fieldType name="boolean" class="solr.BoolField" indexed="true" stored="true" sortMissingLast="true" />
+    <fieldType name="int" class="solr.IntPointField" sortMissingLast="true" />
+    <fieldType name="location" class="solr.LatLonPointSpatialField" stored="true"/>
+    <fieldType name="long" class="solr.LongPointField" sortMissingLast="true" />
+    <fieldType name="float" class="solr.FloatPointField" sortMissingLast="true" />
     <fieldType name="date" class="solr.DatePointField" sortMissingLast="true" />
     <fieldType name="daterange" class="solr.DateRangeField" sortMissingLast="true" />
     <!-- sorting for alpha-numeric values. The 'strength=secondary' argument, as I'm sure your aware, is what controls case
