@@ -130,7 +130,9 @@
     <copyField source="rism_series_identifiers_sm" dest="rism_series_identifiers_al" />
     <copyField source="plate_publisher_numbers_sm" dest="plate_publisher_numbers_al" />
     <copyField source="watermark_notes_sm" dest="watermark_notes_al" />
-    <copyField source="siglum_s" dest="siglum_al" />
+    <!--  NB: the holding institutions field contains the sigla for both print and mss, whereas the siglum_s field
+      only has it for MSS. -->
+    <copyField source="holding_institutions_sm" dest="siglum_al" />
     <copyField source="scoring_summary_sm" dest="scoring_summary_al" />
     <copyField source="scoring_sm" dest="scoring_al" />
     <copyField source="name_s" dest="name_al" />
