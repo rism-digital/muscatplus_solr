@@ -54,13 +54,15 @@
     <query>
         <maxBooleanClauses>${solr.max.booleanClauses:1024}</maxBooleanClauses>
         <filterCache class="solr.search.CaffeineCache"
-                     size="4096"
-                     initialSize="2048"
-                     autowarmCount="2048" />
+                     async="true"
+                     size="512"
+                     initialSize="128"
+                     autowarmCount="128" />
         <queryResultCache class="solr.search.CaffeineCache"
-                          size="4096"
-                          initialSize="2048"
-                          autowarmCount="2048" />
+                          async="true"
+                          size="512"
+                          initialSize="128"
+                          autowarmCount="128" />
         <cache name="perSegFilter"
                class="solr.search.CaffeineCache"
                size="10"
