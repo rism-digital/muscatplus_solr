@@ -157,11 +157,11 @@
                      size="512"
                      initialSize="128"
                      autowarmCount="128" />
-<!--        <queryResultCache class="solr.search.CaffeineCache"-->
-<!--                          async="true"-->
-<!--                          size="512"-->
-<!--                          initialSize="128"-->
-<!--                          autowarmCount="128" />-->
+        <queryResultCache class="solr.search.CaffeineCache"
+                          async="true"
+                          size="512"
+                          initialSize="128"
+                          autowarmCount="128" />
         <cache name="perSegFilter"
                class="solr.search.CaffeineCache"
                size="10"
