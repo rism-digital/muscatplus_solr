@@ -68,7 +68,7 @@
     <copyField source="variant_people_names_sm" dest="people_names_al" />
     <copyField source="watermark_notes_sm" dest="watermark_notes_al" />
     <!-- the structure of sigla means that it's better to index these with the ngram indexer than with a
-         fulltext indexer. --> 
+         fulltext indexer. -->
     <copyField source="siglum_s" dest="institution_siglum_kw" />
     <copyField source="holding_institutions_sm" dest="holding_institutions_kw" />
 

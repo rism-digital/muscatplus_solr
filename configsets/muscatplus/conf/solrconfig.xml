@@ -135,12 +135,27 @@
     <updateProcessor class="solr.CloneFieldUpdateProcessorFactory" name="clone-to-siglum">
         <arr name="source">
             <str>contains_sigla_sm</str>
+            <str>former_sigla_sm</str>
             <str>holding_institutions_sm</str>
             <str>now_in_sigla_sm</str>
             <str>related_institution_sigla_sm</str>
             <str>siglum_s</str>
         </arr>
         <str name="dest">siglum_kw</str>
+    </updateProcessor>
+
+    <updateProcessor class="solr.CloneFieldUpdateProcessorFactory" name="clone-to-siglum-text">
+        <arr name="source">
+            <str>name_s</str>
+            <str>city_s</str>
+            <str>county_province_sm</str>
+            <str>country_s</str>
+            <str>country_names_sm</str>
+            <str>city_address_sm</str>
+            <str>alternate_names_sm</str>
+            <str>parallel_names_sm</str>
+        </arr>
+        <str name="dest">siglum_text_ft</str>
     </updateProcessor>
 
     <updateRequestProcessorChain name="process" default="true" processor="uuid,auto-timestamp,clone-to-text,clone-to-identifiers">
@@ -433,6 +448,7 @@
             <arr name="qf">
                 <str>siglum_kw^5</str>
                 <str>identifiers_wstok</str>
+                <str>siglum_text_ft</str>
 <!--                <str>rism_id_wstok^10</str>-->
 <!--                <str>names_ft^10</str>-->
 <!--                <str>location_min_ft^5</str>-->
