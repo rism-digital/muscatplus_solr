@@ -255,7 +255,7 @@
                 <str>related_sources_json:[json]</str>
                 <str>external_records_jsonm:[json]</str>
                 <str>addresses_json:[json]</str>
-                <str>work_nodes_json:[json]</str>
+                <str>work_node_json:[json]</str>
             </arr>
         </lst>
     </requestHandler>
@@ -359,7 +359,7 @@
                 <str>related_sources_json:[json]</str>
                 <str>external_records_jsonm:[json]</str>
                 <str>addresses_json:[json]</str>
-                <str>work_nodes_json:[json]</str>
+                <str>work_node_json:[json]</str>
             </arr>
         </lst>
     </requestHandler>
