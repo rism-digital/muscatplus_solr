@@ -45,6 +45,7 @@
     <dynamicField name="*_sp" type="text_spell" stored="false" />
     <dynamicField name="*_json" type="json" multiValued="false" />
     <dynamicField name="*_jsonm" type="json" multiValued="true" />
+    <dynamicField name="*_wnt" type="text_work_node" />
 
     <!--
         Bulk copy fields are configured in the update handler in solrconfig.xml
@@ -71,6 +72,8 @@
          fulltext indexer. -->
     <copyField source="siglum_s" dest="institution_siglum_kw" />
     <copyField source="holding_institutions_sm" dest="holding_institutions_kw" />
+    <copyField source="work_node_id" dest="work_node_wnt" />
+    <copyField source="work_node_ids" dest="work_node_wnt" />
 
     <copyField source="creator_name_s" dest="creator_name_ans" />
     <copyField source="main_title_s" dest="main_title_ans" />
@@ -265,4 +268,12 @@
         </analyzer>
         <similarity class="solr.BooleanSimilarityFactory"/>
     </fieldType>
+
+    <!-- a field that passes query values through a synonym parser for instrument names. -->
+    <fieldType name="text_work_node" class="solr.TextField" termVectors="true" multiValued="true" stored="false">
+        <analyzer>
+            <tokenizer class="solr.PatternTokenizerFactory" pattern="([a-z]+:)?(\d+)" group="2" />
+        </analyzer>
+    </fieldType>
+
 </schema>
