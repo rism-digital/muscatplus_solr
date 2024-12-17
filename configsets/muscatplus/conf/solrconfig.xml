@@ -129,7 +129,8 @@
             <str>secondary_literature_identifiers_sm</str>
             <str>shelfmark_s</str>
             <str>external_ids</str>
-            <str>work_node_wnt</str>
+            <str>work_node_ids</str>
+            <str>work_node_id</str>
         </arr>
         <str name="dest">identifiers_wstok</str>
     </updateProcessor>
@@ -281,7 +282,8 @@
             </arr>
             <arr name="qf">
                 <str>text</str>
-                <str>rism_id_wstok^10</str>
+                <str>identifiers_wstok^10</str>
+                <str>work_node_wnt</str>
 <!--                <str>siglum_kw^5</str>-->
 <!--                <str>rism_id_wstok^10</str>-->
 <!--                <str>identifiers_wstok^10</str>-->
@@ -386,7 +388,8 @@
             <str name="wt">json</str>
             <arr name="qf">
                 <str>text</str>
-                <str>rism_id_wstok</str>
+                <str>identifiers_wstok^10</str>
+                <str>work_node_wnt</str>
 <!--                <str>shelfmark_ft^20</str>-->
 <!--                <str>siglum_kw^5</str>-->
 <!--                <str>rism_id_wstok^10</str>-->
@@ -484,7 +487,8 @@
 <!--            <str name="df">text</str>-->
             <arr name="qf">
                 <str>text</str>
-                <str>rism_id_wstok^10</str>
+                <str>identifiers_wstok^10</str>
+                <str>work_node_wnt</str>
             </arr>
             <arr name="fl">
                 <str>id</str>
