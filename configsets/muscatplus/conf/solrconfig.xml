@@ -95,7 +95,7 @@
             <str>related_people_sm</str>
 <!--            <str>rism_id</str>-->
 <!--            <str>rism_series_identifiers_sm</str>-->
-            <str>roles_sm</str>
+<!--            <str>roles_sm</str>-->
             <str>secondary_literature_identifiers_sm</str>
             <str>shelfmark_s</str>
             <str>siglum_s</str>
@@ -161,7 +161,7 @@
         <str name="dest">siglum_text_ft</str>
     </updateProcessor>
 
-    <updateRequestProcessorChain name="process" default="true" processor="uuid,auto-timestamp,clone-to-text,clone-to-identifiers">
+    <updateRequestProcessorChain name="process" default="true" processor="uuid,auto-timestamp,clone-to-text,clone-to-identifiers,clone-to-siglum,clone-to-siglum-text">
         <!-- Trim leading and trailing whitespace -->
         <processor class="solr.TrimFieldUpdateProcessorFactory" />
         <processor class="solr.LogUpdateProcessorFactory" />

@@ -119,7 +119,6 @@
             <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true" />
             <!-- <filter class="solr.CommonGramsFilterFactory" ignoreCase="true" words="stopwords.txt" /> -->
             <filter class="solr.FlattenGraphFilterFactory"/>
-            <filter class="solr.LengthFilterFactory" min="2" max="10000"/>
         </analyzer>
         <analyzer type="query">
             <tokenizer class="solr.ICUTokenizerFactory" />
@@ -130,6 +129,7 @@
             <!-- <filter class="solr.StemmerOverrideFilterFactory" dictionary="stemdict.txt" /> -->
             <filter class="solr.KStemFilterFactory" />
             <!--<filter class="solr.CommonGramsQueryFilterFactory" ignoreCase="true" words="stopwords.txt" /> -->
+            <filter class="solr.FlattenGraphFilterFactory"/>
         </analyzer>
     </fieldType>
 
