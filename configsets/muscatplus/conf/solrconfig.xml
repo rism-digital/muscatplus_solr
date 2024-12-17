@@ -44,79 +44,6 @@
         <str name="fieldName">indexed</str>
     </updateProcessor>
 
-    <updateProcessor class="solr.CloneFieldUpdateProcessorFactory" name="clone-to-text">
-        <arr name="source">
-            <str>additional_titles_sm</str>
-            <str>alternate_names_sm</str>
-            <str>alternate_terms_sm</str>
-            <str>binding_notes_sm</str>
-            <str>bibliographic_references_sm</str>
-            <str>catalogue_numbers_sm</str>
-            <str>city_address_sm</str>
-            <str>city_s</str>
-            <str>common_name_s</str>
-            <str>contains_sigla_sm</str>
-            <str>contents_notes_sm</str>
-            <str>country_names_sm</str>
-            <str>country_s</str>
-            <str>creator_name_s</str>
-            <str>date_statements_sm</str>
-            <str>department_s</str>
-            <str>description_summary_sm</str>
-            <str>digitization_notes_sm</str>
-            <str>district_s</str>
-            <str>former_shelfmarks_sm</str>
-            <str>former_sigla_sm</str>
-            <str>general_notes_sm</str>
-            <str>holding_institutions_identifiers_sm</str>
-            <str>holding_institutions_places_sm</str>
-            <str>holding_institutions_sm</str>
-            <str>incipit_text_sm</str>
-            <str>incipit_title_sm</str>
-            <str>institutions_sm</str>
-            <str>language_notes_sm</str>
-            <str>liturgical_festivals_sm</str>
-            <str>main_title_s</str>
-            <str>name_s</str>
-            <str>now_in_sigla_sm</str>
-            <str>other_shelfmarks_sm</str>
-            <str>parallel_names_sm</str>
-<!--            <str>parts_held_sm</str>-->
-            <str>people_names_sm</str>
-            <str>performance_notes_sm</str>
-            <str>plate_publisher_numbers_sm</str>
-            <str>postcode_address_sm</str>
-            <str>printer_name_sm</str>
-            <str>provenance_sm</str>
-            <str>publication_place_sm</str>
-            <str>publisher_copyist_sm</str>
-            <str>related_institution_sigla_sm</str>
-            <str>related_institutions_sm</str>
-            <str>related_people_sm</str>
-<!--            <str>rism_id</str>-->
-<!--            <str>rism_series_identifiers_sm</str>-->
-<!--            <str>roles_sm</str>-->
-            <str>secondary_literature_identifiers_sm</str>
-            <str>shelfmark_s</str>
-            <str>siglum_s</str>
-            <str>source_of_description_notes_sm</str>
-            <str>source_title_s</str>
-            <str>standard_title_s</str>
-            <str>street_address_sm</str>
-            <str>subjects_sm</str>
-            <str>supplementary_material_sm</str>
-            <str>term_s</str>
-            <str>text_incipit_sm</str>
-            <str>variant_names_sm</str>
-            <str>variant_people_names_sm</str>
-            <str>variant_standard_terms_sm</str>
-            <str>variant_title_s</str>
-            <str>watermark_notes_sm</str>
-            <str>works_catalogue_sm</str>
-        </arr>
-        <str name="dest">text</str>
-    </updateProcessor>
-
     <updateProcessor class="solr.CloneFieldUpdateProcessorFactory" name="clone-to-identifiers">
         <arr name="source">
             <str>catalogue_numbers_sm</str>
@@ -161,7 +88,7 @@
         <str name="dest">siglum_text_ft</str>
     </updateProcessor>
 
-    <updateRequestProcessorChain name="process" default="true" processor="uuid,auto-timestamp,clone-to-text,clone-to-identifiers,clone-to-siglum,clone-to-siglum-text">
+    <updateRequestProcessorChain name="process" default="true" processor="uuid,auto-timestamp">
         <!-- Trim leading and trailing whitespace -->
         <processor class="solr.TrimFieldUpdateProcessorFactory" />
         <processor class="solr.LogUpdateProcessorFactory" />

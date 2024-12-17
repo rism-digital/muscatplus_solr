@@ -80,6 +80,72 @@
     <copyField source="name_s" dest="name_ans" />
     <copyField source="work_num_s" dest="work_num_ans" />
 
+    <!-- Fulltext search -->
+    <copyField source="additional_titles_sm" dest="text" />
+    <copyField source="alternate_names_sm" dest="text" />
+    <copyField source="alternate_terms_sm" dest="text" />
+    <copyField source="binding_notes_sm" dest="text" />
+    <copyField source="bibliographic_references_sm" dest="text" />
+    <copyField source="catalogue_numbers_sm" dest="text" />
+    <copyField source="city_address_sm" dest="text" />
+    <copyField source="city_s" dest="text" />
+    <copyField source="common_name_s" dest="text" />
+    <copyField source="contains_sigla_sm" dest="text" />
+    <copyField source="contents_notes_sm" dest="text" />
+    <copyField source="country_names_sm" dest="text" />
+    <copyField source="country_s" dest="text" />
+    <copyField source="creator_name_s" dest="text" />
+    <copyField source="date_statements_sm" dest="text" />
+    <copyField source="department_s" dest="text" />
+    <copyField source="description_summary_sm" dest="text" />
+    <copyField source="digitization_notes_sm" dest="text" />
+    <copyField source="district_s" dest="text" />
+    <copyField source="former_shelfmarks_sm" dest="text" />
+    <copyField source="former_sigla_sm" dest="text" />
+    <copyField source="general_notes_sm" dest="text" />
+    <copyField source="holding_institutions_identifiers_sm" dest="text" />
+    <copyField source="holding_institutions_places_sm" dest="text" />
+    <copyField source="holding_institutions_sm" dest="text" />
+    <copyField source="incipit_text_sm" dest="text" />
+    <copyField source="incipit_title_sm" dest="text" />
+    <copyField source="institutions_sm" dest="text" />
+    <copyField source="language_notes_sm" dest="text" />
+    <copyField source="liturgical_festivals_sm" dest="text" />
+    <copyField source="main_title_s" dest="text" />
+    <copyField source="name_s" dest="text" />
+    <copyField source="now_in_sigla_sm" dest="text" />
+    <copyField source="other_shelfmarks_sm" dest="text" />
+    <copyField source="parallel_names_sm" dest="text" />
+    <copyField source="people_names_sm" dest="text" />
+    <copyField source="performance_notes_sm" dest="text" />
+    <copyField source="place_names_sm" dest="text" />
+    <copyField source="plate_publisher_numbers_sm" dest="text" />
+    <copyField source="postcode_address_sm" dest="text" />
+    <copyField source="printer_name_sm" dest="text" />
+    <copyField source="provenance_sm" dest="text" />
+    <copyField source="publication_place_sm" dest="text" />
+    <copyField source="publisher_copyist_sm" dest="text" />
+    <copyField source="related_institution_sigla_sm" dest="text" />
+    <copyField source="related_institutions_sm" dest="text" />
+    <copyField source="related_people_sm" dest="text" />
+    <copyField source="secondary_literature_identifiers_sm" dest="text" />
+    <copyField source="shelfmark_s" dest="text" />
+    <copyField source="siglum_s" dest="text" />
+    <copyField source="source_of_description_notes_sm" dest="text" />
+    <copyField source="source_title_s" dest="text" />
+    <copyField source="standard_title_s" dest="text" />
+    <copyField source="street_address_sm" dest="text" />
+    <copyField source="subjects_sm" dest="text" />
+    <copyField source="supplementary_material_sm" dest="text" />
+    <copyField source="term_s" dest="text" />
+    <copyField source="text_incipit_sm" dest="text" />
+    <copyField source="variant_names_sm" dest="text" />
+    <copyField source="variant_people_names_sm" dest="text" />
+    <copyField source="variant_standard_terms_sm" dest="text" />
+    <copyField source="variant_title_s" dest="text" />
+    <copyField source="watermark_notes_sm" dest="text" />
+    <copyField source="works_catalogue_sm" dest="text" />
+
     <!-- field type definitions -->
     <fieldType name="nest_path" class="solr.NestPathField" />
     <fieldType name="uuid" class="solr.UUIDField" indexed="true" stored="true" />
