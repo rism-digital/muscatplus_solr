@@ -184,6 +184,7 @@
             <filter class="solr.KStemFilterFactory" />
             <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true" />
             <!-- <filter class="solr.CommonGramsFilterFactory" ignoreCase="true" words="stopwords.txt" /> -->
+            <filter class="solr.LengthFilterFactory" min="2" max="8000"/>
             <filter class="solr.FlattenGraphFilterFactory"/>
         </analyzer>
         <analyzer type="query">
@@ -249,6 +250,7 @@
             <filter class="solr.ICUFoldingFilterFactory"/>
             <filter class="solr.LowerCaseFilterFactory" />
             <!-- shingles generate "word n-grams"; "the quick brown" to "the quick", "quick brown". -->
+            <filter class="solr.LengthFilterFactory" min="2" max="8000"/>
             <filter class="solr.ShingleFilterFactory" minShingleSize="2" maxShingleSize="5" />
         </analyzer>
         <analyzer type="query">
@@ -341,5 +343,4 @@
             <tokenizer class="solr.PatternTokenizerFactory" pattern="([a-z]+:)?(\d+)" group="2" />
         </analyzer>
     </fieldType>
-
 </schema>
