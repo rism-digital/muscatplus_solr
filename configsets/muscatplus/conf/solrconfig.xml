@@ -99,14 +99,14 @@
         <maxBooleanClauses>${solr.max.booleanClauses:1024}</maxBooleanClauses>
         <filterCache class="solr.search.CaffeineCache"
                      async="true"
-                     size="512"
-                     initialSize="128"
-                     autowarmCount="128" />
+                     size="1024"
+                     initialSize="512"
+                     autowarmCount="512" />
         <queryResultCache class="solr.search.CaffeineCache"
                           async="true"
-                          size="512"
-                          initialSize="128"
-                          autowarmCount="128" />
+                          size="1024"
+                          initialSize="512"
+                          autowarmCount="512" />
         <cache name="perSegFilter"
                class="solr.search.CaffeineCache"
                size="10"
@@ -114,15 +114,33 @@
                autowarmCount="10"
                regenerator="solr.NoOpRegenerator" />
         <enableLazyFieldLoading>true</enableLazyFieldLoading>
+        <useFilterForSortedQuery>true</useFilterForSortedQuery>
         <queryResultWindowSize>20</queryResultWindowSize>
         <queryResultMaxDocsCached>200</queryResultMaxDocsCached>
         <listener event="newSearcher" class="solr.QuerySenderListener">
             <arr name="queries" />
         </listener>
         <listener event="firstSearcher" class="solr.QuerySenderListener">
-            <arr name="queries" />
+            <arr name="queries">
+                <lst>
+                    <str name="q">*:*</str>
+                    <str name="fq">type:source</str>
+                </lst>
+                <lst>
+                    <str name="q">*:*</str>
+                    <str name="fq">type:person</str>
+                </lst>
+                <lst>
+                    <str name="q">*:*</str>
+                    <str name="fq">type:institution</str>
+                </lst>
+                <lst>
+                    <str name="q">*:*</str>
+                    <str name="fq">type:incipit</str>
+                </lst>
+            </arr>
         </listener>
-        <useColdSearcher>false</useColdSearcher>
+        <useColdSearcher>true</useColdSearcher>
     </query>
 
     <requestDispatcher handleSelect="false">
