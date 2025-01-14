@@ -9,8 +9,8 @@
     <field name="languages" type="string" multiValued="true" />
     <field name="text" type="text_fulltext" indexed="true" stored="false" storeOffsetsWithPositions="true" />
     <field name="text_alt" type="text_analyzed" indexed="true" stored="false" storeOffsetsWithPositions="true" />
-    <field name="suggest" type="text_analyzed" indexed="true" stored="true" termVectors="true" multiValued="true" />
-    <field name="boost" type="int" required="false" indexed="true" stored="true" />
+    <!-- <field name="suggest" type="text_analyzed" indexed="true" stored="true" termVectors="true" multiValued="true" /> -->
+    <!-- <field name="boost" type="int" required="false" indexed="true" stored="true" /> -->
     <field name="indexed" type="date" multiValued="false" indexed="true" />
     <field name="created" type="date" required="false" indexed="true" stored="true" />
     <field name="updated" type="date" required="false" indexed="true" stored="true" />
@@ -146,6 +146,36 @@
     <copyField source="watermark_notes_sm" dest="text" />
     <copyField source="works_catalogue_sm" dest="text" />
 
+    <!-- copy identifiers to the identifiers_wstok field. -->
+    <copyField source="catalogue_numbers_sm" dest="identifiers_wstok" />
+    <copyField source="contains_sigla_sm" dest="identifiers_wstok" />
+    <copyField source="former_shelfmarks_sm" dest="identifiers_wstok" />
+    <copyField source="other_shelfmarks_sm" dest="identifiers_wstok" />
+    <copyField source="plate_publisher_numbers_sm" dest="identifiers_wstok" />
+    <copyField source="rism_id" dest="identifiers_wstok" />
+    <copyField source="rism_series_identifiers_sm" dest="identifiers_wstok" />
+    <copyField source="secondary_literature_identifiers_sm" dest="identifiers_wstok" />
+    <copyField source="shelfmark_s" dest="identifiers_wstok" />
+    <copyField source="external_ids" dest="identifiers_wstok" />
+    <copyField source="work_node_ids" dest="identifiers_wstok" />
+    <copyField source="work_node_id" dest="identifiers_wstok" />
+
+    <copyField source="contains_sigla_sm" dest="siglum_kw" />
+    <copyField source="former_sigla_sm" dest="siglum_kw" />
+    <copyField source="holding_institutions_sm" dest="siglum_kw" />
+    <copyField source="now_in_sigla_sm" dest="siglum_kw" />
+    <copyField source="related_institution_sigla_sm" dest="siglum_kw" />
+    <copyField source="siglum_s" dest="siglum_kw" />
+
+    <copyField source="name_s" dest="siglum_text_ft" />
+    <copyField source="city_s" dest="siglum_text_ft" />
+    <copyField source="county_province_sm" dest="siglum_text_ft" />
+    <copyField source="country_s" dest="siglum_text_ft" />
+    <copyField source="country_names_sm" dest="siglum_text_ft" />
+    <copyField source="city_address_sm" dest="siglum_text_ft" />
+    <copyField source="alternate_names_sm" dest="siglum_text_ft" />
+    <copyField source="parallel_names_sm" dest="siglum_text_ft" />
+
     <!-- field type definitions -->
     <fieldType name="nest_path" class="solr.NestPathField" />
     <fieldType name="uuid" class="solr.UUIDField" indexed="true" stored="true" />
@@ -173,7 +203,7 @@
     <!--    <copyField source="pitches_mh" dest="pitches_bi" />-->
 
     <!-- text fields -->
-    <fieldType name="text_fulltext" class="solr.TextField" autoGeneratePhraseQueries="true" multiValued="true" termVectors="true">
+    <fieldType name="text_fulltext" class="solr.TextField" multiValued="true" termVectors="true" positionIncrementGap="100">
         <analyzer type="index">
             <tokenizer class="solr.ICUTokenizerFactory" />
             <filter class="solr.ICUFoldingFilterFactory"/>
@@ -184,7 +214,6 @@
             <filter class="solr.KStemFilterFactory" />
             <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true" />
             <!-- <filter class="solr.CommonGramsFilterFactory" ignoreCase="true" words="stopwords.txt" /> -->
-            <filter class="solr.LengthFilterFactory" min="2" max="8000"/>
             <filter class="solr.FlattenGraphFilterFactory"/>
         </analyzer>
         <analyzer type="query">

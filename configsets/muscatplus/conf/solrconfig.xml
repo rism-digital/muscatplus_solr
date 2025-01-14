@@ -44,50 +44,6 @@
         <str name="fieldName">indexed</str>
     </updateProcessor>
 
-    <updateProcessor class="solr.CloneFieldUpdateProcessorFactory" name="clone-to-identifiers">
-        <arr name="source">
-            <str>catalogue_numbers_sm</str>
-            <str>contains_sigla_sm</str>
-            <str>former_shelfmarks_sm</str>
-            <str>other_shelfmarks_sm</str>
-            <str>plate_publisher_numbers_sm</str>
-            <str>rism_id</str>
-            <str>rism_series_identifiers_sm</str>
-            <str>secondary_literature_identifiers_sm</str>
-            <str>shelfmark_s</str>
-            <str>external_ids</str>
-            <str>work_node_ids</str>
-            <str>work_node_id</str>
-        </arr>
-        <str name="dest">identifiers_wstok</str>
-    </updateProcessor>
-
-    <updateProcessor class="solr.CloneFieldUpdateProcessorFactory" name="clone-to-siglum">
-        <arr name="source">
-            <str>contains_sigla_sm</str>
-            <str>former_sigla_sm</str>
-            <str>holding_institutions_sm</str>
-            <str>now_in_sigla_sm</str>
-            <str>related_institution_sigla_sm</str>
-            <str>siglum_s</str>
-        </arr>
-        <str name="dest">siglum_kw</str>
-    </updateProcessor>
-
-    <updateProcessor class="solr.CloneFieldUpdateProcessorFactory" name="clone-to-siglum-text">
-        <arr name="source">
-            <str>name_s</str>
-            <str>city_s</str>
-            <str>county_province_sm</str>
-            <str>country_s</str>
-            <str>country_names_sm</str>
-            <str>city_address_sm</str>
-            <str>alternate_names_sm</str>
-            <str>parallel_names_sm</str>
-        </arr>
-        <str name="dest">siglum_text_ft</str>
-    </updateProcessor>
-
     <updateRequestProcessorChain name="process" default="true" processor="uuid,auto-timestamp">
         <!-- Trim leading and trailing whitespace -->
         <processor class="solr.TrimFieldUpdateProcessorFactory" />
