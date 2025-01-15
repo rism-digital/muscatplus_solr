@@ -184,43 +184,9 @@
             <arr name="qf">
                 <str>text</str>
                 <str>identifiers_wstok^10</str>
+                <str>siglum_kw^5</str>
                 <str>work_node_wnt</str>
-<!--                <str>siglum_kw^5</str>-->
-<!--                <str>rism_id_wstok^10</str>-->
-<!--                <str>identifiers_wstok^10</str>-->
-<!--                <str>identifiers_ft^5</str>-->
-<!--                <str>title_composer_ft^5</str>-->
-<!--                <str>publication_info_ft^2</str>-->
-<!--                <str>people_names_ft^2</str>-->
-<!--                <str>people_names_al^2</str>-->
-<!--                <str>subjects_ft^5</str>-->
-<!--                <str>notes_ft^2</str>-->
-<!--                <str>institutions_ft</str>-->
-<!--                <str>location_ft^5</str>-->
-<!--                <str>roles_ft</str>-->
-<!--                <str>source_people_names_ft</str>-->
-<!--                <str>incipit_text_ft</str>-->
-<!--                <str>scoring_ti</str>-->
-<!--                <str>intervals_mh</str>-->
             </arr>
-
-<!--            <int name="ps">10</int>-->
-<!--            <int name="qs">10</int>-->
-<!--            <arr name="pf">-->
-<!--                <str>notes_ft</str>-->
-<!--                <str>title_composer_ft</str>-->
-<!--                <str>location_ft</str>-->
-<!--            </arr>-->
-<!--            <arr name="pf2">-->
-<!--                <str>notes_ft</str>-->
-<!--                <str>title_composer_ft</str>-->
-<!--                <str>location_ft</str>-->
-<!--            </arr>-->
-<!--            <arr name="pf3">-->
-<!--                <str>notes_ft</str>-->
-<!--                <str>title_composer_ft</str>-->
-<!--                <str>location_ft</str>-->
-<!--            </arr>-->
             <arr name="boost">
                 <!-- source count is a very crude but effective method of determining
                      more or less important people and institutions.
@@ -290,43 +256,9 @@
             <arr name="qf">
                 <str>text</str>
                 <str>identifiers_wstok^10</str>
+                <str>siglum_kw^5</str>
                 <str>work_node_wnt</str>
-<!--                <str>shelfmark_ft^20</str>-->
-<!--                <str>siglum_kw^5</str>-->
-<!--                <str>rism_id_wstok^10</str>-->
-<!--                <str>identifiers_wstok^10</str>-->
-<!--                <str>identifiers_ft^5</str>-->
-<!--                <str>title_composer_ft^5</str>-->
-<!--                <str>publication_info_ft^2</str>-->
-<!--                <str>people_names_ft^2</str>-->
-<!--                <str>subjects_ft^5</str>-->
-<!--                <str>notes_ft^2</str>-->
-<!--                <str>institutions_ft</str>-->
-<!--                <str>location_ft^5</str>-->
-<!--                <str>roles_ft</str>-->
-<!--                <str>source_people_names_ft</str>-->
-<!--                <str>incipit_text_ft</str>-->
-<!--                <str>scoring_ti</str>-->
-<!--                <str>intervals_mh</str>-->
             </arr>
-
-<!--            <int name="ps">10</int>-->
-<!--            <int name="qs">10</int>-->
-<!--            <arr name="pf">-->
-<!--                <str>notes_ft</str>-->
-<!--                <str>title_composer_ft</str>-->
-<!--                <str>location_ft</str>-->
-<!--            </arr>-->
-<!--            <arr name="pf2">-->
-<!--                <str>notes_ft</str>-->
-<!--                <str>title_composer_ft</str>-->
-<!--                <str>location_ft</str>-->
-<!--            </arr>-->
-<!--            <arr name="pf3">-->
-<!--                <str>notes_ft</str>-->
-<!--                <str>title_composer_ft</str>-->
-<!--                <str>location_ft</str>-->
-<!--            </arr>-->
             <arr name="boost">
                 <!-- source count is a very crude but effective method of determining
                      more or less important people and institutions.
