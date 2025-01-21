@@ -176,6 +176,10 @@
     <copyField source="alternate_names_sm" dest="siglum_text_ft" />
     <copyField source="parallel_names_sm" dest="siglum_text_ft" />
 
+    <!--  Siglum search  -->
+    <copyField source="city_s" dest="city_ft" />
+    <copyField source="country_names_sm" dest="country_names_ft" />
+
     <!-- field type definitions -->
     <fieldType name="nest_path" class="solr.NestPathField" />
     <fieldType name="uuid" class="solr.UUIDField" indexed="true" stored="true" />
@@ -279,7 +283,6 @@
             <filter class="solr.ICUFoldingFilterFactory"/>
             <filter class="solr.LowerCaseFilterFactory" />
             <!-- shingles generate "word n-grams"; "the quick brown" to "the quick", "quick brown". -->
-            <filter class="solr.LengthFilterFactory" min="2" max="8000"/>
             <filter class="solr.ShingleFilterFactory" minShingleSize="2" maxShingleSize="5" />
         </analyzer>
         <analyzer type="query">
