@@ -7,9 +7,10 @@
     <field name="type" type="string" required="true" multiValued="false" />
     <field name="language" type="string" multiValued="false" />
     <field name="languages" type="string" multiValued="true" />
-    <field name="text" type="text_fulltext" indexed="true" stored="true" termVectors="true" storeOffsetsWithPositions="true" />
-    <field name="suggest" type="text_analyzed" indexed="true" stored="true" termVectors="true" multiValued="true" />
-    <field name="boost" type="int" required="false" indexed="true" stored="true" />
+    <field name="text" type="text_fulltext" indexed="true" stored="false" storeOffsetsWithPositions="true" />
+    <field name="text_alt" type="text_analyzed" indexed="true" stored="false" storeOffsetsWithPositions="true" />
+    <!-- <field name="suggest" type="text_analyzed" indexed="true" stored="true" termVectors="true" multiValued="true" /> -->
+    <!-- <field name="boost" type="int" required="false" indexed="true" stored="true" /> -->
     <field name="indexed" type="date" multiValued="false" indexed="true" />
     <field name="created" type="date" required="false" indexed="true" stored="true" />
     <field name="updated" type="date" required="false" indexed="true" stored="true" />
@@ -44,182 +45,143 @@
     <dynamicField name="*_sp" type="text_spell" stored="false" />
     <dynamicField name="*_json" type="json" multiValued="false" />
     <dynamicField name="*_jsonm" type="json" multiValued="true" />
+    <dynamicField name="*_wnt" type="text_work_node" />
 
-    <!-- Alphanumeric sort fields -->
+    <!--
+        Bulk copy fields are configured in the update handler in solrconfig.xml
+        since it's easier to manage a list of field names than a list of individual
+        XML elements...
+    -->
+
+    <!-- Copy string fields to specific full-text query fields for field queries. -->
+    <copyField source="city_s" dest="city_al" />
+    <copyField source="creator_name_s" dest="creator_name_al" />
+    <copyField source="main_title_s" dest="main_title_al" />
+    <copyField source="name_s" dest="people_names_al" />
+    <copyField source="name_s" dest="name_al" />
+    <copyField source="people_names_sm" dest="people_names_al" />
+    <copyField source="plate_publisher_numbers_sm" dest="plate_publisher_numbers_al" />
+    <copyField source="rism_series_identifiers_sm" dest="rism_series_identifiers_al" />
+    <copyField source="scoring_sm" dest="scoring_al" />
+    <copyField source="scoring_summary_sm" dest="scoring_summary_al" />
+    <copyField source="shelfmark_s" dest="shelfmark_al" />
+    <copyField source="variant_names_sm" dest="people_names_al" />
+    <copyField source="variant_people_names_sm" dest="people_names_al" />
+    <copyField source="watermark_notes_sm" dest="watermark_notes_al" />
+    <!-- the structure of sigla means that it's better to index these with the ngram indexer than with a
+         fulltext indexer. -->
+    <copyField source="siglum_s" dest="institution_siglum_kw" />
+    <copyField source="holding_institutions_sm" dest="holding_institutions_kw" />
+    <copyField source="work_node_id" dest="work_node_wnt" />
+    <copyField source="work_node_ids" dest="work_node_wnt" />
+
+    <copyField source="creator_name_s" dest="creator_name_ans" />
     <copyField source="main_title_s" dest="main_title_ans" />
     <copyField source="name_s" dest="name_ans" />
     <copyField source="work_num_s" dest="work_num_ans" />
-    <copyField source="creator_name_s" dest="creator_name_ans" />
 
-    <!-- Source records. Fields are merged to support queries with text that
-     frequently appears together, e.g., 'beethoven symphony' takes
-     values from the composer and title fields. -->
-    <copyField source="main_title_s" dest="title_composer_ft" />
-    <copyField source="source_title_s" dest="title_composer_ft" />
-    <copyField source="creator_name_s" dest="title_composer_ft" />
-    <copyField source="variant_title_s" dest="title_composer_ft" />
-    <copyField source="standard_title_s" dest="title_composer_ft" />
-    <copyField source="name_s" dest="title_composer_ft" />
-    <copyField source="people_names_sm" dest="title_composer_ft" />
-    <copyField source="variant_people_names_sm" dest="title_composer_ft" />
-    <copyField source="common_name_s" dest="title_composer_ft" />
-    <copyField source="text_incipit_sm" dest="title_composer_ft" />
+    <!-- Fulltext search -->
+    <copyField source="additional_titles_sm" dest="text" />
+    <copyField source="alternate_names_sm" dest="text" />
+    <copyField source="alternate_terms_sm" dest="text" />
+    <copyField source="binding_notes_sm" dest="text" />
+    <copyField source="bibliographic_references_sm" dest="text" />
+    <copyField source="catalogue_numbers_sm" dest="text" />
+    <copyField source="city_address_sm" dest="text" />
+    <copyField source="city_s" dest="text" />
+    <copyField source="common_name_s" dest="text" />
+    <copyField source="contains_sigla_sm" dest="text" />
+    <copyField source="contents_notes_sm" dest="text" />
+    <copyField source="country_names_sm" dest="text" />
+    <copyField source="country_s" dest="text" />
+    <copyField source="creator_name_s" dest="text" />
+    <copyField source="date_statements_sm" dest="text" />
+    <copyField source="department_s" dest="text" />
+    <copyField source="description_summary_sm" dest="text" />
+    <copyField source="digitization_notes_sm" dest="text" />
+    <copyField source="district_s" dest="text" />
+    <copyField source="former_shelfmarks_sm" dest="text" />
+    <copyField source="former_sigla_sm" dest="text" />
+    <copyField source="general_notes_sm" dest="text" />
+    <copyField source="holding_institutions_identifiers_sm" dest="text" />
+    <copyField source="holding_institutions_places_sm" dest="text" />
+    <copyField source="holding_institutions_sm" dest="text" />
+    <copyField source="incipit_text_sm" dest="text" />
+    <copyField source="incipit_title_sm" dest="text" />
+    <copyField source="institutions_sm" dest="text" />
+    <copyField source="language_notes_sm" dest="text" />
+    <copyField source="liturgical_festivals_sm" dest="text" />
+    <copyField source="main_title_s" dest="text" />
+    <copyField source="name_s" dest="text" />
+    <copyField source="now_in_sigla_sm" dest="text" />
+    <copyField source="other_shelfmarks_sm" dest="text" />
+    <copyField source="parallel_names_sm" dest="text" />
+    <copyField source="people_names_sm" dest="text" />
+    <copyField source="performance_notes_sm" dest="text" />
+    <copyField source="place_names_sm" dest="text" />
+    <copyField source="plate_publisher_numbers_sm" dest="text" />
+    <copyField source="postcode_address_sm" dest="text" />
+    <copyField source="printer_name_sm" dest="text" />
+    <copyField source="provenance_sm" dest="text" />
+    <copyField source="publication_place_sm" dest="text" />
+    <copyField source="publisher_copyist_sm" dest="text" />
+    <copyField source="related_institution_sigla_sm" dest="text" />
+    <copyField source="related_institutions_sm" dest="text" />
+    <copyField source="related_people_sm" dest="text" />
+    <copyField source="secondary_literature_identifiers_sm" dest="text" />
+    <copyField source="shelfmark_s" dest="text" />
+    <copyField source="siglum_s" dest="text" />
+    <copyField source="source_of_description_notes_sm" dest="text" />
+    <copyField source="source_title_s" dest="text" />
+    <copyField source="standard_title_s" dest="text" />
+    <copyField source="street_address_sm" dest="text" />
+    <copyField source="subjects_sm" dest="text" />
+    <copyField source="supplementary_material_sm" dest="text" />
+    <copyField source="term_s" dest="text" />
+    <copyField source="text_incipit_sm" dest="text" />
+    <copyField source="variant_names_sm" dest="text" />
+    <copyField source="variant_people_names_sm" dest="text" />
+    <copyField source="variant_standard_terms_sm" dest="text" />
+    <copyField source="variant_title_s" dest="text" />
+    <copyField source="watermark_notes_sm" dest="text" />
+    <copyField source="works_catalogue_sm" dest="text" />
 
-    <!-- publication info -->
-    <copyField source="publication_place_sm" dest="publication_info_ft" />
-    <copyField source="publisher_copyist_sm" dest="publication_info_ft" />
-    <copyField source="printer_name_sm" dest="publication_info_ft" />
-    <copyField source="parts_held_sm" dest="publication_info_ft" />
-    <copyField source="date_statements_sm" dest="publication_info_ft" />
-
-    <!-- unified notes fields -->
-    <copyField source="general_notes_sm" dest="notes_ft" />
-    <copyField source="contents_notes_sm" dest="notes_ft" />
-    <copyField source="performance_notes_sm" dest="notes_ft" />
-    <copyField source="language_notes_sm" dest="notes_ft" />
-    <copyField source="description_summary_sm" dest="notes_ft" />
-    <copyField source="supplementary_material_sm" dest="notes_ft" />
-    <copyField source="binding_notes_sm" dest="notes_ft" />
-    <copyField source="source_of_description_notes_sm" dest="notes_ft" />
-    <copyField source="watermark_notes_sm" dest="notes_ft" />
-    <copyField source="additional_titles_sm" dest="notes_ft" />
-    <copyField source="bibliographic_references_sm" dest="notes_ft" />
-    <copyField source="works_catalogue_sm" dest="notes_ft" />
-    <copyField source="digitization_notes_sm" dest="notes_ft" />
-    <copyField source="liturgical_festivals_sm" dest="notes_ft" />
-
-    <!-- identifiers fields. We put them in both types of fields
-     since the 'analyzed' field can provide better results for literal
-     searches. -->
-    <copyField source="rism_id" dest="identifiers_ft" />
-    <copyField source="rism_id" dest="identifiers_wstok" />
-    <copyField source="shelfmark_s" dest="identifiers_ft" />
-    <copyField source="shelfmark_s" dest="identifiers_wstok" />
-    <copyField source="other_shelfmarks_sm" dest="identifiers_ft" />
-    <copyField source="other_shelfmarks_sm" dest="identifiers_wstok" />
-    <copyField source="former_shelfmarks_sm" dest="identifiers_ft" />
-    <copyField source="former_shelfmarks_sm" dest="identifiers_wstok" />
-    <copyField source="catalogue_numbers_sm" dest="identifiers_ft" />
+    <!-- copy identifiers to the identifiers_wstok field. -->
     <copyField source="catalogue_numbers_sm" dest="identifiers_wstok" />
-    <copyField source="plate_publisher_numbers_sm" dest="identifiers_ft" />
-    <copyField source="plate_publisher_numbers_sm" dest="identifiers_wstok" />
-    <copyField source="siglum_s" dest="identifiers_ft" />
-    <copyField source="siglum_s" dest="identifiers_wstok" />
-    <copyField source="former_sigla_sm" dest="identifiers_ft" />
-    <copyField source="former_sigla_sm" dest="identifiers_wstok" />
-    <copyField source="now_in_sigla_sm" dest="identifiers_ft" />
-    <copyField source="now_in_sigla_sm" dest="identifiers_wstok" />
-    <copyField source="contains_sigla_sm" dest="identifiers_ft" />
     <copyField source="contains_sigla_sm" dest="identifiers_wstok" />
-    <copyField source="related_institution_sigla_sm" dest="identifiers_ft" />
-    <copyField source="related_institution_sigla_sm" dest="identifiers_wstok" />
-    <copyField source="holding_institutions_sm" dest="identifiers_ft" />
-    <copyField source="holding_institutions_identifiers_sm" dest="identifiers_ft" />
-    <copyField source="holding_institutions_identifiers_sm" dest="identifiers_wstok" />
-    <copyField source="rism_series_identifiers_sm" dest="identifiers_ft" />
+    <copyField source="former_shelfmarks_sm" dest="identifiers_wstok" />
+    <copyField source="other_shelfmarks_sm" dest="identifiers_wstok" />
+    <copyField source="plate_publisher_numbers_sm" dest="identifiers_wstok" />
+    <copyField source="rism_id" dest="identifiers_wstok" />
     <copyField source="rism_series_identifiers_sm" dest="identifiers_wstok" />
-    <copyField source="secondary_literature_identifiers_sm" dest="identifiers_ft" />
     <copyField source="secondary_literature_identifiers_sm" dest="identifiers_wstok" />
-    <copyField source="provenance_sm" dest="identifiers_ft" />
-    <copyField source="department_s" dest="identifiers_ft" />
+    <copyField source="shelfmark_s" dest="identifiers_wstok" />
+    <copyField source="external_ids" dest="identifiers_wstok" />
+    <copyField source="work_node_ids" dest="identifiers_wstok" />
+    <copyField source="work_node_id" dest="identifiers_wstok" />
 
-    <!-- dedicated query fields. -->
-    <copyField source="shelfmark_s" dest="shelfmark_al" />
-    <copyField source="creator_name_s" dest="creator_name_al" />
-    <copyField source="main_title_s" dest="main_title_al" />
-    <copyField source="rism_series_identifiers_sm" dest="rism_series_identifiers_al" />
-    <copyField source="plate_publisher_numbers_sm" dest="plate_publisher_numbers_al" />
-    <copyField source="watermark_notes_sm" dest="watermark_notes_al" />
-    <copyField source="siglum_s" dest="siglum_al" />
-    <copyField source="scoring_summary_sm" dest="scoring_summary_al" />
-    <copyField source="scoring_sm" dest="scoring_al" />
-    <copyField source="name_s" dest="name_al" />
-    <copyField source="city_s" dest="city_al" />
-
-    <!-- for ensuring incipit text and titles are available in fulltext search -->
-    <copyField source="incipit_text_sm" dest="incipit_text_ft" />
-    <copyField source="incipit_title_sm" dest="incipit_text_ft" />
-
-    <!-- People records -->
-    <copyField source="name_s" dest="people_names_ft" />
-    <copyField source="name_s" dest="people_names_al" />
-    <copyField source="creator_name_s" dest="people_names_ft" />
-    <copyField source="people_names_sm" dest="people_names_ft" />
-    <copyField source="people_names_sm" dest="people_names_al" />
-    <copyField source="related_people_sm" dest="people_names_ft" />
-    <copyField source="variant_people_names_sm" dest="people_names_ft" />
-    <copyField source="variant_people_names_sm" dest="people_names_al" />
-    <copyField source="variant_names_sm" dest="people_names_ft" />
-    <copyField source="variant_names_sm" dest="people_names_al" />
-
-    <!-- Institution records -->
-    <copyField source="institutions_sm" dest="institutions_ft" />
-    <copyField source="related_institutions_sm" dest="institutions_ft" />
-    <copyField source="parallel_names_sm" dest="institutions_ft" />
-    <copyField source="alternate_names_sm" dest="institutions_ft" />
-
-    <!-- Subject records -->
-    <copyField source="subjects_sm" dest="subjects_ft" />
-    <copyField source="term_s" dest="subjects_ft" />
-    <copyField source="alternate_terms_sm" dest="subjects_ft" />
-    <copyField source="variant_standard_terms_sm" dest="subjects_ft" />
-
-    <!-- location fields -->
-    <copyField source="country_s" dest="location_ft" />
-    <copyField source="city_s" dest="location_ft" />
-    <copyField source="district_s" dest="location_ft" />
-    <copyField source="country_names_sm" dest="location_ft" />
-    <copyField source="holding_institutions_places_sm" dest="location_ft" />
-    <copyField source="street_address_sm" dest="location_ft" />
-    <copyField source="postcode_address_sm" dest="location_ft" />
-    <copyField source="city_address_sm" dest="location_ft" />
-
-    <!-- fulltext fields -->
-    <copyField source="roles_sm" dest="roles_ft" />
-    <copyField source="creator_name_s" dest="creator_name_ft" />
-    <copyField source="creator_name_s" dest="creator_name_kw" />
-    <copyField source="city_s" dest="city_ft" />
-    <copyField source="country_names_sm" dest="country_names_ft" />
-
-    <copyField source="name_s" dest="names_ft" />
-    <copyField source="alternate_names_sm" dest="names_ft" />
-    <copyField source="parallel_names_sm" dest="names_ft" />
-
-    <copyField source="country_s" dest="location_min_ft" />
-    <copyField source="city_s" dest="location_min_ft" />
-    <copyField source="country_names_sm" dest="location_min_ft" />
-
-    <!-- fields that primarily hold sigla are indexed with the keyword field so that they are not split
-        on boundaries, but are instead n-grammed to support wildcard lookups.
-    -->
-    <copyField source="siglum_s" dest="siglum_kw" />
-    <copyField source="holding_institutions_sm" dest="siglum_kw" />
-    <copyField source="related_institution_sigla_sm" dest="siglum_kw" />
     <copyField source="contains_sigla_sm" dest="siglum_kw" />
+    <copyField source="former_sigla_sm" dest="siglum_kw" />
+    <copyField source="holding_institutions_sm" dest="siglum_kw" />
     <copyField source="now_in_sigla_sm" dest="siglum_kw" />
+    <copyField source="related_institution_sigla_sm" dest="siglum_kw" />
+    <copyField source="siglum_s" dest="siglum_kw" />
 
-    <!-- allows for querying on holding institution sigla directly -->
-    <copyField source="holding_institutions_sm" dest="holding_institutions_ft" />
-
-    <!-- instrumentation fields are passed through a thesaurus to automatically expand and translate
-         alternate terms (i.e., synonyms) of an instrument. -->
-    <copyField source="scoring_summary_sm" dest="scoring_ti" />
-    <copyField source="scoring_sm" dest="scoring_ti" />
-
-    <!-- rism id fields. These have minimal processing so that we can support direct RISM id lookup -->
-    <copyField source="rism_id" dest="rism_id_wstok" />
-    <copyField source="rism_series_identifiers_sm" dest="rism_id_wstok" />
-
-    <!-- copy fingerprint data to other types of field for different sorts of analysis -->
-    <copyField source="fingerprint_lp" dest="fingerprint_kw" />
-    <copyField source="fingerprint_lp" dest="fingerprint_s" />
+    <copyField source="name_s" dest="siglum_text_ft" />
+    <copyField source="city_s" dest="siglum_text_ft" />
+    <copyField source="county_province_sm" dest="siglum_text_ft" />
+    <copyField source="country_s" dest="siglum_text_ft" />
+    <copyField source="country_names_sm" dest="siglum_text_ft" />
+    <copyField source="city_address_sm" dest="siglum_text_ft" />
+    <copyField source="alternate_names_sm" dest="siglum_text_ft" />
+    <copyField source="parallel_names_sm" dest="siglum_text_ft" />
 
     <!-- field type definitions -->
     <fieldType name="nest_path" class="solr.NestPathField" />
     <fieldType name="uuid" class="solr.UUIDField" indexed="true" stored="true" />
-    <fieldType name="string" class="solr.StrField" indexed="true" stored="true" sortMissingLast="true" termVectors="true" />
+    <fieldType name="string" class="solr.StrField" indexed="true" stored="true" sortMissingLast="true" termVectors="true" docValues="true" />
     <!-- use an Non-indexed string if you don't want the value of the string field to be indexed, e.g., a boilerplate rights statement that is on every record. -->
-    <fieldType name="ni_string" class="solr.StrField" indexed="false" stored="true" sortMissingLast="true" />
+    <fieldType name="ni_string" class="solr.StrField" indexed="false" stored="true" sortMissingLast="true" docValues="false" omitNorms="false" />
     <fieldType name="boolean" class="solr.BoolField" indexed="true" stored="true" sortMissingLast="true" />
     <fieldType name="int" class="solr.IntPointField" sortMissingLast="true" />
     <fieldType name="location" class="solr.LatLonPointSpatialField" stored="true"/>
@@ -229,10 +191,10 @@
     <fieldType name="daterange" class="solr.DateRangeField" sortMissingLast="true" />
     <!-- sorting for alpha-numeric values. The 'strength=secondary' argument, as I'm sure your aware, is what controls case
          insensitive matching. -->
-    <fieldType name="sort" class="solr.ICUCollationField" locale="" numeric="true" strength="secondary" alternate="shifted" sortMissingLast="true" />
+    <fieldType name="sort" class="solr.ICUCollationField" locale="" numeric="true" strength="secondary" alternate="shifted" sortMissingLast="true" docValues="true" />
     <!-- used for fields of long content (greater than the 'string' field capacity) but which do not need to be indexed -->
     <fieldType name="text_unprocessed" class="solr.TextField" indexed="false" stored="true" />
-    <fieldType name="json" class="solr.TextField" indexed="false" stored="true" />
+    <fieldType name="json" class="solr.TextField" indexed="false" stored="true" docValues="false" />
 
     <!-- minhash fields -->
     <dynamicField name="*_mh" type="text_min_hash" multiValued="false" indexed="true" stored="true" />
@@ -241,7 +203,7 @@
     <!--    <copyField source="pitches_mh" dest="pitches_bi" />-->
 
     <!-- text fields -->
-    <fieldType name="text_fulltext" class="solr.TextField" autoGeneratePhraseQueries="true" multiValued="true" termVectors="true">
+    <fieldType name="text_fulltext" class="solr.TextField" multiValued="true" termVectors="true" positionIncrementGap="100">
         <analyzer type="index">
             <tokenizer class="solr.ICUTokenizerFactory" />
             <filter class="solr.ICUFoldingFilterFactory"/>
@@ -263,6 +225,7 @@
             <!-- <filter class="solr.StemmerOverrideFilterFactory" dictionary="stemdict.txt" /> -->
             <filter class="solr.KStemFilterFactory" />
             <!--<filter class="solr.CommonGramsQueryFilterFactory" ignoreCase="true" words="stopwords.txt" /> -->
+            <filter class="solr.FlattenGraphFilterFactory"/>
         </analyzer>
     </fieldType>
 
@@ -316,6 +279,7 @@
             <filter class="solr.ICUFoldingFilterFactory"/>
             <filter class="solr.LowerCaseFilterFactory" />
             <!-- shingles generate "word n-grams"; "the quick brown" to "the quick", "quick brown". -->
+            <filter class="solr.LengthFilterFactory" min="2" max="8000"/>
             <filter class="solr.ShingleFilterFactory" minShingleSize="2" maxShingleSize="5" />
         </analyzer>
         <analyzer type="query">
@@ -400,5 +364,12 @@
             <filter class="solr.ShingleFilterFactory" minShingleSize="3" outputUnigrams="false" outputUnigramsIfNoShingles="false" maxShingleSize="3" tokenSeparator=" "/>
         </analyzer>
         <similarity class="solr.BooleanSimilarityFactory"/>
+    </fieldType>
+
+    <!-- a field that passes query values through a synonym parser for instrument names. -->
+    <fieldType name="text_work_node" class="solr.TextField" termVectors="true" multiValued="true" stored="false">
+        <analyzer>
+            <tokenizer class="solr.PatternTokenizerFactory" pattern="([a-z]+:)?(\d+)" group="2" />
+        </analyzer>
     </fieldType>
 </schema>
