@@ -126,121 +126,78 @@
                 <str>*</str>
             </arr>
         </lst>
-        <lst name="appends">
-            <arr name="fl">
-                <!-- specific json fields are run through the json transformer -->
-                <str>subjects_json:[json]</str>
-                <str>holding_institutions_json:[json]</str>
-                <str>holding_titles_json:[json]</str>
-                <str>material_groups_json:[json]</str>
-                <str>rism_series_json:[json]</str>
-                <str>creator_json:[json]</str>
-                <str>relationships_json:[json]</str>
-                <str>source_membership_json:[json]</str>
-                <str>related_people_json:[json]</str>
-                <str>related_places_json:[json]</str>
-                <str>external_resources_json:[json]</str>
-                <str>variant_names_json:[json]</str>
-                <str>related_institutions_json:[json]</str>
-                <str>liturgical_festivals_json:[json]</str>
-                <str>scoring_json:[json]</str>
-                <str>minimal_mss_holding_json:[json]</str>
-                <str>dramatic_roles_json:[json]</str>
-                <str>location_of_performance_json:[json]</str>
-                <str>standard_titles_json:[json]</str>
-                <str>additional_titles_json:[json]</str>
-                <str>works_catalogue_json:[json]</str>
-                <str>bibliographic_references_json:[json]</str>
-                <str>secondary_literature_json:[json]</str>
-                <str>interval_ids_json:[json]</str>
-                <str>pitches_ids_json:[json]</str>
-                <str>now_in_json:[json]</str>
-                <str>contains_json:[json]</str>
-                <str>related_sources_json:[json]</str>
-                <str>external_records_jsonm:[json]</str>
-                <str>addresses_json:[json]</str>
-                <str>work_node_json:[json]</str>
-                <str>work_nodes_json:[json]</str>
-            </arr>
-        </lst>
     </requestHandler>
 
     <requestHandler name="/select" class="solr.SearchHandler">
         <lst name="defaults">
-            <str name="echoParams">explicit</str>
-            <int name="rows">20</int>
-            <str name="q.op">AND</str>
-            <str name="sow">true</str>
-            <str name="defType">edismax</str>
-            <arr name="mm">
-                <!-- <str>4&lt;50%</str> -->
-                <str>25%</str>
-            </arr>
-            <str name="mm.autoRelax">true</str>
-            <str name="wt">json</str>
-            <arr name="fl">
-                <str>*</str>
-            </arr>
-            <arr name="qf">
-                <str>text</str>
-                <str>identifiers_wstok^10</str>
-                <str>siglum_kw^5</str>
-                <str>work_node_wnt</str>
-            </arr>
-            <arr name="boost">
-                <!-- source count is a very crude but effective method of determining
-                     more or less important people and institutions.
-                -->
-                <str>scale(field(total_holdings_i), 1, 100)</str>
-                <str>scale(field(total_sources_i), 1, 100)</str>
-            </arr>
-            <arr name="bq">
-                <str>is_collection_record_b:true^10</str>
-            </arr>
-        </lst>
-        <lst name="appends">
-            <arr name="fl">
-                <!-- specific json fields are run through the json transformer -->
-                <str>subjects_json:[json]</str>
-                <str>holding_institutions_json:[json]</str>
-                <str>holding_titles_json:[json]</str>
-                <str>material_groups_json:[json]</str>
-                <str>rism_series_json:[json]</str>
-                <str>creator_json:[json]</str>
-                <str>relationships_json:[json]</str>
-                <str>source_membership_json:[json]</str>
-                <str>related_people_json:[json]</str>
-                <str>related_places_json:[json]</str>
-                <str>external_resources_json:[json]</str>
-                <str>variant_names_json:[json]</str>
-                <str>related_institutions_json:[json]</str>
-                <str>liturgical_festivals_json:[json]</str>
-                <str>scoring_json:[json]</str>
-                <str>minimal_mss_holding_json:[json]</str>
-                <str>dramatic_roles_json:[json]</str>
-                <str>location_of_performance_json:[json]</str>
-                <str>standard_titles_json:[json]</str>
-                <str>additional_titles_json:[json]</str>
-                <str>works_catalogue_json:[json]</str>
-                <str>bibliographic_references_json:[json]</str>
-                <str>secondary_literature_json:[json]</str>
-                <str>interval_ids_json:[json]</str>
-                <str>pitches_ids_json:[json]</str>
-                <str>now_in_json:[json]</str>
-                <str>contains_json:[json]</str>
-                <str>related_sources_json:[json]</str>
-                <str>external_records_jsonm:[json]</str>
-                <str>addresses_json:[json]</str>
-                <str>work_node_json:[json]</str>
-                <str>work_nodes_json:[json]</str>
-            </arr>
+            <str name="fl">*</str>
         </lst>
     </requestHandler>
+
+    <!--
+      A dedicated handler for the main search. This has the fl=* parameter removed, which means
+      that for the searches to work they need to explicitly pass in a list of fields.
+      This helps trim down the size of the response, and hopefully speed it up.
+
+      Otherwise it's equivalent to the /select handler.
+
+    -->
+    <requestHandler name="/search" class="solr.SearchHandler" />
 
     <!-- A search handler that does not automatically apply the JSON field transforms,
         but otherwise matches the behaviour of the "/select" handler.
      -->
     <requestHandler name="/query" class="solr.SearchHandler">
+        <lst name="defaults">
+            <str name="fl">*</str>
+        </lst>
+    </requestHandler>
+
+    <!-- A very basic query handler
+     -->
+    <requestHandler name="/siglaQuery" class="solr.SearchHandler" />
+
+    <requestHandler name="/terms" class="solr.SearchHandler" startup="lazy">
+        <lst name="defaults">
+            <bool name="omitHeader">true</bool>
+            <bool name="terms">true</bool>
+            <bool name="distrib">false</bool>
+        </lst>
+        <arr name="components">
+            <str>terms</str>
+        </arr>
+    </requestHandler>
+
+    <requestHandler name="/probe" class="solr.SearchHandler">
+        <lst name="defaults">
+            <arr name="fl">
+                <str>id</str>
+            </arr>
+        </lst>
+    </requestHandler>
+
+    <initParams name="minimalQuerySettings" path="/probe,/siglaQuery">
+        <lst name="defaults">
+            <str name="echoParams">all</str>
+            <int name="rows">20</int>
+            <str name="q.op">AND</str>
+            <str name="defType">edismax</str>
+            <str name="wt">json</str>
+            <str name="sow">true</str>
+            <bool name="cache">false</bool>
+            <arr name="mm">
+                <!-- <str>4&lt;50%</str> -->
+                <str>25%</str>
+            </arr>
+            <arr name="qf">
+                <str>siglum_kw^5</str>
+                <str>identifiers_wstok</str>
+                <str>siglum_text_ft</str>
+            </arr>
+        </lst>
+    </initParams>
+
+    <initParams name="querySettings" path="/search,/select,/query">
         <lst name="defaults">
             <str name="echoParams">explicit</str>
             <int name="rows">20</int>
@@ -270,64 +227,44 @@
                 <str>record_type_s:collection^10</str>
             </arr>
         </lst>
-    </requestHandler>
-
-    <!-- A very basic query handler
-     -->
-    <requestHandler name="/siglaQuery" class="solr.SearchHandler">
-        <lst name="defaults">
-            <str name="echoParams">all</str>
-            <int name="rows">20</int>
-            <str name="q.op">AND</str>
-            <str name="defType">edismax</str>
-            <str name="wt">json</str>
-            <str name="sow">true</str>
-            <bool name="cache">false</bool>
-            <arr name="mm">
-                <!-- <str>4&lt;50%</str> -->
-                <str>25%</str>
-            </arr>
-            <arr name="qf">
-                <str>siglum_kw^5</str>
-                <str>identifiers_wstok</str>
-                <str>siglum_text_ft</str>
-<!--                <str>rism_id_wstok^10</str>-->
-<!--                <str>names_ft^10</str>-->
-<!--                <str>location_min_ft^5</str>-->
-            </arr>
-        </lst>
-    </requestHandler>
-
-    <requestHandler name="/terms" class="solr.SearchHandler" startup="lazy">
-        <lst name="defaults">
-            <bool name="omitHeader">true</bool>
-            <bool name="terms">true</bool>
-            <bool name="distrib">false</bool>
-        </lst>
-        <arr name="components">
-            <str>terms</str>
-        </arr>
-    </requestHandler>
-
-    <requestHandler name="/probe" class="solr.SearchHandler">
-        <lst name="defaults">
-            <str name="echoParams">explicit</str>
-            <int name="rows">0</int>
-            <str name="q.op">AND</str>
-            <str name="sow">true</str>
-            <str name="defType">edismax</str>
-            <str name="wt">json</str>
-<!--            <str name="df">text</str>-->
-            <arr name="qf">
-                <str>text</str>
-                <str>identifiers_wstok^10</str>
-                <str>work_node_wnt</str>
-            </arr>
+    </initParams>
+    <initParams name="jsonFields" path="/search,/select,/get">
+        <lst name="appends">
             <arr name="fl">
-                <str>id</str>
+                <!-- specific json fields are run through the json transformer -->
+                <str>subjects_json:[json]</str>
+                <str>holding_institutions_json:[json]</str>
+                <str>holding_titles_json:[json]</str>
+                <str>material_groups_json:[json]</str>
+                <str>rism_series_json:[json]</str>
+                <str>creator_json:[json]</str>
+                <str>relationships_json:[json]</str>
+                <str>source_membership_json:[json]</str>
+                <str>related_people_json:[json]</str>
+                <str>related_places_json:[json]</str>
+                <str>external_resources_json:[json]</str>
+                <str>variant_names_json:[json]</str>
+                <str>related_institutions_json:[json]</str>
+                <str>liturgical_festivals_json:[json]</str>
+                <str>scoring_json:[json]</str>
+                <str>minimal_mss_holding_json:[json]</str>
+                <str>dramatic_roles_json:[json]</str>
+                <str>location_of_performance_json:[json]</str>
+                <str>standard_titles_json:[json]</str>
+                <str>additional_titles_json:[json]</str>
+                <str>works_catalogue_json:[json]</str>
+                <str>bibliographic_references_json:[json]</str>
+                <str>secondary_literature_json:[json]</str>
+                <str>interval_ids_json:[json]</str>
+                <str>pitches_ids_json:[json]</str>
+                <str>now_in_json:[json]</str>
+                <str>contains_json:[json]</str>
+                <str>related_sources_json:[json]</str>
+                <str>external_records_jsonm:[json]</str>
+                <str>addresses_json:[json]</str>
+                <str>work_node_json:[json]</str>
+                <str>work_nodes_json:[json]</str>
             </arr>
-            <bool name="cache">false</bool>
         </lst>
-    </requestHandler>
-
+    </initParams>
 </config>
