@@ -180,6 +180,9 @@
     <copyField source="city_s" dest="city_ft" />
     <copyField source="country_names_sm" dest="country_names_ft" />
 
+    <!-- misc facet copying -->
+    <copyField source="scoring_sm" dest="scoring_ti" />
+
     <!-- field type definitions -->
     <fieldType name="nest_path" class="solr.NestPathField" />
     <fieldType name="uuid" class="solr.UUIDField" indexed="true" stored="true" />
