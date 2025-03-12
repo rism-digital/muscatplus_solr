@@ -256,6 +256,7 @@
                 <str>addresses_json:[json]</str>
                 <str>work_node_json:[json]</str>
                 <str>work_nodes_json:[json]</str>
+                <str>contributing_projects_json:[json]</str>
             </arr>
         </lst>
     </initParams>
