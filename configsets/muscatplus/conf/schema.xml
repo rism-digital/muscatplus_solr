@@ -153,6 +153,7 @@
     <copyField source="other_shelfmarks_sm" dest="identifiers_wstok" />
     <copyField source="plate_publisher_numbers_sm" dest="identifiers_wstok" />
     <copyField source="rism_id" dest="identifiers_wstok" />
+    <copyField source="full_rism_id" dest="identifiers_wstok" />
     <copyField source="rism_series_identifiers_sm" dest="identifiers_wstok" />
     <copyField source="secondary_literature_identifiers_sm" dest="identifiers_wstok" />
     <copyField source="shelfmark_s" dest="identifiers_wstok" />
