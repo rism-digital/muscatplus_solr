@@ -245,6 +245,7 @@
                 <str>standard_titles_json:[json]</str>
                 <str>additional_titles_json:[json]</str>
                 <str>works_catalogue_json:[json]</str>
+                <str>secondary_works_catalogue_json:[json]</str>
                 <str>bibliographic_references_json:[json]</str>
                 <str>secondary_literature_json:[json]</str>
                 <str>interval_ids_json:[json]</str>
