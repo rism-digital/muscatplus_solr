@@ -230,6 +230,7 @@
                 <str>material_groups_json:[json]</str>
                 <str>rism_series_json:[json]</str>
                 <str>creator_json:[json]</str>
+                <str>composer_json:[json]</str>
                 <str>relationships_json:[json]</str>
                 <str>source_membership_json:[json]</str>
                 <str>related_people_json:[json]</str>
