@@ -260,6 +260,7 @@
                 <str>work_nodes_json:[json]</str>
                 <str>contributing_projects_json:[json]</str>
                 <str>periodical_series_json:[json]</str>
+                <str>work_form_json:[json]</str>
             </arr>
         </lst>
     </initParams>
