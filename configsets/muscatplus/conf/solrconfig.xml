@@ -262,6 +262,7 @@
                 <str>periodical_series_json:[json]</str>
                 <str>work_form_json:[json]</str>
                 <str>alternative_titles_json:[json]</str>
+                <str>identified_source_json:[json]</str>
             </arr>
         </lst>
     </initParams>
