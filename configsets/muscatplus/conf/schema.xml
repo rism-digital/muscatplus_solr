@@ -160,6 +160,7 @@
     <copyField source="external_ids" dest="identifiers_wstok" />
     <copyField source="work_node_ids" dest="identifiers_wstok" />
     <copyField source="work_node_id" dest="identifiers_wstok" />
+    <copyField source="legacy_id" dest="identifiers_wstok" />
 
     <copyField source="contains_sigla_sm" dest="siglum_kw" />
     <copyField source="former_sigla_sm" dest="siglum_kw" />
@@ -167,6 +168,13 @@
     <copyField source="now_in_sigla_sm" dest="siglum_kw" />
     <copyField source="related_institution_sigla_sm" dest="siglum_kw" />
     <copyField source="siglum_s" dest="siglum_kw" />
+
+    <copyField source="contains_sigla_sm" dest="siglum_ft" />
+    <copyField source="former_sigla_sm" dest="siglum_ft" />
+    <copyField source="holding_institutions_sm" dest="siglum_ft" />
+    <copyField source="now_in_sigla_sm" dest="siglum_ft" />
+    <copyField source="related_institution_sigla_sm" dest="siglum_ft" />
+    <copyField source="siglum_s" dest="siglum_ft" />
 
     <copyField source="name_s" dest="siglum_text_ft" />
     <copyField source="city_s" dest="siglum_text_ft" />
