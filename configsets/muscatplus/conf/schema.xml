@@ -37,6 +37,7 @@
     <!-- Add a dynamic field that has fulltext query processing. useful for query-time boosting -->
     <dynamicField name="*_ft" type="text_fulltext" stored="false"/>
     <dynamicField name="*_kw" type="text_keyword" stored="false" />
+    <dynamicField name="*_kwf" type="text_keyword_folding" stored="false" />
     <dynamicField name="*_kwa" type="text_keyword_alt" stored="false" />
     <dynamicField name="*_ti" type="text_instruments" stored="false" />
     <dynamicField name="*_wstok" type="text_whitespace_tokenized" stored="false" />
@@ -162,6 +163,7 @@
     <copyField source="work_node_id" dest="identifiers_wstok" />
     <copyField source="legacy_id" dest="identifiers_wstok" />
 
+    <!--  Siglum search  -->
     <copyField source="contains_sigla_sm" dest="siglum_kw" />
     <copyField source="former_sigla_sm" dest="siglum_kw" />
     <copyField source="holding_institutions_sm" dest="siglum_kw" />
@@ -176,6 +178,8 @@
     <copyField source="related_institution_sigla_sm" dest="siglum_ft" />
     <copyField source="siglum_s" dest="siglum_ft" />
 
+    <copyField source="siglum_s" dest="siglum_kwf" />
+
     <copyField source="name_s" dest="siglum_text_ft" />
     <copyField source="city_s" dest="siglum_text_ft" />
     <copyField source="county_province_sm" dest="siglum_text_ft" />
@@ -185,7 +189,6 @@
     <copyField source="alternate_names_sm" dest="siglum_text_ft" />
     <copyField source="parallel_names_sm" dest="siglum_text_ft" />
 
-    <!--  Siglum search  -->
     <copyField source="city_s" dest="city_ft" />
     <copyField source="country_names_sm" dest="country_names_ft" />
 
@@ -242,6 +245,14 @@
             <filter class="solr.KStemFilterFactory" />
             <!--<filter class="solr.CommonGramsQueryFilterFactory" ignoreCase="true" words="stopwords.txt" /> -->
             <filter class="solr.FlattenGraphFilterFactory"/>
+        </analyzer>
+    </fieldType>
+
+    <!-- text fields -->
+    <fieldType name="text_keyword_folding" class="solr.TextField" multiValued="true" termVectors="true" positionIncrementGap="100">
+        <analyzer>
+            <tokenizer class="solr.KeywordTokenizerFactory" />
+            <filter class="solr.ASCIIFoldingFilterFactory" preserveOriginal="false" />
         </analyzer>
     </fieldType>
 
