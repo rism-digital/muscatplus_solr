@@ -47,6 +47,9 @@
     <dynamicField name="*_json" type="json" multiValued="false" />
     <dynamicField name="*_jsonm" type="json" multiValued="true" />
     <dynamicField name="*_wnt" type="text_work_node" />
+    <!-- see the note on the field definition. This does not follow the standard pattern because it never contains
+      a value -->
+    <dynamicField name="random_*" type="random" />
 
     <!--
         Bulk copy fields are configured in the update handler in solrconfig.xml
@@ -214,6 +217,8 @@
     <!-- used for fields of long content (greater than the 'string' field capacity) but which do not need to be indexed -->
     <fieldType name="text_unprocessed" class="solr.TextField" indexed="false" stored="true" />
     <fieldType name="json" class="solr.TextField" indexed="false" stored="true" docValues="false" />
+    <!-- does not contain a value; used for random sorting in custom queries, like sampling a subset of documents for errors. -->
+    <fieldType name="random" class="solr.RandomSortField" indexed="true" />
 
     <!-- minhash fields -->
     <dynamicField name="*_mh" type="text_min_hash" multiValued="false" indexed="true" stored="true" />
