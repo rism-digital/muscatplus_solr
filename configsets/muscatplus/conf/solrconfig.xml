@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <config>
-    <luceneMatchVersion>9.11.1</luceneMatchVersion>
+    <luceneMatchVersion>9.12.2</luceneMatchVersion>
     <dataDir>${solr.data.dir:}</dataDir>
 
     <directoryFactory name="DirectoryFactory"
@@ -262,6 +262,7 @@
                 <str>contributing_projects_json:[json]</str>
                 <str>periodical_series_json:[json]</str>
                 <str>work_form_json:[json]</str>
+                <str>related_works_json:[json]</str>
                 <str>alternative_titles_json:[json]</str>
                 <str>identified_source_json:[json]</str>
                 <str>series_statement_json:[json]</str>
