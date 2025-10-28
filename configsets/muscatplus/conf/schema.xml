@@ -132,6 +132,7 @@
     <copyField source="related_institution_sigla_sm" dest="text" />
     <copyField source="related_institutions_sm" dest="text" />
     <copyField source="related_people_sm" dest="text" />
+    <copyField source="scoring_sm" dest="text" />
     <copyField source="secondary_literature_identifiers_sm" dest="text" />
     <copyField source="shelfmark_s" dest="text" />
     <copyField source="siglum_s" dest="text" />
