@@ -139,7 +139,7 @@
     <copyField source="shelfmark_s" dest="text" />
     <copyField source="siglum_s" dest="text" />
     <copyField source="source_of_description_notes_sm" dest="text" />
-    <copyField source="source_title_s" dest="text" />
+    <copyField source="source_title_sm" dest="text" />
     <copyField source="standard_title_s" dest="text" />
     <copyField source="street_address_sm" dest="text" />
     <copyField source="subjects_sm" dest="text" />
