@@ -216,9 +216,9 @@
                 <str>scale(field(total_holdings_i), 1, 100)</str>
                 <str>scale(field(total_sources_i), 1, 100)</str>
             </arr>
-            <arr name="bq">
-                <str>record_type_s:collection^10</str>
-            </arr>
+<!--            <arr name="bq">-->
+<!--                <str>record_type_s:collection^10</str>-->
+<!--            </arr>-->
         </lst>
     </initParams>
     <initParams name="jsonFields" path="/search,/select,/get">
