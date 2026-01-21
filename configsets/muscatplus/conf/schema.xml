@@ -135,6 +135,7 @@
     <copyField source="related_institutions_sm" dest="text" />
     <copyField source="related_people_sm" dest="text" />
     <copyField source="scoring_sm" dest="text" />
+    <copyField source="scoring_summary_sm" dest="text" />
     <copyField source="secondary_literature_identifiers_sm" dest="text" />
     <copyField source="shelfmark_s" dest="text" />
     <copyField source="siglum_s" dest="text" />
@@ -200,6 +201,7 @@
 
     <!-- misc facet copying -->
     <copyField source="scoring_sm" dest="scoring_ti" />
+    <copyField source="scoring_summary_sm" dest="scoring_summary_ti" />
 
     <!-- field type definitions -->
     <fieldType name="nest_path" class="solr.NestPathField" />
