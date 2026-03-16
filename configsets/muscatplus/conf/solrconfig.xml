@@ -267,6 +267,7 @@
                 <str>work_node_json:[json]</str>
                 <str>work_nodes_json:[json]</str>
                 <str>works_catalogue_json:[json]</str>
+                <str>works_json:[json]</str>
             </arr>
         </lst>
     </initParams>
