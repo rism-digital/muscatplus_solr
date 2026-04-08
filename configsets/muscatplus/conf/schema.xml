@@ -61,6 +61,10 @@
     <copyField source="city_s" dest="city_al" />
     <copyField source="creator_name_s" dest="creator_name_al" />
     <copyField source="main_title_s" dest="main_title_al" />
+    <copyField source="standard_title_s" dest="main_title_al" />
+    <copyField source="source_title_sm" dest="main_title_al" />
+    <copyField source="variant_titles_sm" dest="main_title_al" />
+    <copyField source="additional_titles_sm" dest="main_title_al" />
     <copyField source="name_s" dest="people_names_al" />
     <copyField source="name_s" dest="name_al" />
     <copyField source="people_names_sm" dest="people_names_al" />
