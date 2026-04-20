@@ -49,12 +49,12 @@
                      async="true"
                      size="1024"
                      initialSize="512"
-                     autowarmCount="512" />
+                     autowarmCount="64" />
         <queryResultCache class="solr.search.CaffeineCache"
                           async="true"
                           size="1024"
                           initialSize="512"
-                          autowarmCount="512" />
+                          autowarmCount="64" />
         <cache name="perSegFilter"
                class="solr.search.CaffeineCache"
                size="10"
@@ -223,8 +223,8 @@
     </initParams>
     <initParams name="jsonFields" path="/search,/select,/get">
         <lst name="appends">
-            <arr name="fl">
-                <!-- specific json fields are run through the json transformer -->
+            <!-- specific json fields are run through the json transformer -->
+            <!--<arr name="fl">
                 <str>addresses_json:[json]</str>
                 <str>additional_titles_json:[json]</str>
                 <str>alternative_titles_json:[json]</str>
@@ -268,7 +268,7 @@
                 <str>work_nodes_json:[json]</str>
                 <str>works_catalogue_json:[json]</str>
                 <str>works_json:[json]</str>
-            </arr>
+            </arr>-->
         </lst>
     </initParams>
 </config>
