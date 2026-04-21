@@ -32,6 +32,7 @@
     <dynamicField name="*_loc" type="location" />
     <dynamicField name="*_lp" type="long" />
     <dynamicField name="*_fp" type="float" />
+    <dynamicField name="*_boost" stored="false" type="float" />
     <dynamicField name="*_ans" type="sort" stored="false" />
 
     <!-- Add a dynamic field that has fulltext query processing. useful for query-time boosting -->
