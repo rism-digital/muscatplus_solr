@@ -267,7 +267,7 @@
 
     <!-- a field that keeps hyphens and allows wildcard searches to support siglum search. Performs
      n-gram analysis to allow wildcard searching of any combination of tokens. -->
-    <fieldType name="text_keyword" class="solr.TextField">
+    <fieldType name="text_keyword" class="solr.TextField" multiValued="true">
         <analyzer type="index">
             <tokenizer class="solr.EdgeNGramTokenizerFactory" minGramSize="2" maxGramSize="6" />
         </analyzer>
