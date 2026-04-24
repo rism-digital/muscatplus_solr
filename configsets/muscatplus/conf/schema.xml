@@ -32,6 +32,7 @@
     <dynamicField name="*_loc" type="location" />
     <dynamicField name="*_lp" type="long" />
     <dynamicField name="*_fp" type="float" />
+    <dynamicField name="*_boost" stored="false" type="float" />
     <dynamicField name="*_ans" type="sort" stored="false" />
 
     <!-- Add a dynamic field that has fulltext query processing. useful for query-time boosting -->
@@ -50,12 +51,6 @@
     <!-- see the note on the field definition. This does not follow the standard pattern because it never contains
       a value -->
     <dynamicField name="random_*" type="random" />
-
-    <!--
-        Bulk copy fields are configured in the update handler in solrconfig.xml
-        since it's easier to manage a list of field names than a list of individual
-        XML elements...
-    -->
 
     <!-- Copy string fields to specific full-text query fields for field queries. -->
     <copyField source="city_s" dest="city_al" />
@@ -210,7 +205,7 @@
     <!-- field type definitions -->
     <fieldType name="nest_path" class="solr.NestPathField" />
     <fieldType name="uuid" class="solr.UUIDField" indexed="true" stored="true" />
-    <fieldType name="string" class="solr.StrField" indexed="true" stored="true" sortMissingLast="true" termVectors="true" docValues="true" />
+    <fieldType name="string" class="solr.StrField" indexed="true" stored="true" sortMissingLast="true" />
     <!-- use an Non-indexed string if you don't want the value of the string field to be indexed, e.g., a boilerplate rights statement that is on every record. -->
     <fieldType name="ni_string" class="solr.StrField" indexed="false" stored="true" sortMissingLast="true" docValues="false" omitNorms="false" />
     <fieldType name="boolean" class="solr.BoolField" indexed="true" stored="true" sortMissingLast="true" />
@@ -220,7 +215,7 @@
     <fieldType name="float" class="solr.FloatPointField" sortMissingLast="true" />
     <fieldType name="date" class="solr.DatePointField" sortMissingLast="true" />
     <fieldType name="daterange" class="solr.DateRangeField" sortMissingLast="true" />
-    <!-- sorting for alpha-numeric values. The 'strength=secondary' argument, as I'm sure your aware, is what controls case
+    <!-- Used for locale-neutral natural sort with numeric ordering. The 'strength=secondary' argument, as I'm sure your aware, is what controls case
          insensitive matching. -->
     <fieldType name="sort" class="solr.ICUCollationField" locale="" numeric="true" strength="secondary" alternate="shifted" sortMissingLast="true" docValues="true" />
     <!-- used for fields of long content (greater than the 'string' field capacity) but which do not need to be indexed -->
@@ -272,18 +267,24 @@
 
     <!-- a field that keeps hyphens and allows wildcard searches to support siglum search. Performs
      n-gram analysis to allow wildcard searching of any combination of tokens. -->
-    <fieldType name="text_keyword" class="solr.TextField" multiValued="true">
-        <analyzer>
+    <fieldType name="text_keyword" class="solr.TextField">
+        <analyzer type="index">
             <tokenizer class="solr.EdgeNGramTokenizerFactory" minGramSize="2" maxGramSize="6" />
+        </analyzer>
+        <analyzer type="query">
+            <tokenizer class="solr.KeywordTokenizerFactory" />
         </analyzer>
     </fieldType>
 
     <!-- a field that keeps hyphens and allows wildcard searches to support siglum search. Performs
  n-gram analysis to allow wildcard searching of any combination of tokens. -->
     <fieldType name="text_keyword_alt" class="solr.TextField" multiValued="true">
-        <analyzer>
+        <analyzer type="index">
             <tokenizer class="solr.WhitespaceTokenizerFactory"/>
             <filter class="solr.EdgeNGramFilterFactory" minGramSize="3" maxGramSize="6" />
+        </analyzer>
+        <analyzer type="query">
+            <tokenizer class="solr.WhitespaceTokenizerFactory"/>
         </analyzer>
     </fieldType>
 
