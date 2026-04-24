@@ -113,16 +113,10 @@
     <requestHandler name="/get" class="solr.RealTimeGetHandler">
         <lst name="defaults">
             <str name="omitHeader">true</str>
-            <arr name="fl">
-                <str>*</str>
-            </arr>
         </lst>
     </requestHandler>
 
     <requestHandler name="/select" class="solr.SearchHandler">
-        <lst name="defaults">
-            <str name="fl">*</str>
-        </lst>
     </requestHandler>
 
     <!--
@@ -137,9 +131,6 @@
 
     <!-- An alternate search handler -->
     <requestHandler name="/query" class="solr.SearchHandler">
-        <lst name="defaults">
-            <str name="fl">*</str>
-        </lst>
     </requestHandler>
 
     <!-- A very basic query handler
@@ -212,9 +203,6 @@
                 -->
                 <str>total_sources_boost</str>
             </arr>
-<!--            <arr name="bq">-->
-<!--                <str>record_type_s:collection^10</str>-->
-<!--            </arr>-->
         </lst>
     </initParams>
 </config>
