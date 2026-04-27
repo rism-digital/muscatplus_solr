@@ -175,6 +175,12 @@
                 <str>siglum_text_ft</str>
                 <str>identifiers_wstok</str>
             </arr>
+            <arr name="boost">
+                <!-- source count is a very crude but effective method of determining
+                     more or less important people and institutions.
+                -->
+                <str>total_sources_boost</str>
+            </arr>
         </lst>
     </initParams>
 
