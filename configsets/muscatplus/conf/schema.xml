@@ -231,7 +231,7 @@
     <!--    <copyField source="pitches_mh" dest="pitches_bi" />-->
 
     <!-- text fields -->
-    <fieldType name="text_fulltext" class="solr.TextField" multiValued="true" termVectors="true" positionIncrementGap="100">
+    <fieldType name="text_fulltext" class="solr.TextField" multiValued="true" positionIncrementGap="100">
         <analyzer type="index">
             <tokenizer class="solr.ICUTokenizerFactory" />
             <filter class="solr.ICUFoldingFilterFactory"/>
@@ -258,7 +258,7 @@
     </fieldType>
 
     <!-- text fields -->
-    <fieldType name="text_keyword_folding" class="solr.TextField" multiValued="true" termVectors="true" positionIncrementGap="100">
+    <fieldType name="text_keyword_folding" class="solr.TextField" multiValued="true" positionIncrementGap="100">
         <analyzer>
             <tokenizer class="solr.KeywordTokenizerFactory" />
             <filter class="solr.ASCIIFoldingFilterFactory" preserveOriginal="false" />
@@ -289,7 +289,7 @@
     </fieldType>
 
     <!-- a field that passes query values through a synonym parser for instrument names. -->
-    <fieldType name="text_instruments" class="solr.TextField" termVectors="true" multiValued="true">
+    <fieldType name="text_instruments" class="solr.TextField" multiValued="true">
         <analyzer type="query">
             <tokenizer class="solr.StandardTokenizerFactory"/>
             <filter class="solr.SynonymGraphFilterFactory" synonyms="instrument-synonyms.txt"
@@ -297,7 +297,7 @@
         </analyzer>
     </fieldType>
 
-    <fieldType name="text_whitespace_tokenized" class="solr.TextField" termVectors="true" multiValued="true">
+    <fieldType name="text_whitespace_tokenized" class="solr.TextField" multiValued="true">
         <analyzer type="index">
             <tokenizer class="solr.WhitespaceTokenizerFactory" />
             <filter class="solr.WordDelimiterGraphFilterFactory" preserveOriginal="1"/>
@@ -310,7 +310,7 @@
     </fieldType>
 
     <!-- A differently-analyzed field to use for weighting full-text searches-->
-    <fieldType name="text_analyzed" class="solr.TextField" multiValued="true" positionIncrementGap="100" termVectors="true">
+    <fieldType name="text_analyzed" class="solr.TextField" multiValued="true" positionIncrementGap="100">
         <analyzer type="index">
             <!-- the standard tokenizer removes any punctuation that is followed by whitespace,
                  e.g., "ms. bodl" to "ms bodl" -->
@@ -408,7 +408,7 @@
     </fieldType>
 
     <!-- a field that passes query values through a synonym parser for instrument names. -->
-    <fieldType name="text_work_node" class="solr.TextField" termVectors="true" multiValued="true" stored="false">
+    <fieldType name="text_work_node" class="solr.TextField" multiValued="true" stored="false">
         <analyzer>
             <tokenizer class="solr.PatternTokenizerFactory" pattern="([a-z]+:)?(\d+)" group="2" />
         </analyzer>
