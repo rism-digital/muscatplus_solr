@@ -88,6 +88,7 @@
     <copyField source="additional_titles_sm" dest="text" />
     <copyField source="alternate_names_sm" dest="text" />
     <copyField source="alternate_terms_sm" dest="text" />
+    <copyField source="alternative_titles_sm" dest="text" />
     <copyField source="binding_notes_sm" dest="text" />
     <copyField source="bibliographic_references_sm" dest="text" />
     <copyField source="catalogue_numbers_sm" dest="text" />
@@ -153,6 +154,7 @@
     <copyField source="variant_title_s" dest="text" />
     <copyField source="watermark_notes_sm" dest="text" />
     <copyField source="works_catalogue_sm" dest="text" />
+    <copyField source="work_form_sm" dest="text" />
 
     <!-- copy identifiers to the identifiers_wstok field. -->
     <copyField source="catalogue_numbers_sm" dest="identifiers_wstok" />
