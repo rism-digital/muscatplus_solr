@@ -135,6 +135,7 @@
     <copyField source="related_people_sm" dest="text" />
     <copyField source="scoring_sm" dest="text" />
     <copyField source="scoring_summary_sm" dest="text" />
+    <copyField source="secondary_catalogue_numbers_sm" dest="text" />
     <copyField source="secondary_literature_identifiers_sm" dest="text" />
     <copyField source="shelfmark_s" dest="text" />
     <copyField source="siglum_s" dest="text" />
