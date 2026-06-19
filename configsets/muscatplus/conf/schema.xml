@@ -270,7 +270,7 @@
      n-gram analysis to allow wildcard searching of any combination of tokens. -->
     <fieldType name="text_keyword" class="solr.TextField" multiValued="true">
         <analyzer type="index">
-            <tokenizer class="solr.EdgeNGramTokenizerFactory" minGramSize="2" maxGramSize="6" />
+            <tokenizer class="solr.EdgeNGramTokenizerFactory" minGramSize="2" maxGramSize="21" />
         </analyzer>
         <analyzer type="query">
             <tokenizer class="solr.KeywordTokenizerFactory" />
@@ -282,7 +282,7 @@
     <fieldType name="text_keyword_alt" class="solr.TextField" multiValued="true">
         <analyzer type="index">
             <tokenizer class="solr.WhitespaceTokenizerFactory"/>
-            <filter class="solr.EdgeNGramFilterFactory" minGramSize="3" maxGramSize="6" />
+            <filter class="solr.EdgeNGramFilterFactory" minGramSize="3" maxGramSize="21" />
         </analyzer>
         <analyzer type="query">
             <tokenizer class="solr.WhitespaceTokenizerFactory"/>
