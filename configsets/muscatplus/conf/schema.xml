@@ -88,6 +88,7 @@
     <copyField source="additional_titles_sm" dest="text" />
     <copyField source="alternate_names_sm" dest="text" />
     <copyField source="alternate_terms_sm" dest="text" />
+    <copyField source="alternative_titles_sm" dest="text" />
     <copyField source="binding_notes_sm" dest="text" />
     <copyField source="bibliographic_references_sm" dest="text" />
     <copyField source="catalogue_numbers_sm" dest="text" />
@@ -135,6 +136,7 @@
     <copyField source="related_people_sm" dest="text" />
     <copyField source="scoring_sm" dest="text" />
     <copyField source="scoring_summary_sm" dest="text" />
+    <copyField source="secondary_catalogue_numbers_sm" dest="text" />
     <copyField source="secondary_literature_identifiers_sm" dest="text" />
     <copyField source="shelfmark_s" dest="text" />
     <copyField source="siglum_s" dest="text" />
@@ -152,6 +154,7 @@
     <copyField source="variant_title_s" dest="text" />
     <copyField source="watermark_notes_sm" dest="text" />
     <copyField source="works_catalogue_sm" dest="text" />
+    <copyField source="work_form_sm" dest="text" />
 
     <!-- copy identifiers to the identifiers_wstok field. -->
     <copyField source="catalogue_numbers_sm" dest="identifiers_wstok" />
@@ -269,7 +272,7 @@
      n-gram analysis to allow wildcard searching of any combination of tokens. -->
     <fieldType name="text_keyword" class="solr.TextField" multiValued="true">
         <analyzer type="index">
-            <tokenizer class="solr.EdgeNGramTokenizerFactory" minGramSize="2" maxGramSize="6" />
+            <tokenizer class="solr.EdgeNGramTokenizerFactory" minGramSize="2" maxGramSize="21" />
         </analyzer>
         <analyzer type="query">
             <tokenizer class="solr.KeywordTokenizerFactory" />
@@ -281,7 +284,7 @@
     <fieldType name="text_keyword_alt" class="solr.TextField" multiValued="true">
         <analyzer type="index">
             <tokenizer class="solr.WhitespaceTokenizerFactory"/>
-            <filter class="solr.EdgeNGramFilterFactory" minGramSize="3" maxGramSize="6" />
+            <filter class="solr.EdgeNGramFilterFactory" minGramSize="3" maxGramSize="21" />
         </analyzer>
         <analyzer type="query">
             <tokenizer class="solr.WhitespaceTokenizerFactory"/>
