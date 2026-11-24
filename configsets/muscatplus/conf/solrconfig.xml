@@ -200,7 +200,7 @@
             <arr name="qf">
                 <str>text</str>
                 <str>identifiers_wstok^10</str>
-                <str>siglum_kw^5</str>
+                <str>siglum_s^10</str>
                 <str>work_node_wnt</str>
             </arr>
             <arr name="boost">
