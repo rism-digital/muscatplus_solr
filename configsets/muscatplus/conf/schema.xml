@@ -158,7 +158,6 @@
 
     <!-- copy identifiers to the identifiers_wstok field. -->
     <copyField source="catalogue_numbers_sm" dest="identifiers_wstok" />
-    <copyField source="contains_sigla_sm" dest="identifiers_wstok" />
     <copyField source="former_shelfmarks_sm" dest="identifiers_wstok" />
     <copyField source="other_shelfmarks_sm" dest="identifiers_wstok" />
     <copyField source="plate_publisher_numbers_sm" dest="identifiers_wstok" />
